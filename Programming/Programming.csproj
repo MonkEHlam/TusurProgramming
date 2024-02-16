@@ -46,6 +46,11 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Model\SmartphoneMakers.cs" />
+    <Compile Include="Model\FormOfEducation.cs" />
+    <Compile Include="Model\Seasons.cs" />
+    <Compile Include="Model\Colors.cs" />
+    <Compile Include="Model\Genre.cs" />
     <Compile Include="Model\WeekDay.cs" />
     <Compile Include="View\MainForm.cs">
       <SubType>Form</SubType>
@@ -64,6 +69,9 @@
       <AutoGen>True</AutoGen>
       <DependentUpon>Resources.resx</DependentUpon>
     </Compile>
+    <EmbeddedResource Include="View\MainForm.resx">
+      <DependentUpon>MainForm.cs</DependentUpon>
+    </EmbeddedResource>
     <None Include="Properties\Settings.settings">
       <Generator>SettingsSingleFileGenerator</Generator>
       <LastGenOutput>Settings.Designer.cs</LastGenOutput>

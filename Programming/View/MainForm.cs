@@ -16,5 +16,15 @@ namespace Programming
         {
             InitializeComponent();
         }
+
+        private void EnumsListBox_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            ValuesListBox.Items.Clear();
+        }
+
+        private void MainForm_Load(object sender, EventArgs e)
+        {
+            
+        }
     }
 }
