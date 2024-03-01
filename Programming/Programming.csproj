@@ -47,7 +47,7 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Model\SmartphoneMakers.cs" />
-    <Compile Include="Model\FormOfEducation.cs" />
+    <Compile Include="Model\FormsOfEducation.cs" />
     <Compile Include="Model\Seasons.cs" />
     <Compile Include="Model\Colors.cs" />
     <Compile Include="Model\Genre.cs" />

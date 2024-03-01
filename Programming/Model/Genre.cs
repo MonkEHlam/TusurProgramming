@@ -2,7 +2,7 @@
 {
     public enum Genre
     {
-        Comedy,
+        Comedy = 1,
         Drama,
         Thriller,
         Action,

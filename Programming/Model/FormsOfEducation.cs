@@ -6,9 +6,9 @@ using System.Threading.Tasks;
 
 namespace Programming.Model
 {
-    public enum FormOfEducation
+    public enum FormsOfEducation
     {
-        Intramural,
+        Intramural = 1,
         Сorrespondence,
         SemiСorrespondence
     }

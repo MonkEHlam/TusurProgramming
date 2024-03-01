@@ -2,7 +2,7 @@
 {
     public enum SmartphoneMakers
     {
-        Apple,
+        Apple = 1,
         Samsung,
         Google,
         OnePlus,
