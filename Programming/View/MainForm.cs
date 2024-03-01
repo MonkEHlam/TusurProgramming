@@ -64,6 +64,34 @@ namespace Programming
                 labelForWeekdayInfo.Text = "Нет такого дня недели";
             else
                 labelForWeekdayInfo.Text = $"Это день недели ({weekDay} = {(int)weekDay})";
-        }       
+        }
+
+        private void MainForm_Load(object sender, EventArgs e)
+        {
+            ComboBoxForSeasons.Items.AddRange(Enum.GetNames(typeof(Seasons)));
+            ComboBoxForSeasons.SelectedText = $"{ComboBoxForSeasons.Items[0]}";
+        }
+
+        private void SeasonsGoButton_Click(object sender, EventArgs e)
+        {
+            switch (ComboBoxForSeasons.Text)
+            {
+                case "Winter":
+                    MessageBox.Show("Бррр! Холодно!", "Сообщение", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                    break;
+                case "Summer":
+                    MessageBox.Show("Ура! Солнце!", "Сообщение", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                    break;
+                case "Spring":
+                    EnumsPage.BackColor = System.Drawing.ColorTranslator.FromHtml("#559c45");
+                    break;
+                case "Fall":
+                    EnumsPage.BackColor = System.Drawing.ColorTranslator.FromHtml("#e29c45");
+                    break;
+                default:
+                    MessageBox.Show("Error");
+                    break;
+            }
+        }
     }
 }

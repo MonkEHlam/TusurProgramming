@@ -43,7 +43,10 @@
             this.labelOfEnumsTable = new System.Windows.Forms.Label();
             this.labelOfItemTable = new System.Windows.Forms.Label();
             this.TabControl = new System.Windows.Forms.TabControl();
+            this.ComboBoxForSeasons = new System.Windows.Forms.ComboBox();
+            this.SeasonsGoButton = new System.Windows.Forms.Button();
             this.EnumsPage.SuspendLayout();
+            this.groupBoxForSeasons.SuspendLayout();
             this.groupBoxForWeekDayParser.SuspendLayout();
             this.groupBox1.SuspendLayout();
             this.TabControl.SuspendLayout();
@@ -66,6 +69,8 @@
             // 
             // groupBoxForSeasons
             // 
+            this.groupBoxForSeasons.Controls.Add(this.SeasonsGoButton);
+            this.groupBoxForSeasons.Controls.Add(this.ComboBoxForSeasons);
             this.groupBoxForSeasons.Location = new System.Drawing.Point(309, 215);
             this.groupBoxForSeasons.Name = "groupBoxForSeasons";
             this.groupBoxForSeasons.Size = new System.Drawing.Size(275, 110);
@@ -210,6 +215,24 @@
             this.TabControl.Size = new System.Drawing.Size(600, 361);
             this.TabControl.TabIndex = 0;
             // 
+            // ComboBoxForSeasons
+            // 
+            this.ComboBoxForSeasons.FormattingEnabled = true;
+            this.ComboBoxForSeasons.Location = new System.Drawing.Point(6, 49);
+            this.ComboBoxForSeasons.Name = "ComboBoxForSeasons";
+            this.ComboBoxForSeasons.Size = new System.Drawing.Size(168, 21);
+            this.ComboBoxForSeasons.TabIndex = 0;
+            // 
+            // SeasonsGoButton
+            // 
+            this.SeasonsGoButton.Location = new System.Drawing.Point(180, 49);
+            this.SeasonsGoButton.Name = "SeasonsGoButton";
+            this.SeasonsGoButton.Size = new System.Drawing.Size(89, 23);
+            this.SeasonsGoButton.TabIndex = 1;
+            this.SeasonsGoButton.Text = "Go!";
+            this.SeasonsGoButton.UseVisualStyleBackColor = true;
+            this.SeasonsGoButton.Click += new System.EventHandler(this.SeasonsGoButton_Click);
+            // 
             // MainForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -219,7 +242,9 @@
             this.Margin = new System.Windows.Forms.Padding(2);
             this.Name = "MainForm";
             this.Text = "Programming Demo";
+            this.Load += new System.EventHandler(this.MainForm_Load);
             this.EnumsPage.ResumeLayout(false);
+            this.groupBoxForSeasons.ResumeLayout(false);
             this.groupBoxForWeekDayParser.ResumeLayout(false);
             this.groupBoxForWeekDayParser.PerformLayout();
             this.groupBox1.ResumeLayout(false);
@@ -246,6 +271,8 @@
         private System.Windows.Forms.Label labelForWeekdayInfo;
         private System.Windows.Forms.Label label1;
         private System.Windows.Forms.TextBox TextBoxForParse;
+        private System.Windows.Forms.Button SeasonsGoButton;
+        private System.Windows.Forms.ComboBox ComboBoxForSeasons;
     }
 }
 
