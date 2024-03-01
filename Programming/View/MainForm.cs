@@ -60,10 +60,10 @@ namespace Programming
         private void ParseButton_Click(object sender, EventArgs e)
         {
             WeekDay weekDay;
-            if (!Enum.TryParse(TextBoxForParse.Text, out weekDay))
-                labelForWeekdayInfo.Text = "Нет такого дня недели";
-            else
+            if (Enum.TryParse(TextBoxForParse.Text, out weekDay) && Enum.IsDefined(typeof(WeekDay), TextBoxForParse.Text))
                 labelForWeekdayInfo.Text = $"Это день недели ({weekDay} = {(int)weekDay})";
+            else
+                labelForWeekdayInfo.Text = "Нет такого дня недели";
         }
 
         private void MainForm_Load(object sender, EventArgs e)

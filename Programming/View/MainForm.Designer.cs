@@ -240,6 +240,8 @@
             this.ClientSize = new System.Drawing.Size(600, 361);
             this.Controls.Add(this.TabControl);
             this.Margin = new System.Windows.Forms.Padding(2);
+            this.MaximumSize = new System.Drawing.Size(618, 408);
+            this.MinimumSize = new System.Drawing.Size(618, 408);
             this.Name = "MainForm";
             this.Text = "Programming Demo";
             this.Load += new System.EventHandler(this.MainForm_Load);
