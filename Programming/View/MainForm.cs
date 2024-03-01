@@ -1,6 +1,8 @@
 ﻿using System;
 using Programming.Model;
 using System.Windows.Forms;
+using System.Diagnostics.Eventing.Reader;
+using System.CodeDom;
 
 namespace Programming
 {
@@ -42,14 +44,26 @@ namespace Programming
             ValuesListBox.Items.AddRange(Enum.GetNames(enumType));
         }
 
-        private void MainForm_Load(object sender, EventArgs e)
-        {
-            
-        }
-
         private void ValuesListBox_SelectedIndexChanged(object sender, EventArgs e)
         {
             textBoxForIndex.Text = $"{(int)Enum.Parse(enumType, ValuesListBox.Text)}";
         }
+
+        private void TextBoxForParse_TextChanged(object sender, EventArgs e)
+        {
+            if (TextBoxForParse.Text != "")
+                ParseButton.Enabled = true;
+            else
+                ParseButton.Enabled = false;
+        }
+
+        private void ParseButton_Click(object sender, EventArgs e)
+        {
+            WeekDay weekDay;
+            if (!Enum.TryParse(TextBoxForParse.Text, out weekDay))
+                labelForWeekdayInfo.Text = "Нет такого дня недели";
+            else
+                labelForWeekdayInfo.Text = $"Это день недели ({weekDay} = {(int)weekDay})";
+        }       
     }
 }
