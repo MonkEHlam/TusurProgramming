@@ -91,6 +91,23 @@ namespace Programming
             {
                 RectanglesListBox.Items.Add($"Rectangle {i + 1}");
             }
+
+            _movies = new Movie[]
+            {
+                new Movie("Shoushenk Redemption", 142, 1994, "Drama", 9.1),
+                new Movie("Intouchables", 112, 2011, "Drama", 8.8),
+                new Movie(),
+                new Movie(),
+                new Movie(),
+            };
+            
+            for (int i = 0; i < _movies.Length; i++)
+            {
+                if (_movies[i].Name != "")
+                    MoviesListBox.Items.Add($"{_movies[i].Name} {_movies[i].Year}");
+                else
+                    MoviesListBox.Items.Add($"Movie {i}");
+            }
         }
 
         private void SeasonsGoButton_Click(object sender, EventArgs e)
@@ -200,6 +217,114 @@ namespace Programming
         private void FindRectangleBtn_Click(object sender, EventArgs e)
         {
             RectanglesListBox.SelectedIndex = FindRectangleWithMaxWidth();
+        }
+
+        private void MoviesListBox_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            _currentMovie = _movies[MoviesListBox.SelectedIndex];
+            MovieNameTextBox.Text = _currentMovie.Name;
+            MovieGenreTextBox.Text = _currentMovie.Genre;
+            MovieDurationTextBox.Text = $"{_currentMovie.DurationInMinutes}";
+            MovieRateTextBox.Text = _currentMovie.Rate.ToString();
+            MovieYearTextBox.Text = _currentMovie.Year.ToString();
+        }
+
+        private void MovieNameTextBox_TextChanged(object sender, EventArgs e)
+        {
+            MovieNameTextBox.BackColor = System.Drawing.ColorTranslator.FromHtml("#ffffff");
+            if (_currentMovie != null )
+            {
+                try
+                {
+                    _currentMovie.Name = MovieNameTextBox.Text;
+                }
+                catch (ArgumentException)
+                {
+                   MovieNameTextBox.BackColor = System.Drawing.ColorTranslator.FromHtml("#F53D65");
+                }
+            }
+        }
+
+        private void MovieGenreTextBox_TextChanged(object sender, EventArgs e)
+        {
+            MovieGenreTextBox.BackColor = System.Drawing.ColorTranslator.FromHtml("#ffffff");
+            if (_currentMovie != null)
+            {
+                try
+                {
+                    _currentMovie.Name = MovieGenreTextBox.Text;
+                }
+                catch (ArgumentException)
+                {
+                    MovieGenreTextBox.BackColor = System.Drawing.ColorTranslator.FromHtml("#F53D65");
+                }
+            }
+        }
+
+        private void MovieDurationTextBox_TextChanged(object sender, EventArgs e)
+        {
+            MovieDurationTextBox.BackColor = System.Drawing.ColorTranslator.FromHtml("#ffffff");
+
+            if (_currentMovie != null)
+            {
+                int num;
+                if (int.TryParse(MovieDurationTextBox.Text, out num))
+                {
+                    try
+                    {
+                        _currentMovie.DurationInMinutes = num;
+                    }
+                    catch (ArgumentException)
+                    {
+                        MovieDurationTextBox.BackColor = System.Drawing.ColorTranslator.FromHtml("#F53D65");
+                    }
+                }
+                else MovieDurationTextBox.BackColor = System.Drawing.ColorTranslator.FromHtml("#F53D65");
+            }
+        }
+
+        private void MovieYearTextBox_TextChanged(object sender, EventArgs e)
+        {
+            MovieYearTextBox.BackColor = System.Drawing.ColorTranslator.FromHtml("#ffffff");
+
+            if (_currentMovie != null)
+            {
+                int num;
+                if (int.TryParse(MovieYearTextBox.Text, out num))
+                {
+                    try
+                    {
+                        _currentMovie.Year = num;
+                    }
+                    catch (ArgumentException)
+                    {
+                        MovieYearTextBox.BackColor = System.Drawing.ColorTranslator.FromHtml("#F53D65");
+                    }
+                }
+                else MovieYearTextBox.BackColor = System.Drawing.ColorTranslator.FromHtml("#F53D65");
+            }
+        }
+
+        private void MovieRateTextBox_TextChanged(object sender, EventArgs e)
+        {
+            MovieRateTextBox.BackColor = System.Drawing.ColorTranslator.FromHtml("#ffffff");
+
+            if (_currentMovie != null)
+            {
+                double num;
+                if (double.TryParse(MovieRateTextBox.Text, out num))
+                {
+                    try
+                    {
+                        _currentMovie.Rate = num;
+                    }
+                    catch (ArgumentException)
+                    {
+                        MovieRateTextBox.BackColor = System.Drawing.ColorTranslator.FromHtml("#F53D65");
+                    }
+                }
+                else MovieRateTextBox.BackColor = System.Drawing.ColorTranslator.FromHtml("#F53D65");
+            }
         }
     }
 }

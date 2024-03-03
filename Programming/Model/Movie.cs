@@ -5,7 +5,8 @@ namespace Programming.Model
     internal class Movie
     {
         public string Name { get; set; } = "";
-        public int DurationInMinutes { get; set; } = 0;
+        private int _durationInMinutes = 0;
+        public int DurationInMinutes { get { return _durationInMinutes; } set { _durationInMinutes = value > 0 ? value : throw new ArgumentException(); } }
         private int _year = 0;
         public int Year
         {
@@ -16,7 +17,8 @@ namespace Programming.Model
             }
         }
         public string Genre { get; set; } = "";
-        public double Rate { get; set; } = 0;
+        private double _rate = 0;
+        public double Rate { get { return _rate; } set { _rate = value >= 0 ? value : throw new ArgumentException(); } }
         public Movie() { }
 
         public Movie(string name, int durationInMinutes, int year, string genre, double rate) 
