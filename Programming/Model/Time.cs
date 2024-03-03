@@ -15,14 +15,14 @@ namespace Programming.Model
         private int _minute;
         public int Minute {
             get { return _minute; }
-            set { _minute = value >= 0 && value <= 60 ? value : throw new ArgumentException; }
+            set { _minute = value >= 0 && value <= 60 ? value : throw new ArgumentException(); }
         
         }
         private int _second;
         public int Second
         {
             get { return _second; }
-            set { _second = value >= 0 && value <= 60 ? value : throw new ArgumentException; }
+            set { _second = value >= 0 && value <= 60 ? value : throw new ArgumentException(); }
         }
         public Time() { }
         public Time(int hour, int minute, int second)

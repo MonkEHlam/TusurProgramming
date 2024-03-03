@@ -12,7 +12,7 @@ namespace Programming.Model
         public string Number {  get { return _number; } 
             set
             {
-                if (new Regex(@"(8|\+7)[\- ]?)?(\(?\d{3}\)?[\- ]?)?[\d\- ]{7,10}").IsMatch(value))
+                if (new Regex(@"((8|\+7)[\- ]?)?(\(?\d{3}\)?[\- ]?)?[\d\- ]{7,10}").IsMatch(value))
                     _number = value;
                 else throw new ArgumentException();
             }
