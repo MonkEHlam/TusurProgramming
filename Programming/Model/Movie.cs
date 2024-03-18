@@ -6,7 +6,11 @@ namespace Programming.Model
     {
         public string Name { get; set; } = "";
         private int _durationInMinutes = 0;
-        public int DurationInMinutes { get { return _durationInMinutes; } set { _durationInMinutes = value > 0 ? value : throw new ArgumentException(); } }
+        public int DurationInMinutes
+        {
+            get { return _durationInMinutes; }
+            set { if (Validator.AssertOnPositiveValue(value, this.GetType() + "." + nameof(DurationInMinutes))) _rate = value; }
+        }
         private int _year = 0;
         public int Year
         {
@@ -18,7 +22,11 @@ namespace Programming.Model
         }
         public string Genre { get; set; } = "";
         private double _rate = 0;
-        public double Rate { get { return _rate; } set { _rate = value >= 0 ? value : throw new ArgumentException(); } }
+        public double Rate 
+        {
+            get { return _rate; }
+            set { if (Validator.AssertOnPositiveValue(value, this.GetType() + nameof(Rate))) _rate = value; } 
+        }
         public Movie() { }
 
         public Movie(string name, int durationInMinutes, int year, string genre, double rate) 

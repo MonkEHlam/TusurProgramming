@@ -1,5 +1,4 @@
 ﻿using System;
-using System.Runtime.CompilerServices;
 
 namespace Programming.Model
 {
@@ -9,14 +8,14 @@ namespace Programming.Model
         public double Length
         {
             get { return _length; }
-            set { _length = value > 0 ? value : throw new ArgumentException(); }
+            set { if (Validator.AssertOnPositiveValue(value, this.GetType() + "." + nameof(Length))) _length = value; }
         }
 
         private double _width;
         public double Width 
         {
             get { return _width; }
-            set { _width = value > 0 ? value : throw new ArgumentException(); }
+            set { if (Validator.AssertOnPositiveValue(value, this.GetType() + "." + nameof(Width))) _width = value; }
         }
         public string Color { get; set; }
 

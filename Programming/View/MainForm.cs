@@ -152,9 +152,10 @@ namespace Programming
                     {
                         _currentRectangle.Length = num;
                     }
-                    catch (ArgumentException) 
+                    catch (ArgumentException exc) 
                     {
                         RectangleLengthTextBox.BackColor = System.Drawing.ColorTranslator.FromHtml("#F53D65");
+                        RectangleLengthErrorLabel.Text = exc.Message;
                     }
                 }
                 else RectangleLengthTextBox.BackColor = System.Drawing.ColorTranslator.FromHtml("#F53D65");
@@ -174,9 +175,10 @@ namespace Programming
                     {
                         _currentRectangle.Width = num;
                     }
-                    catch (ArgumentException)
+                    catch (ArgumentException exc)
                     {
                         RectangleWidthTextBox.BackColor = System.Drawing.ColorTranslator.FromHtml("#F53D65");
+                        RectangleWidthErrorLabel.Text = exc.Message;
                     }
                 }
                 else RectangleWidthTextBox.BackColor = System.Drawing.ColorTranslator.FromHtml("#F53D65");

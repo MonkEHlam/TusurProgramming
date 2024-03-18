@@ -11,7 +11,7 @@ namespace Programming.Model
         public int DurationInSeconds
         {
             get { return _durationInSeconds; }
-            set { _durationInSeconds = value > 0 ? value : throw new ArgumentException(); }
+            set { if (Validator.AssertOnPositiveValue(value, this.GetType() + "." + nameof(DurationInSeconds))) _durationInSeconds = value; }
         }
 
         public Song(string name, string author, int durationInSeconds)

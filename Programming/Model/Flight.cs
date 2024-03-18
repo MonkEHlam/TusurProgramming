@@ -11,7 +11,7 @@ namespace Programming.Model
         public int FlightTimeInMinutes 
         { 
             get { return _flightTimeInMinutes; } 
-            set { _flightTimeInMinutes = value > 0 ? value : throw new ArgumentException(); }
+            set { if (Validator.AssertOnPositiveValue(value, this.GetType() + "." + nameof(FlightTimeInMinutes))) _flightTimeInMinutes = value;  }
         }
 
         public Flight() { }

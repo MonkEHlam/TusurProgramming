@@ -6,7 +6,29 @@ namespace Programming.Model
     internal class Contact
     {
         private string _number = "";
-        public string Name { get; set; } = "";
+        private string _name;
+        public string Name
+        {
+            get { return _name; }
+            set {
+                if (AssertStringContainsOnlyLetters(value))
+                    _name = value;
+                else
+                    throw new ArgumentException("Wrong argument format for Name");
+            }
+        }
+        private string _surname = "";
+        public string Surname
+        {
+            get { return _surname; }
+            set 
+            {
+                if (AssertStringContainsOnlyLetters(value))
+                    _surname = value;
+                else
+                    throw new ArgumentException("Wrong argument format for Surame"); 
+            }
+        }
         private string _email = "";
 
         public string Number {  get { return _number; } 
@@ -34,6 +56,13 @@ namespace Programming.Model
             Name = name;
             Number = number;
             Email = email;
+        }
+
+        private bool AssertStringContainsOnlyLetters(string value)
+        {
+            if (Regex.IsMatch(value, "^[a-zA-Z0-9]*$"))
+                return true;
+            return false;
         }
     }
 }

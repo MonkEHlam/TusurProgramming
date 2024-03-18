@@ -58,6 +58,7 @@
     <Compile Include="Model\Genre.cs" />
     <Compile Include="Model\Song.cs" />
     <Compile Include="Model\Time.cs" />
+    <Compile Include="Model\Validator.cs" />
     <Compile Include="Model\WeekDay.cs" />
     <Compile Include="View\MainForm.cs">
       <SubType>Form</SubType>
