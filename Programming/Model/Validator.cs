@@ -24,5 +24,18 @@ namespace Programming.Model
             }
             return true;
         }
+        public static bool AssertValueInRange(int value, int min, int max, string method) 
+        {
+            if ((value < min) || (value > max))
+                throw new ArgumentException($"Invalid argument,\n{method}");
+            return true;
+            
+        }
+        public static bool AssertValueInRange(double value, double min, double max, string method) 
+        {
+            if ((value < min) || (value > max))
+                throw new ArgumentException($"Invalid argument,\n{method}");
+            return true;
+        }
     }
 }

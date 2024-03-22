@@ -17,7 +17,7 @@ namespace Programming.Model
             get {  return _year; }
             set
             {
-                _year = value > 1900 ? value : throw new ArgumentException();
+                if (Validator.AssertValueInRange(value, 1900, DateTime.Now.Year, this.GetType() + "." + nameof(Year))) _year = value; 
             }
         }
         public string Genre { get; set; } = "";

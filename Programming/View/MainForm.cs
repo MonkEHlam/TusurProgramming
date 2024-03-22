@@ -80,11 +80,11 @@ namespace Programming
             var rand = new Random();
             _rectangles = new Rectangle[]
             { 
-                new Rectangle(rand.Next(1, 100), rand.Next(1, 100), ""),
-                new Rectangle(rand.Next(1, 100), rand.Next(1, 100), ""),
-                new Rectangle(rand.Next(1, 100), rand.Next(1, 100), ""),
-                new Rectangle(rand.Next(1, 100), rand.Next(1, 100), ""),
-                new Rectangle(rand.Next(1, 100), rand.Next(1, 100), "") 
+                new Rectangle(rand.Next(1, 100), rand.Next(1, 100), "", rand.Next(-50, 50), rand.Next(-50, 50)),
+                new Rectangle(rand.Next(1, 100), rand.Next(1, 100), "", rand.Next(-50, 50), rand.Next(-50, 50)),
+                new Rectangle(rand.Next(1, 100), rand.Next(1, 100), "", rand.Next(-50, 50), rand.Next(-50, 50)),
+                new Rectangle(rand.Next(1, 100), rand.Next(1, 100), "", rand.Next(-50, 50), rand.Next(-50, 50)),
+                new Rectangle(rand.Next(1, 100), rand.Next(1, 100), "", rand.Next(-50, 50), rand.Next(-50, 50)) 
             };
             
             for (int i = 0 ; i < _rectangles.Length; i++)
@@ -138,6 +138,8 @@ namespace Programming
             RectangleLengthTextBox.Text = _currentRectangle.Length.ToString();
             RectangleWidthTextBox.Text = _currentRectangle.Width.ToString();
             RectangleColorTextBox.Text = _currentRectangle.Color;
+            RectangleXTextBox.Text = _currentRectangle.Center.X.ToString();
+            RectangleYTextBox.Text = _currentRectangle.Center.Y.ToString();
         }
 
         private void RectangleLengthTextBox_TextChanged(object sender, EventArgs e)
