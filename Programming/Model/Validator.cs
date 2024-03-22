@@ -1,8 +1,4 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace Programming.Model
 {
@@ -10,30 +6,26 @@ namespace Programming.Model
     {
         public static bool AssertOnPositiveValue(int value, string method)
         {
-            if (value < 0)
-            {
-                throw new ArgumentException($"Argument must be positive, {method}");
-            }
+            if (value < 0) throw new ArgumentException($"Argument must be positive, {method}");
             return true;
         }
+
         public static bool AssertOnPositiveValue(double value, string method)
         {
-            if (value < 0)
-            {
-                throw new ArgumentException($"Argument must be positive,\n{method}");
-            }
+            if (value < 0) throw new ArgumentException($"Argument must be positive,\n{method}");
             return true;
         }
-        public static bool AssertValueInRange(int value, int min, int max, string method) 
+
+        public static bool AssertValueInRange(int value, int min, int max, string method)
         {
-            if ((value < min) || (value > max))
+            if (value < min || value > max)
                 throw new ArgumentException($"Invalid argument,\n{method}");
             return true;
-            
         }
-        public static bool AssertValueInRange(double value, double min, double max, string method) 
+
+        public static bool AssertValueInRange(double value, double min, double max, string method)
         {
-            if ((value < min) || (value > max))
+            if (value < min || value > max)
                 throw new ArgumentException($"Invalid argument,\n{method}");
             return true;
         }

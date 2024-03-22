@@ -1,23 +1,25 @@
 ﻿using System;
-using Programming.Model;
+using System.Drawing;
 using System.Windows.Forms;
-using System.Diagnostics.Eventing.Reader;
-using System.CodeDom;
+using Programming.Model;
+using Rectangle = Programming.Model.Rectangle;
+
 
 namespace Programming
 {
     public partial class MainForm : Form
     {
-        Type enumType;
-
-        private Rectangle[] _rectangles;
+        private Movie _currentMovie;
         private Rectangle _currentRectangle;
+        private Type _enumType;
 
         private Movie[] _movies;
-        private Movie _currentMovie;
+
+        private Rectangle[] _rectangles;
+
         public MainForm()
         {
-            InitializeComponent(); 
+            InitializeComponent();
         }
 
         private void EnumsListBox_SelectedIndexChanged(object sender, EventArgs e)
@@ -26,33 +28,33 @@ namespace Programming
             switch (EnumsListBox.Text)
             {
                 case "Colors":
-                    enumType = typeof(Colors);
+                    _enumType = typeof(Colors);
                     break;
                 case "Seasons":
-                    enumType = typeof(Seasons);
+                    _enumType = typeof(Seasons);
                     break;
                 case "SmartphoneMakers":
-                    enumType = typeof(SmartphoneMakers);
+                    _enumType = typeof(SmartphoneMakers);
                     break;
                 case "Genre":
-                    enumType = typeof(Genre);
+                    _enumType = typeof(Genre);
                     break;
                 case "FormsOfEducation":
-                    enumType = typeof(FormsOfEducation);
+                    _enumType = typeof(FormsOfEducation);
                     break;
                 case "WeekDay":
-                    enumType = typeof(WeekDay);
+                    _enumType = typeof(WeekDay);
                     break;
                 default:
                     throw new ArgumentException();
             }
-            
-            ValuesListBox.Items.AddRange(Enum.GetNames(enumType));
+
+            ValuesListBox.Items.AddRange(Enum.GetNames(_enumType));
         }
 
         private void ValuesListBox_SelectedIndexChanged(object sender, EventArgs e)
         {
-            textBoxForIndex.Text = $"{(int)Enum.Parse(enumType, ValuesListBox.Text)}";
+            textBoxForIndex.Text = $"{(int)Enum.Parse(_enumType, ValuesListBox.Text)}";
         }
 
         private void TextBoxForParse_TextChanged(object sender, EventArgs e)
@@ -66,7 +68,8 @@ namespace Programming
         private void ParseButton_Click(object sender, EventArgs e)
         {
             WeekDay weekDay;
-            if (Enum.TryParse(TextBoxForParse.Text, out weekDay) && Enum.IsDefined(typeof(WeekDay), TextBoxForParse.Text))
+            if (Enum.TryParse(TextBoxForParse.Text, out weekDay) &&
+                Enum.IsDefined(typeof(WeekDay), TextBoxForParse.Text))
                 labelForWeekdayInfo.Text = $"Это день недели ({weekDay} = {(int)weekDay})";
             else
                 labelForWeekdayInfo.Text = "Нет такого дня недели";
@@ -78,36 +81,31 @@ namespace Programming
             ComboBoxForSeasons.SelectedText = $"{ComboBoxForSeasons.Items[0]}";
 
             var rand = new Random();
-            _rectangles = new Rectangle[]
-            { 
-                new Rectangle(rand.Next(1, 100), rand.Next(1, 100), "", rand.Next(-50, 50), rand.Next(-50, 50)),
-                new Rectangle(rand.Next(1, 100), rand.Next(1, 100), "", rand.Next(-50, 50), rand.Next(-50, 50)),
-                new Rectangle(rand.Next(1, 100), rand.Next(1, 100), "", rand.Next(-50, 50), rand.Next(-50, 50)),
-                new Rectangle(rand.Next(1, 100), rand.Next(1, 100), "", rand.Next(-50, 50), rand.Next(-50, 50)),
-                new Rectangle(rand.Next(1, 100), rand.Next(1, 100), "", rand.Next(-50, 50), rand.Next(-50, 50)) 
-            };
-            
-            for (int i = 0 ; i < _rectangles.Length; i++)
+            _rectangles = new[]
             {
-                RectanglesListBox.Items.Add($"Rectangle {i + 1}");
-            }
+                new Rectangle(rand.Next(1, 100), rand.Next(1, 100), "", rand.Next(-50, 50), rand.Next(-50, 50)),
+                new Rectangle(rand.Next(1, 100), rand.Next(1, 100), "", rand.Next(-50, 50), rand.Next(-50, 50)),
+                new Rectangle(rand.Next(1, 100), rand.Next(1, 100), "", rand.Next(-50, 50), rand.Next(-50, 50)),
+                new Rectangle(rand.Next(1, 100), rand.Next(1, 100), "", rand.Next(-50, 50), rand.Next(-50, 50)),
+                new Rectangle(rand.Next(1, 100), rand.Next(1, 100), "", rand.Next(-50, 50), rand.Next(-50, 50))
+            };
 
-            _movies = new Movie[]
+            foreach (var rectangle in _rectangles) RectanglesListBox.Items.Add($"Rectangle {rectangle.Id}");
+
+            _movies = new[]
             {
                 new Movie("Shoushenk Redemption", 142, 1994, "Drama", 9.1),
                 new Movie("Intouchables", 112, 2011, "Drama", 8.8),
                 new Movie(),
                 new Movie(),
-                new Movie(),
+                new Movie()
             };
-            
-            for (int i = 0; i < _movies.Length; i++)
-            {
+
+            for (var i = 0; i < _movies.Length; i++)
                 if (_movies[i].Name != "")
                     MoviesListBox.Items.Add($"{_movies[i].Name} {_movies[i].Year}");
                 else
                     MoviesListBox.Items.Add($"Movie {i}");
-            }
         }
 
         private void SeasonsGoButton_Click(object sender, EventArgs e)
@@ -121,10 +119,10 @@ namespace Programming
                     MessageBox.Show("Ура! Солнце!", "Сообщение", MessageBoxButtons.OK, MessageBoxIcon.Information);
                     break;
                 case "Spring":
-                    EnumsPage.BackColor = System.Drawing.ColorTranslator.FromHtml("#559c45");
+                    EnumsPage.BackColor = ColorTranslator.FromHtml("#559c45");
                     break;
                 case "Fall":
-                    EnumsPage.BackColor = System.Drawing.ColorTranslator.FromHtml("#e29c45");
+                    EnumsPage.BackColor = ColorTranslator.FromHtml("#e29c45");
                     break;
                 default:
                     MessageBox.Show("Error");
@@ -140,81 +138,76 @@ namespace Programming
             RectangleColorTextBox.Text = _currentRectangle.Color;
             RectangleXTextBox.Text = _currentRectangle.Center.X.ToString();
             RectangleYTextBox.Text = _currentRectangle.Center.Y.ToString();
+            RectangleIdTextBox.Text = _currentRectangle.Id.ToString();
         }
 
         private void RectangleLengthTextBox_TextChanged(object sender, EventArgs e)
         {
-            RectangleLengthTextBox.BackColor = System.Drawing.ColorTranslator.FromHtml("#ffffff");
+            RectangleLengthTextBox.BackColor = ColorTranslator.FromHtml("#ffffff");
             if (_currentRectangle != null)
             {
                 double num;
                 if (double.TryParse(RectangleLengthTextBox.Text, out num))
-                {
                     try
                     {
                         _currentRectangle.Length = num;
                     }
-                    catch (ArgumentException exc) 
+                    catch (ArgumentException exc)
                     {
-                        RectangleLengthTextBox.BackColor = System.Drawing.ColorTranslator.FromHtml("#F53D65");
+                        RectangleLengthTextBox.BackColor = ColorTranslator.FromHtml("#F53D65");
                         RectangleLengthErrorLabel.Text = exc.Message;
                     }
-                }
-                else RectangleLengthTextBox.BackColor = System.Drawing.ColorTranslator.FromHtml("#F53D65");
+                else RectangleLengthTextBox.BackColor = ColorTranslator.FromHtml("#F53D65");
             }
         }
 
         private void RectangleWidthTextBox_TextChanged(object sender, EventArgs e)
         {
-            RectangleWidthTextBox.BackColor = System.Drawing.ColorTranslator.FromHtml("#ffffff");
+            RectangleWidthTextBox.BackColor = ColorTranslator.FromHtml("#ffffff");
 
             if (_currentRectangle != null)
             {
                 double num;
                 if (double.TryParse(RectangleWidthTextBox.Text, out num))
-                {
                     try
                     {
                         _currentRectangle.Width = num;
                     }
                     catch (ArgumentException exc)
                     {
-                        RectangleWidthTextBox.BackColor = System.Drawing.ColorTranslator.FromHtml("#F53D65");
+                        RectangleWidthTextBox.BackColor = ColorTranslator.FromHtml("#F53D65");
                         RectangleWidthErrorLabel.Text = exc.Message;
                     }
-                }
-                else RectangleWidthTextBox.BackColor = System.Drawing.ColorTranslator.FromHtml("#F53D65");
+                else RectangleWidthTextBox.BackColor = ColorTranslator.FromHtml("#F53D65");
             }
         }
 
         private void RectangleColorTextBox_TextChanged(object sender, EventArgs e)
         {
-            RectangleColorTextBox.BackColor = System.Drawing.ColorTranslator.FromHtml("#ffffff");
+            RectangleColorTextBox.BackColor = ColorTranslator.FromHtml("#ffffff");
             if (_currentRectangle != null)
-            {
                 try
                 {
                     _currentRectangle.Color = RectangleColorTextBox.Text;
                 }
                 catch (ArgumentException)
                 {
-                    RectangleColorTextBox.BackColor = System.Drawing.ColorTranslator.FromHtml("#F53D65");
+                    RectangleColorTextBox.BackColor = ColorTranslator.FromHtml("#F53D65");
                 }
-            }
-            else RectangleColorTextBox.BackColor = System.Drawing.ColorTranslator.FromHtml("#F53D65");
+            else RectangleColorTextBox.BackColor = ColorTranslator.FromHtml("#F53D65");
         }
 
         private int FindRectangleWithMaxWidth()
         {
-            double maxWidth = double.MinValue;
-            int index = - 1;
-            for(int i = 0; i < _rectangles.Length; i++) 
-            {
-                if (_rectangles[i].Width > maxWidth) {
+            var maxWidth = double.MinValue;
+            var index = -1;
+            for (var i = 0; i < _rectangles.Length; i++)
+                if (_rectangles[i].Width > maxWidth)
+                {
                     maxWidth = _rectangles[i].Width;
                     index = i;
                 }
-            }
+
             return index;
         }
 
@@ -235,99 +228,89 @@ namespace Programming
 
         private void MovieNameTextBox_TextChanged(object sender, EventArgs e)
         {
-            MovieNameTextBox.BackColor = System.Drawing.ColorTranslator.FromHtml("#ffffff");
-            if (_currentMovie != null )
-            {
+            MovieNameTextBox.BackColor = ColorTranslator.FromHtml("#ffffff");
+            if (_currentMovie != null)
                 try
                 {
                     _currentMovie.Name = MovieNameTextBox.Text;
                 }
                 catch (ArgumentException)
                 {
-                   MovieNameTextBox.BackColor = System.Drawing.ColorTranslator.FromHtml("#F53D65");
+                    MovieNameTextBox.BackColor = ColorTranslator.FromHtml("#F53D65");
                 }
-            }
         }
 
         private void MovieGenreTextBox_TextChanged(object sender, EventArgs e)
         {
-            MovieGenreTextBox.BackColor = System.Drawing.ColorTranslator.FromHtml("#ffffff");
+            MovieGenreTextBox.BackColor = ColorTranslator.FromHtml("#ffffff");
             if (_currentMovie != null)
-            {
                 try
                 {
                     _currentMovie.Name = MovieGenreTextBox.Text;
                 }
                 catch (ArgumentException)
                 {
-                    MovieGenreTextBox.BackColor = System.Drawing.ColorTranslator.FromHtml("#F53D65");
+                    MovieGenreTextBox.BackColor = ColorTranslator.FromHtml("#F53D65");
                 }
-            }
         }
 
         private void MovieDurationTextBox_TextChanged(object sender, EventArgs e)
         {
-            MovieDurationTextBox.BackColor = System.Drawing.ColorTranslator.FromHtml("#ffffff");
+            MovieDurationTextBox.BackColor = ColorTranslator.FromHtml("#ffffff");
 
             if (_currentMovie != null)
             {
                 int num;
                 if (int.TryParse(MovieDurationTextBox.Text, out num))
-                {
                     try
                     {
                         _currentMovie.DurationInMinutes = num;
                     }
                     catch (ArgumentException)
                     {
-                        MovieDurationTextBox.BackColor = System.Drawing.ColorTranslator.FromHtml("#F53D65");
+                        MovieDurationTextBox.BackColor = ColorTranslator.FromHtml("#F53D65");
                     }
-                }
-                else MovieDurationTextBox.BackColor = System.Drawing.ColorTranslator.FromHtml("#F53D65");
+                else MovieDurationTextBox.BackColor = ColorTranslator.FromHtml("#F53D65");
             }
         }
 
         private void MovieYearTextBox_TextChanged(object sender, EventArgs e)
         {
-            MovieYearTextBox.BackColor = System.Drawing.ColorTranslator.FromHtml("#ffffff");
+            MovieYearTextBox.BackColor = ColorTranslator.FromHtml("#ffffff");
 
             if (_currentMovie != null)
             {
                 int num;
                 if (int.TryParse(MovieYearTextBox.Text, out num))
-                {
                     try
                     {
                         _currentMovie.Year = num;
                     }
                     catch (ArgumentException)
                     {
-                        MovieYearTextBox.BackColor = System.Drawing.ColorTranslator.FromHtml("#F53D65");
+                        MovieYearTextBox.BackColor = ColorTranslator.FromHtml("#F53D65");
                     }
-                }
-                else MovieYearTextBox.BackColor = System.Drawing.ColorTranslator.FromHtml("#F53D65");
+                else MovieYearTextBox.BackColor = ColorTranslator.FromHtml("#F53D65");
             }
         }
 
         private void MovieRateTextBox_TextChanged(object sender, EventArgs e)
         {
-            MovieRateTextBox.BackColor = System.Drawing.ColorTranslator.FromHtml("#ffffff");
+            MovieRateTextBox.BackColor = ColorTranslator.FromHtml("#ffffff");
 
             if (_currentMovie != null)
             {
                 double num;
                 if (double.TryParse(MovieRateTextBox.Text, out num))
-                {
                     try
                     {
                         _currentMovie.Rate = num;
                     }
                     catch (ArgumentException)
                     {
-                        MovieRateTextBox.BackColor = System.Drawing.ColorTranslator.FromHtml("#F53D65");
+                        MovieRateTextBox.BackColor = ColorTranslator.FromHtml("#F53D65");
                     }
-                }
-                else MovieRateTextBox.BackColor = System.Drawing.ColorTranslator.FromHtml("#F53D65");
+                else MovieRateTextBox.BackColor = ColorTranslator.FromHtml("#F53D65");
             }
         }
     }

@@ -1,18 +1,8 @@
-﻿using System;
-
-namespace Programming.Model
+﻿namespace Programming.Model
 {
     internal class Song
     {
-        public string Name { get; set; }
-        public string Author { get; set; }
         private int _durationInSeconds;
-
-        public int DurationInSeconds
-        {
-            get { return _durationInSeconds; }
-            set { if (Validator.AssertOnPositiveValue(value, this.GetType() + "." + nameof(DurationInSeconds))) _durationInSeconds = value; }
-        }
 
         public Song(string name, string author, int durationInSeconds)
         {
@@ -21,6 +11,21 @@ namespace Programming.Model
             _durationInSeconds = durationInSeconds;
         }
 
-        public Song() { }
+        public Song()
+        {
+        }
+
+        public string Name { get; set; }
+        public string Author { get; set; }
+
+        public int DurationInSeconds
+        {
+            get => _durationInSeconds;
+            set
+            {
+                if (Validator.AssertOnPositiveValue(value, GetType() + "." + nameof(DurationInSeconds)))
+                    _durationInSeconds = value;
+            }
+        }
     }
 }

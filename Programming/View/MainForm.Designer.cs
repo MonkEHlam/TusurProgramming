@@ -77,6 +77,8 @@
             this.MovieNameTextBox = new System.Windows.Forms.TextBox();
             this.MoviesListBox = new System.Windows.Forms.ListBox();
             this.RectangleYLabel = new System.Windows.Forms.Label();
+            this.RectangleIdTextBox = new System.Windows.Forms.TextBox();
+            this.RectangleIdLabel = new System.Windows.Forms.Label();
             this.EnumsPage.SuspendLayout();
             this.groupBoxForSeasons.SuspendLayout();
             this.groupBoxForWeekDayParser.SuspendLayout();
@@ -324,6 +326,8 @@
             // 
             // groupBox2
             // 
+            this.groupBox2.Controls.Add(this.RectangleIdLabel);
+            this.groupBox2.Controls.Add(this.RectangleIdTextBox);
             this.groupBox2.Controls.Add(this.RectangleYLabel);
             this.groupBox2.Controls.Add(this.RectangleXLabel);
             this.groupBox2.Controls.Add(this.RectangleYTextBox);
@@ -350,7 +354,7 @@
             // RectangleXLabel
             // 
             this.RectangleXLabel.AutoSize = true;
-            this.RectangleXLabel.Location = new System.Drawing.Point(320, 195);
+            this.RectangleXLabel.Location = new System.Drawing.Point(313, 234);
             this.RectangleXLabel.Name = "RectangleXLabel";
             this.RectangleXLabel.Size = new System.Drawing.Size(15, 16);
             this.RectangleXLabel.TabIndex = 13;
@@ -358,7 +362,7 @@
             // 
             // RectangleYTextBox
             // 
-            this.RectangleYTextBox.Location = new System.Drawing.Point(314, 267);
+            this.RectangleYTextBox.Location = new System.Drawing.Point(307, 306);
             this.RectangleYTextBox.Name = "RectangleYTextBox";
             this.RectangleYTextBox.ReadOnly = true;
             this.RectangleYTextBox.Size = new System.Drawing.Size(100, 22);
@@ -366,7 +370,7 @@
             // 
             // RectangleXTextBox
             // 
-            this.RectangleXTextBox.Location = new System.Drawing.Point(314, 214);
+            this.RectangleXTextBox.Location = new System.Drawing.Point(307, 253);
             this.RectangleXTextBox.Name = "RectangleXTextBox";
             this.RectangleXTextBox.ReadOnly = true;
             this.RectangleXTextBox.Size = new System.Drawing.Size(100, 22);
@@ -374,7 +378,7 @@
             // 
             // FindRectangleBtn
             // 
-            this.FindRectangleBtn.Location = new System.Drawing.Point(314, 304);
+            this.FindRectangleBtn.Location = new System.Drawing.Point(308, 338);
             this.FindRectangleBtn.Name = "FindRectangleBtn";
             this.FindRectangleBtn.Size = new System.Drawing.Size(107, 23);
             this.FindRectangleBtn.TabIndex = 10;
@@ -385,7 +389,7 @@
             // RectangleColorErrorLabel
             // 
             this.RectangleColorErrorLabel.AutoSize = true;
-            this.RectangleColorErrorLabel.Location = new System.Drawing.Point(422, 162);
+            this.RectangleColorErrorLabel.Location = new System.Drawing.Point(415, 201);
             this.RectangleColorErrorLabel.Name = "RectangleColorErrorLabel";
             this.RectangleColorErrorLabel.Size = new System.Drawing.Size(0, 16);
             this.RectangleColorErrorLabel.TabIndex = 9;
@@ -393,7 +397,7 @@
             // RectangleWidthErrorLabel
             // 
             this.RectangleWidthErrorLabel.AutoSize = true;
-            this.RectangleWidthErrorLabel.Location = new System.Drawing.Point(422, 111);
+            this.RectangleWidthErrorLabel.Location = new System.Drawing.Point(415, 150);
             this.RectangleWidthErrorLabel.Name = "RectangleWidthErrorLabel";
             this.RectangleWidthErrorLabel.Size = new System.Drawing.Size(0, 16);
             this.RectangleWidthErrorLabel.TabIndex = 8;
@@ -401,7 +405,7 @@
             // RectangleLengthErrorLabel
             // 
             this.RectangleLengthErrorLabel.AutoSize = true;
-            this.RectangleLengthErrorLabel.Location = new System.Drawing.Point(422, 59);
+            this.RectangleLengthErrorLabel.Location = new System.Drawing.Point(415, 98);
             this.RectangleLengthErrorLabel.Name = "RectangleLengthErrorLabel";
             this.RectangleLengthErrorLabel.Size = new System.Drawing.Size(0, 16);
             this.RectangleLengthErrorLabel.TabIndex = 7;
@@ -409,7 +413,7 @@
             // RectangleColorLabel
             // 
             this.RectangleColorLabel.AutoSize = true;
-            this.RectangleColorLabel.Location = new System.Drawing.Point(320, 137);
+            this.RectangleColorLabel.Location = new System.Drawing.Point(313, 176);
             this.RectangleColorLabel.Name = "RectangleColorLabel";
             this.RectangleColorLabel.Size = new System.Drawing.Size(39, 16);
             this.RectangleColorLabel.TabIndex = 6;
@@ -418,7 +422,7 @@
             // RectangleWidthLabel
             // 
             this.RectangleWidthLabel.AutoSize = true;
-            this.RectangleWidthLabel.Location = new System.Drawing.Point(320, 89);
+            this.RectangleWidthLabel.Location = new System.Drawing.Point(313, 128);
             this.RectangleWidthLabel.Name = "RectangleWidthLabel";
             this.RectangleWidthLabel.Size = new System.Drawing.Size(41, 16);
             this.RectangleWidthLabel.TabIndex = 5;
@@ -427,7 +431,7 @@
             // RectangleLengthLabel
             // 
             this.RectangleLengthLabel.AutoSize = true;
-            this.RectangleLengthLabel.Location = new System.Drawing.Point(320, 35);
+            this.RectangleLengthLabel.Location = new System.Drawing.Point(313, 74);
             this.RectangleLengthLabel.Name = "RectangleLengthLabel";
             this.RectangleLengthLabel.Size = new System.Drawing.Size(47, 16);
             this.RectangleLengthLabel.TabIndex = 4;
@@ -435,7 +439,7 @@
             // 
             // RectangleColorTextBox
             // 
-            this.RectangleColorTextBox.Location = new System.Drawing.Point(314, 159);
+            this.RectangleColorTextBox.Location = new System.Drawing.Point(307, 198);
             this.RectangleColorTextBox.Name = "RectangleColorTextBox";
             this.RectangleColorTextBox.Size = new System.Drawing.Size(100, 22);
             this.RectangleColorTextBox.TabIndex = 3;
@@ -443,7 +447,7 @@
             // 
             // RectangleWidthTextBox
             // 
-            this.RectangleWidthTextBox.Location = new System.Drawing.Point(314, 108);
+            this.RectangleWidthTextBox.Location = new System.Drawing.Point(307, 147);
             this.RectangleWidthTextBox.Name = "RectangleWidthTextBox";
             this.RectangleWidthTextBox.Size = new System.Drawing.Size(100, 22);
             this.RectangleWidthTextBox.TabIndex = 2;
@@ -452,7 +456,7 @@
             // RectangleLengthTextBox
             // 
             this.RectangleLengthTextBox.ImeMode = System.Windows.Forms.ImeMode.NoControl;
-            this.RectangleLengthTextBox.Location = new System.Drawing.Point(315, 54);
+            this.RectangleLengthTextBox.Location = new System.Drawing.Point(308, 93);
             this.RectangleLengthTextBox.Name = "RectangleLengthTextBox";
             this.RectangleLengthTextBox.Size = new System.Drawing.Size(100, 22);
             this.RectangleLengthTextBox.TabIndex = 1;
@@ -599,11 +603,28 @@
             // RectangleYLabel
             // 
             this.RectangleYLabel.AutoSize = true;
-            this.RectangleYLabel.Location = new System.Drawing.Point(323, 243);
+            this.RectangleYLabel.Location = new System.Drawing.Point(316, 282);
             this.RectangleYLabel.Name = "RectangleYLabel";
             this.RectangleYLabel.Size = new System.Drawing.Size(16, 16);
             this.RectangleYLabel.TabIndex = 14;
             this.RectangleYLabel.Text = "Y";
+            // 
+            // RectangleIdTextBox
+            // 
+            this.RectangleIdTextBox.Location = new System.Drawing.Point(307, 40);
+            this.RectangleIdTextBox.Name = "RectangleIdTextBox";
+            this.RectangleIdTextBox.ReadOnly = true;
+            this.RectangleIdTextBox.Size = new System.Drawing.Size(100, 22);
+            this.RectangleIdTextBox.TabIndex = 15;
+            // 
+            // RectangleIdLabel
+            // 
+            this.RectangleIdLabel.AutoSize = true;
+            this.RectangleIdLabel.Location = new System.Drawing.Point(313, 21);
+            this.RectangleIdLabel.Name = "RectangleIdLabel";
+            this.RectangleIdLabel.Size = new System.Drawing.Size(20, 16);
+            this.RectangleIdLabel.TabIndex = 16;
+            this.RectangleIdLabel.Text = "ID";
             // 
             // MainForm
             // 
@@ -687,6 +708,8 @@
         private System.Windows.Forms.TextBox RectangleYTextBox;
         private System.Windows.Forms.TextBox RectangleXTextBox;
         private System.Windows.Forms.Label RectangleYLabel;
+        private System.Windows.Forms.Label RectangleIdLabel;
+        private System.Windows.Forms.TextBox RectangleIdTextBox;
     }
 }
 
