@@ -1,25 +1,23 @@
-﻿using System.Diagnostics;
-
-namespace ObjectOrientedPractice.Services
+﻿namespace ObjectOrientedPractice.Services
 {
     public static class IdGenerator
     {
-        static private int _itemId = 1;
+        private static  int _itemId = 1;
         private static int _CustomerId = 1;
 
         /// <summary>
-        /// Get uniqe index of Item
+        /// Get uniqe identificator of Item
         /// </summary>
-        /// <returns>New index</returns>
-        static public int NextItemId() 
+        /// <returns>New identificator</returns>
+        public static int NextItemId() 
         {
             return _itemId++;
         }
 
         /// <summary>
-        /// Get uniqe index of Customer
+        /// Get uniqe identificator of Customer
         /// </summary>
-        /// <returns>New index</returns>
+        /// <returns>New identificator</returns>
         public static int NextCustomerId()
         {
             return _CustomerId++;

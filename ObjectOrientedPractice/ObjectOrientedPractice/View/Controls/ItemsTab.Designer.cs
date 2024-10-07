@@ -70,7 +70,7 @@
             // 
             this.button2.Font = new System.Drawing.Font("Microsoft Sans Serif", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
             this.button2.Location = new System.Drawing.Point(89, 3);
-            this.button2.Name = "RemoveButton";
+            this.button2.Name = "button2";
             this.button2.Size = new System.Drawing.Size(80, 50);
             this.button2.TabIndex = 1;
             this.button2.Text = "Remove";
@@ -124,7 +124,7 @@
             // 
             this.NameRichTextBox.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
             this.NameRichTextBox.Location = new System.Drawing.Point(287, 123);
-            this.NameRichTextBox.Name = "AddressRichTextBox";
+            this.NameRichTextBox.Name = "NameRichTextBox";
             this.NameRichTextBox.Size = new System.Drawing.Size(399, 53);
             this.NameRichTextBox.TabIndex = 24;
             this.NameRichTextBox.Text = "";
@@ -145,7 +145,7 @@
             // 
             this.CostTextBox.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
             this.CostTextBox.Location = new System.Drawing.Point(330, 72);
-            this.CostTextBox.Name = "NameTextBox";
+            this.CostTextBox.Name = "CostTextBox";
             this.CostTextBox.Size = new System.Drawing.Size(138, 20);
             this.CostTextBox.TabIndex = 22;
             this.CostTextBox.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.CostTextBox_KeyPress);
@@ -211,6 +211,7 @@
             this.MinimumSize = new System.Drawing.Size(720, 440);
             this.Name = "ItemsTab";
             this.Size = new System.Drawing.Size(720, 440);
+            this.Load += new System.EventHandler(this.ItemsTab_Load);
             this.flowLayoutPanel1.ResumeLayout(false);
             this.ResumeLayout(false);
             this.PerformLayout();

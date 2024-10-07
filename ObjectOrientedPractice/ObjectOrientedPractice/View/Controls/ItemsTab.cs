@@ -21,24 +21,54 @@ namespace ObjectOrientedPractice.View.Controls
         {
             ItemsListBox.Items.Clear();
             if (_items.Count > 1)
+            {
                 _items.Sort();
-            foreach (var item in _items) ItemsListBox.Items.Add(item);
+            }
+            foreach (var item in _items)
+            {
+                ItemsListBox.Items.Add(item);
+            }
             if (_currentItem != null)
+            {
                 ItemsListBox.SelectedItem = _currentItem;
+            }
+            else
+            {
+                DisableInputs();
+            }
+        }
+
+        private void DisableInputs()
+        {
+            CostTextBox.Enabled = false;
+            NameRichTextBox.Enabled = false;
+            InfoRichTextBox.Enabled = false;
+        }
+
+        private void EnableInputs()
+        {
+            CostTextBox.Enabled = true;
+            NameRichTextBox.Enabled = true;
+            InfoRichTextBox.Enabled = true;
         }
 
         private void ItemsLlistBox_SelectedIndexChanged(object sender, EventArgs e)
         {
-            if (ItemsListBox.SelectedIndex == -1) return;
+            if (ItemsListBox.SelectedIndex == -1)
+            {
+                return;
+            }
             _currentItem = _items[ItemsListBox.SelectedIndex];
             IdTextBox.Text = _currentItem.Id.ToString();
             CostTextBox.Text = _currentItem.Cost.ToString();
             NameRichTextBox.Text = _currentItem.Name;
             InfoRichTextBox.Text = _currentItem.Info;
+            EnableInputs();
         }
 
         private void CostTextBox_KeyPress(object sender, KeyPressEventArgs e)
         {
+            
             if (!char.IsDigit(e.KeyChar) && !(e.KeyChar == (char)46) && !char.IsControl(e.KeyChar))
             {
                 e.Handled = true;
@@ -57,6 +87,15 @@ namespace ObjectOrientedPractice.View.Controls
                     CostTextBox.BackColor = Color.Red;
                     MessageBox.Show(err.Message, "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
                 }
+            }
+            else if (e.KeyChar == (char)13 && CostTextBox.Text == "")
+            {
+                CostTextBox.BackColor = Color.Red;
+                MessageBox.Show("Enter cost.", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+            }
+            else
+            {
+                CostTextBox.BackColor = Color.White;
             }
         }
 
@@ -80,6 +119,15 @@ namespace ObjectOrientedPractice.View.Controls
                     MessageBox.Show(err.Message, "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
                 }
             }
+            else if (e.KeyChar == (char)13 && NameRichTextBox.Text == "")
+            {
+                NameRichTextBox.BackColor = Color.Red;
+                MessageBox.Show("Enter name.", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+            }
+            else
+            {
+                NameRichTextBox.BackColor = Color.White;
+            }
         }
 
         private void InfoRichTextBox_KeyPress(object sender, KeyPressEventArgs e)
@@ -102,6 +150,15 @@ namespace ObjectOrientedPractice.View.Controls
                     MessageBox.Show(err.Message, "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
                 }
             }
+            else if (e.KeyChar == (char)13 && InfoRichTextBox.Text == "")
+            {
+                InfoRichTextBox.BackColor = Color.Red;
+                MessageBox.Show("Enter description.", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+            }
+            else
+            {
+                InfoRichTextBox.BackColor = Color.White;
+            }
         }
 
         private void AddButton_Click(object sender, EventArgs e)
@@ -114,6 +171,11 @@ namespace ObjectOrientedPractice.View.Controls
         {
             _items.Remove(_currentItem);
             UpdateListBox();
+        }
+
+        private void ItemsTab_Load(object sender, EventArgs e)
+        {
+            DisableInputs();
         }
     }
 }

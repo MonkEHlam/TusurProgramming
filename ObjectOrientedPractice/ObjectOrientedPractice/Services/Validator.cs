@@ -1,5 +1,4 @@
 ﻿using System;
-using System.Diagnostics;
 
 namespace ObjectOrientedPractice.Services
 {
@@ -12,25 +11,10 @@ namespace ObjectOrientedPractice.Services
         /// <param name="maxLength"></param>
         /// <param name="minLength">As default 0</param>
         /// <returns></returns>
-        public static bool AssertLengthOfString(string str, int maxLength, int minLength = 0) {
+        public static bool AssertLengthOfString(string str, int maxLength, string assertionSource, int minLength = 0) {
             if (str == null) { return false; }
-            if (minLength < str.Length && maxLength > str.Length) { return true; }
-            StackFrame frame = new StackFrame();
-            throw new ArgumentException("Error on range validation, trying to validate properety" + frame.GetMethod().Name);
-        } 
-
-        /// <summary>
-        /// Assert does number in range
-        /// </summary>
-        /// <param name="num">Asserting number</param>
-        /// <param name="min"></param>
-        /// <param name="max"></param>
-        /// <returns></returns>
-        /// <exception cref="ArgumentException"></exception>
-        public static bool AssertRange(int num, int min, int max) {
-            if (num > min && num < max) { return true; }
-            StackFrame frame = new StackFrame();
-            throw new ArgumentException("Error on range validation, trying to validate properety" + frame.GetMethod().Name);
+            if (minLength <= str.Length && str.Length <= maxLength) { return true; }
+            throw new ArgumentException($"Failed on string length assertion in {assertionSource}.");
         }
 
         /// <summary>
@@ -41,10 +25,13 @@ namespace ObjectOrientedPractice.Services
         /// <param name="max"></param>
         /// <returns></returns>
         /// <exception cref="ArgumentException"></exception>
-        public static bool AssertRange(double num, double min, double max)
+        public static bool AssertRange(double num, double min, double max, string assertionSource)
         {
-            if (num > min && num < max) { return true; }
-            return false;
+            if (num >= min && num <= max) 
+            { 
+                return true; 
+            }
+            throw new ArgumentException($"Failed on range assertion in {assertionSource}.");
         }
     }
 }

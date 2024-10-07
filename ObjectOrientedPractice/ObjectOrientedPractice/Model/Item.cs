@@ -30,7 +30,7 @@ namespace ObjectOrientedPractice.Model
             get { return _name; } 
             set 
             { 
-                if (Validator.AssertLengthOfString(value, 200))
+                if (Validator.AssertLengthOfString(value, 200, "item name"))
                 {
                     _name = value;
                 }  
@@ -41,7 +41,7 @@ namespace ObjectOrientedPractice.Model
             get { return _info; } 
             set 
             {
-                if (!Validator.AssertLengthOfString(value, 1000))
+                if (!Validator.AssertLengthOfString(value, 1000, "item descriprion"))
                 {
                     _info = value;
                 }
@@ -52,7 +52,7 @@ namespace ObjectOrientedPractice.Model
             get { return _cost; } 
             set
             {
-                if (Validator.AssertRange(value, 0, 100000))
+                if (Validator.AssertRange(value, 0, 100000, "item cost"))
                 {
                     _cost = value;
                 }

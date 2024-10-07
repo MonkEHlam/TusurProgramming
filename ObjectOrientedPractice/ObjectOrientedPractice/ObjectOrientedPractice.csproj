@@ -56,7 +56,6 @@
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Services\IdGenerator.cs" />
-    <Compile Include="Services\ProjectSerializer.cs" />
     <Compile Include="Services\Validator.cs" />
     <Compile Include="View\Controls\CustomersTab.cs">
       <SubType>UserControl</SubType>

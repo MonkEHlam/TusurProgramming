@@ -203,6 +203,7 @@
             this.Controls.Add(this.MainLabel);
             this.Name = "CustomersTab";
             this.Size = new System.Drawing.Size(670, 451);
+            this.Load += new System.EventHandler(this.CustomersTab_Load);
             this.flowLayoutPanel1.ResumeLayout(false);
             this.splitContainer1.Panel1.ResumeLayout(false);
             this.splitContainer1.Panel1.PerformLayout();

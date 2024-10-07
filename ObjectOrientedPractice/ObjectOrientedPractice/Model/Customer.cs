@@ -1,6 +1,5 @@
 ﻿using ObjectOrientedPractice.Services;
 using System;
-using System.Runtime.InteropServices;
 
 namespace ObjectOrientedPractice.Model
 {
@@ -26,7 +25,7 @@ namespace ObjectOrientedPractice.Model
             }
             set
             {
-                if (Validator.AssertLengthOfString(value, 200))
+                if (Validator.AssertLengthOfString(value, 200, "customer name"))
                 {
                     _name = value;
                 }
@@ -39,7 +38,7 @@ namespace ObjectOrientedPractice.Model
                 return _address;
             }
             set {
-                if (Validator.AssertLengthOfString(value, 500))
+                if (Validator.AssertLengthOfString(value, 500, "customer address"))
                 {
                     _address = value;
                 }
