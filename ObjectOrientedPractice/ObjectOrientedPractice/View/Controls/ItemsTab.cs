@@ -9,7 +9,6 @@ namespace ObjectOrientedPractice.View.Controls
     public partial class ItemsTab : UserControl
     {
         private Item _currentItem;
-
         internal List<Item> Items { get; set; }
 
         public ItemsTab()

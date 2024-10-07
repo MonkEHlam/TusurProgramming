@@ -9,7 +9,6 @@ namespace ObjectOrientedPractice.View.Controls
     public partial class CustomersTab : UserControl
     {
         private Customer _currentCustomer;
-
         internal List<Customer> Customers { get; set; }
 
         public CustomersTab()
