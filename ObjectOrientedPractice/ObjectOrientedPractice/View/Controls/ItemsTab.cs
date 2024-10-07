@@ -10,7 +10,6 @@ namespace ObjectOrientedPractice.View.Controls
     {
         private readonly List<Item> _items = new List<Item>();
         private Item _currentItem;
-        private bool isDataSaved;
 
         public ItemsTab()
         {
@@ -83,7 +82,6 @@ namespace ObjectOrientedPractice.View.Controls
                     var text = CostTextBox.Text.Replace(".", ",");
                     _currentItem.Cost = double.Parse(text);
                     UpdateListBox();
-                    isDataSaved = false;
                 }
                 catch (ArgumentException err)
                 {
@@ -114,7 +112,6 @@ namespace ObjectOrientedPractice.View.Controls
                 {
                     _currentItem.Name = NameRichTextBox.Text;
                     UpdateListBox();
-                    isDataSaved = false;
                 }
                 catch (ArgumentException err)
                 {
@@ -145,7 +142,6 @@ namespace ObjectOrientedPractice.View.Controls
                 {
                     _currentItem.Info = InfoRichTextBox.Text;
                     UpdateListBox();
-                    isDataSaved = false;
                 }
                 catch (ArgumentException err)
                 {
