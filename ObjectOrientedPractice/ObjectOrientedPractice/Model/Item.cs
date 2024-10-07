@@ -59,12 +59,25 @@ namespace ObjectOrientedPractice.Model
             } 
         }
 
-        public Item(string name, string info, double cost)
+        /// <summary>
+        /// Item <see cref="Model.Category"/>
+        /// </summary>
+        public Category Category { get; set; }
+
+        /// <summary>
+        /// Base class constructor.
+        /// </summary>
+        /// <param name="name">Item`s name.</param>
+        /// <param name="info">Item`s description.</param>
+        /// <param name="cost">item`s cost</param>
+        /// <param name="category">Item`s category</param>
+        public Item(string name, string info, double cost, Category category)
         {
             _id = IdGenerator.NextItemId();
             Name = name;
             Info = info;
             Cost = cost;
+            Category = category;
         }
 
         /// <summary>

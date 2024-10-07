@@ -43,6 +43,7 @@ namespace ObjectOrientedPractice.View.Controls
             CostTextBox.Enabled = false;
             NameRichTextBox.Enabled = false;
             InfoRichTextBox.Enabled = false;
+            CategoryComboBox.Enabled = false;
         }
 
         private void EnableInputs()
@@ -50,6 +51,7 @@ namespace ObjectOrientedPractice.View.Controls
             CostTextBox.Enabled = true;
             NameRichTextBox.Enabled = true;
             InfoRichTextBox.Enabled = true;
+            CategoryComboBox.Enabled = true;
         }
 
         private void ItemsLlistBox_SelectedIndexChanged(object sender, EventArgs e)
@@ -63,6 +65,7 @@ namespace ObjectOrientedPractice.View.Controls
             CostTextBox.Text = _currentItem.Cost.ToString();
             NameRichTextBox.Text = _currentItem.Name;
             InfoRichTextBox.Text = _currentItem.Info;
+            CategoryComboBox.Text = _currentItem.Category.ToString();
             EnableInputs();
         }
 
@@ -163,7 +166,7 @@ namespace ObjectOrientedPractice.View.Controls
 
         private void AddButton_Click(object sender, EventArgs e)
         {
-            _items.Add(new Item(" ", " ", 0.0));
+            _items.Add(new Item(" ", " ", 0.0, Category.Frozen));
             UpdateListBox();
         }
 
@@ -176,6 +179,19 @@ namespace ObjectOrientedPractice.View.Controls
         private void ItemsTab_Load(object sender, EventArgs e)
         {
             DisableInputs();
+            CategoryComboBox.Items.AddRange(Enum.GetNames(typeof(Category)));
+        }
+
+        private void CategoryComboBox_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            try
+            {
+                _currentItem.Category = (Category)Enum.Parse(typeof(Category), CategoryComboBox.Text);
+            }
+            catch (Exception ex)
+            {
+                Console.WriteLine(ex.Message);
+            }
         }
     }
 }

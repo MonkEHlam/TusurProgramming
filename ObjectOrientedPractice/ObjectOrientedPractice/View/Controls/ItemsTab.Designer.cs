@@ -42,6 +42,8 @@
             this.CostLabel = new System.Windows.Forms.Label();
             this.IdLabel = new System.Windows.Forms.Label();
             this.SelectedItemLlabel = new System.Windows.Forms.Label();
+            this.CategoryLabel = new System.Windows.Forms.Label();
+            this.CategoryComboBox = new System.Windows.Forms.ComboBox();
             this.flowLayoutPanel1.SuspendLayout();
             this.SuspendLayout();
             // 
@@ -104,7 +106,7 @@
             this.InfoLabel.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
             this.InfoLabel.AutoSize = true;
             this.InfoLabel.Font = new System.Drawing.Font("Microsoft Sans Serif", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
-            this.InfoLabel.Location = new System.Drawing.Point(284, 184);
+            this.InfoLabel.Location = new System.Drawing.Point(284, 237);
             this.InfoLabel.Name = "InfoLabel";
             this.InfoLabel.Size = new System.Drawing.Size(83, 17);
             this.InfoLabel.TabIndex = 26;
@@ -113,7 +115,7 @@
             // InfoRichTextBox
             // 
             this.InfoRichTextBox.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
-            this.InfoRichTextBox.Location = new System.Drawing.Point(287, 204);
+            this.InfoRichTextBox.Location = new System.Drawing.Point(287, 257);
             this.InfoRichTextBox.Name = "InfoRichTextBox";
             this.InfoRichTextBox.Size = new System.Drawing.Size(399, 150);
             this.InfoRichTextBox.TabIndex = 25;
@@ -123,7 +125,7 @@
             // NameRichTextBox
             // 
             this.NameRichTextBox.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
-            this.NameRichTextBox.Location = new System.Drawing.Point(287, 123);
+            this.NameRichTextBox.Location = new System.Drawing.Point(287, 176);
             this.NameRichTextBox.Name = "NameRichTextBox";
             this.NameRichTextBox.Size = new System.Drawing.Size(399, 53);
             this.NameRichTextBox.TabIndex = 24;
@@ -135,7 +137,7 @@
             this.NameLabel.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
             this.NameLabel.AutoSize = true;
             this.NameLabel.Font = new System.Drawing.Font("Microsoft Sans Serif", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
-            this.NameLabel.Location = new System.Drawing.Point(285, 103);
+            this.NameLabel.Location = new System.Drawing.Point(285, 156);
             this.NameLabel.Name = "NameLabel";
             this.NameLabel.Size = new System.Drawing.Size(49, 17);
             this.NameLabel.TabIndex = 23;
@@ -192,10 +194,33 @@
             this.SelectedItemLlabel.TabIndex = 18;
             this.SelectedItemLlabel.Text = "Selected item";
             // 
+            // CategoryLabel
+            // 
+            this.CategoryLabel.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
+            this.CategoryLabel.AutoSize = true;
+            this.CategoryLabel.Font = new System.Drawing.Font("Microsoft Sans Serif", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
+            this.CategoryLabel.Location = new System.Drawing.Point(284, 104);
+            this.CategoryLabel.Name = "CategoryLabel";
+            this.CategoryLabel.Size = new System.Drawing.Size(69, 17);
+            this.CategoryLabel.TabIndex = 27;
+            this.CategoryLabel.Text = "Category:";
+            // 
+            // CategoryComboBox
+            // 
+            this.CategoryComboBox.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
+            this.CategoryComboBox.FormattingEnabled = true;
+            this.CategoryComboBox.Location = new System.Drawing.Point(359, 104);
+            this.CategoryComboBox.Name = "CategoryComboBox";
+            this.CategoryComboBox.Size = new System.Drawing.Size(121, 21);
+            this.CategoryComboBox.TabIndex = 28;
+            this.CategoryComboBox.SelectedIndexChanged += new System.EventHandler(this.CategoryComboBox_SelectedIndexChanged);
+            // 
             // ItemsTab
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
+            this.Controls.Add(this.CategoryComboBox);
+            this.Controls.Add(this.CategoryLabel);
             this.Controls.Add(this.InfoLabel);
             this.Controls.Add(this.InfoRichTextBox);
             this.Controls.Add(this.NameRichTextBox);
@@ -234,5 +259,7 @@
         private System.Windows.Forms.Label CostLabel;
         private System.Windows.Forms.Label IdLabel;
         private System.Windows.Forms.Label SelectedItemLlabel;
+        private System.Windows.Forms.Label CategoryLabel;
+        private System.Windows.Forms.ComboBox CategoryComboBox;
     }
 }
