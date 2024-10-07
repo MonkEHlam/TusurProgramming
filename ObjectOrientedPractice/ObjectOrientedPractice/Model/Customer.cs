@@ -16,7 +16,7 @@ namespace ObjectOrientedPractice.Model
         /// <summary>
         /// Customer` address
         /// </summary>
-        private string _address;
+        private Address _address;
 
         public string Name {
             get 
@@ -31,26 +31,14 @@ namespace ObjectOrientedPractice.Model
                 }
             }
         }
-        public string Address
-        {
-            get
-            {
-                return _address;
-            }
-            set {
-                if (Validator.AssertLengthOfString(value, 500, "customer address"))
-                {
-                    _address = value;
-                }
-            }
-        }
+        public Address Address { get; set; }
 
         public int Id
         {
             get { return _id; }
         }
 
-        public Customer(string name, string address)
+        public Customer(string name, Address address)
         {
             _id = IdGenerator.NextCustomerId();
             Name = name;
@@ -87,7 +75,7 @@ namespace ObjectOrientedPractice.Model
         /// <returns></returns>
         public override string ToString()
         {
-            return $"{Id}, {Name}, {Address}";
+            return $"{Id}, {Name}";
         }
     }
 }

@@ -8,8 +8,8 @@ namespace ObjectOrientedPractice.View.Controls
 {
     public partial class CustomersTab : UserControl
     {
-        private readonly List<Customer> _customers = new List<Customer>();
         private Customer _currentCustomer;
+        internal List<Customer> Customers { get; set; }
 
         public CustomersTab()
         {
@@ -19,12 +19,12 @@ namespace ObjectOrientedPractice.View.Controls
         private void UpdateListBox()
         {
             CustomersListBox.Items.Clear();
-            if (_customers.Count > 1)
+            if (Customers.Count > 1)
             {
-                _customers.Sort();
+                Customers.Sort();
             }
 
-            foreach (var item in _customers)
+            foreach (var item in Customers)
             {
                 CustomersListBox.Items.Add(item);
             }
@@ -41,13 +41,11 @@ namespace ObjectOrientedPractice.View.Controls
 
         private void DisableInputs()
         {
-            AddressRichTextBox.Enabled = false;
             NameTextBox.Enabled = false;
         }
 
         private void EnableInputs()
         {
-            AddressRichTextBox.Enabled = true;
             NameTextBox.Enabled = true;
         }
 
@@ -58,10 +56,11 @@ namespace ObjectOrientedPractice.View.Controls
                 return;
             }
 
-            _currentCustomer = _customers[CustomersListBox.SelectedIndex];
+            _currentCustomer = Customers[CustomersListBox.SelectedIndex];
             IdTextBox.Text = _currentCustomer.Id.ToString();
             NameTextBox.Text = _currentCustomer.Name;
-            AddressRichTextBox.Text = _currentCustomer.Address;
+            AddressControl.currentAddress = _currentCustomer.Address;
+            AddressControl.UpdateControl();
             EnableInputs();
         }
 
@@ -85,7 +84,7 @@ namespace ObjectOrientedPractice.View.Controls
                     MessageBox.Show(err.Message, "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
                 }
             }
-            else if (e.KeyChar == (char)13 && AddressRichTextBox.Text == "")
+            else if (e.KeyChar == (char)13 && NameTextBox.Text == "")
             {
                 NameTextBox.BackColor = Color.Red;
                 MessageBox.Show("Enter name.", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
@@ -96,45 +95,15 @@ namespace ObjectOrientedPractice.View.Controls
             }
         }
 
-        private void AddressRichTextBox_KeyPress(object sender, KeyPressEventArgs e)
-        {
-            if (!char.IsLetter(e.KeyChar) && !char.IsNumber(e.KeyChar) && !char.IsPunctuation(e.KeyChar) && !char.IsControl(e.KeyChar) && !char.IsWhiteSpace(e.KeyChar))
-            {
-                e.Handled = true;
-            }
-            else if (e.KeyChar == (char)13 && AddressRichTextBox.Text != "")
-            {
-                try
-                {
-                    _currentCustomer.Address = AddressRichTextBox.Text;
-                    UpdateListBox();
-                }
-                catch (ArgumentException err)
-                {
-                    AddressRichTextBox.BackColor = Color.Red;
-                    MessageBox.Show(err.Message, "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
-                }
-            }
-            else if (e.KeyChar == (char)13 && AddressRichTextBox.Text == "")
-            {
-                AddressRichTextBox.BackColor = Color.Red;
-                MessageBox.Show("Enter address.", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
-            }
-            else
-            {
-                AddressRichTextBox.BackColor = Color.White;
-            }
-        }
-
         private void AddButton_Click(object sender, EventArgs e)
         {
-            _customers.Add(new Customer(" ", " "));
+            Customers.Add(new Customer(" ", new Address()));
             UpdateListBox();
         }
 
         private void RemoveButton_Click(object sender, EventArgs e)
         {
-            _customers.Remove(_currentCustomer);
+            Customers.Remove(_currentCustomer);
             UpdateListBox();
         }
 

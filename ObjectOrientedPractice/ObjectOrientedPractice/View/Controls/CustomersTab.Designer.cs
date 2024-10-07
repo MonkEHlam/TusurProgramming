@@ -34,8 +34,7 @@
             this.CustomersListBox = new System.Windows.Forms.ListBox();
             this.MainLabel = new System.Windows.Forms.Label();
             this.splitContainer1 = new System.Windows.Forms.SplitContainer();
-            this.AddressRichTextBox = new System.Windows.Forms.RichTextBox();
-            this.NameLabel = new System.Windows.Forms.Label();
+            this.AddressControl = new ObjectOrientedPractice.View.Controls.AddressControl();
             this.NameTextBox = new System.Windows.Forms.TextBox();
             this.IdTextBox = new System.Windows.Forms.TextBox();
             this.CostLabel = new System.Windows.Forms.Label();
@@ -84,10 +83,12 @@
             this.CustomersListBox.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
             | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
+            this.CustomersListBox.Font = new System.Drawing.Font("Microsoft Sans Serif", 11F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
             this.CustomersListBox.FormattingEnabled = true;
+            this.CustomersListBox.ItemHeight = 18;
             this.CustomersListBox.Location = new System.Drawing.Point(3, 29);
             this.CustomersListBox.Name = "CustomersListBox";
-            this.CustomersListBox.Size = new System.Drawing.Size(265, 342);
+            this.CustomersListBox.Size = new System.Drawing.Size(265, 328);
             this.CustomersListBox.TabIndex = 7;
             this.CustomersListBox.SelectedIndexChanged += new System.EventHandler(this.CustomersListBox_SelectedIndexChanged);
             // 
@@ -110,42 +111,27 @@
             // 
             // splitContainer1.Panel1
             // 
-            this.splitContainer1.Panel1.Controls.Add(this.AddressRichTextBox);
-            this.splitContainer1.Panel1.Controls.Add(this.NameLabel);
+            this.splitContainer1.Panel1.Controls.Add(this.AddressControl);
             this.splitContainer1.Panel1.Controls.Add(this.NameTextBox);
             this.splitContainer1.Panel1.Controls.Add(this.IdTextBox);
             this.splitContainer1.Panel1.Controls.Add(this.CostLabel);
             this.splitContainer1.Panel1.Controls.Add(this.IdLabel);
             this.splitContainer1.Panel1.Controls.Add(this.SelectedCustomerLlabel);
-            this.splitContainer1.Size = new System.Drawing.Size(396, 451);
-            this.splitContainer1.SplitterDistance = 158;
+            this.splitContainer1.Size = new System.Drawing.Size(469, 451);
+            this.splitContainer1.SplitterDistance = 255;
             this.splitContainer1.TabIndex = 10;
             // 
-            // AddressRichTextBox
+            // AddressControl
             // 
-            this.AddressRichTextBox.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
-            this.AddressRichTextBox.Location = new System.Drawing.Point(21, 118);
-            this.AddressRichTextBox.Name = "AddressRichTextBox";
-            this.AddressRichTextBox.Size = new System.Drawing.Size(358, 37);
-            this.AddressRichTextBox.TabIndex = 31;
-            this.AddressRichTextBox.Text = "";
-            this.AddressRichTextBox.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.AddressRichTextBox_KeyPress);
-            // 
-            // NameLabel
-            // 
-            this.NameLabel.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
-            this.NameLabel.AutoSize = true;
-            this.NameLabel.Font = new System.Drawing.Font("Microsoft Sans Serif", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
-            this.NameLabel.Location = new System.Drawing.Point(19, 98);
-            this.NameLabel.Name = "NameLabel";
-            this.NameLabel.Size = new System.Drawing.Size(64, 17);
-            this.NameLabel.TabIndex = 30;
-            this.NameLabel.Text = "Address:";
+            this.AddressControl.Location = new System.Drawing.Point(7, 93);
+            this.AddressControl.Name = "AddressControl";
+            this.AddressControl.Size = new System.Drawing.Size(462, 164);
+            this.AddressControl.TabIndex = 32;
             // 
             // NameTextBox
             // 
             this.NameTextBox.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
-            this.NameTextBox.Location = new System.Drawing.Point(64, 67);
+            this.NameTextBox.Location = new System.Drawing.Point(59, 67);
             this.NameTextBox.Name = "NameTextBox";
             this.NameTextBox.Size = new System.Drawing.Size(315, 20);
             this.NameTextBox.TabIndex = 29;
@@ -154,7 +140,7 @@
             // IdTextBox
             // 
             this.IdTextBox.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
-            this.IdTextBox.Location = new System.Drawing.Point(64, 39);
+            this.IdTextBox.Location = new System.Drawing.Point(59, 39);
             this.IdTextBox.Name = "IdTextBox";
             this.IdTextBox.ReadOnly = true;
             this.IdTextBox.Size = new System.Drawing.Size(20, 20);
@@ -165,7 +151,7 @@
             this.CostLabel.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
             this.CostLabel.AutoSize = true;
             this.CostLabel.Font = new System.Drawing.Font("Microsoft Sans Serif", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
-            this.CostLabel.Location = new System.Drawing.Point(18, 68);
+            this.CostLabel.Location = new System.Drawing.Point(13, 68);
             this.CostLabel.Name = "CostLabel";
             this.CostLabel.Size = new System.Drawing.Size(49, 17);
             this.CostLabel.TabIndex = 27;
@@ -176,7 +162,7 @@
             this.IdLabel.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
             this.IdLabel.AutoSize = true;
             this.IdLabel.Font = new System.Drawing.Font("Microsoft Sans Serif", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
-            this.IdLabel.Location = new System.Drawing.Point(33, 40);
+            this.IdLabel.Location = new System.Drawing.Point(28, 40);
             this.IdLabel.Name = "IdLabel";
             this.IdLabel.Size = new System.Drawing.Size(25, 17);
             this.IdLabel.TabIndex = 26;
@@ -187,7 +173,7 @@
             this.SelectedCustomerLlabel.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
             this.SelectedCustomerLlabel.AutoSize = true;
             this.SelectedCustomerLlabel.Font = new System.Drawing.Font("Microsoft Sans Serif", 10F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
-            this.SelectedCustomerLlabel.Location = new System.Drawing.Point(18, 9);
+            this.SelectedCustomerLlabel.Location = new System.Drawing.Point(13, 9);
             this.SelectedCustomerLlabel.Name = "SelectedCustomerLlabel";
             this.SelectedCustomerLlabel.Size = new System.Drawing.Size(142, 17);
             this.SelectedCustomerLlabel.TabIndex = 25;
@@ -202,7 +188,7 @@
             this.Controls.Add(this.CustomersListBox);
             this.Controls.Add(this.MainLabel);
             this.Name = "CustomersTab";
-            this.Size = new System.Drawing.Size(670, 451);
+            this.Size = new System.Drawing.Size(743, 451);
             this.Load += new System.EventHandler(this.CustomersTab_Load);
             this.flowLayoutPanel1.ResumeLayout(false);
             this.splitContainer1.Panel1.ResumeLayout(false);
@@ -222,12 +208,11 @@
         private System.Windows.Forms.ListBox CustomersListBox;
         private System.Windows.Forms.Label MainLabel;
         private System.Windows.Forms.SplitContainer splitContainer1;
-        private System.Windows.Forms.RichTextBox AddressRichTextBox;
-        private System.Windows.Forms.Label NameLabel;
         private System.Windows.Forms.TextBox NameTextBox;
         private System.Windows.Forms.TextBox IdTextBox;
         private System.Windows.Forms.Label CostLabel;
         private System.Windows.Forms.Label IdLabel;
         private System.Windows.Forms.Label SelectedCustomerLlabel;
+        private AddressControl AddressControl;
     }
 }

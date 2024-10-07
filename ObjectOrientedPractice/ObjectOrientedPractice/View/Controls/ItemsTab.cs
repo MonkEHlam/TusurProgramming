@@ -8,8 +8,8 @@ namespace ObjectOrientedPractice.View.Controls
 {
     public partial class ItemsTab : UserControl
     {
-        private readonly List<Item> _items = new List<Item>();
         private Item _currentItem;
+        internal List<Item> Items { get; set; }
 
         public ItemsTab()
         {
@@ -19,11 +19,11 @@ namespace ObjectOrientedPractice.View.Controls
         private void UpdateListBox()
         {
             ItemsListBox.Items.Clear();
-            if (_items.Count > 1)
+            if (Items.Count > 1)
             {
-                _items.Sort();
+                Items.Sort();
             }
-            foreach (var item in _items)
+            foreach (var item in Items)
             {
                 ItemsListBox.Items.Add(item);
             }
@@ -42,6 +42,7 @@ namespace ObjectOrientedPractice.View.Controls
             CostTextBox.Enabled = false;
             NameRichTextBox.Enabled = false;
             InfoRichTextBox.Enabled = false;
+            CategoryComboBox.Enabled = false;
         }
 
         private void EnableInputs()
@@ -49,6 +50,7 @@ namespace ObjectOrientedPractice.View.Controls
             CostTextBox.Enabled = true;
             NameRichTextBox.Enabled = true;
             InfoRichTextBox.Enabled = true;
+            CategoryComboBox.Enabled = true;
         }
 
         private void ItemsLlistBox_SelectedIndexChanged(object sender, EventArgs e)
@@ -57,11 +59,12 @@ namespace ObjectOrientedPractice.View.Controls
             {
                 return;
             }
-            _currentItem = _items[ItemsListBox.SelectedIndex];
+            _currentItem = Items[ItemsListBox.SelectedIndex];
             IdTextBox.Text = _currentItem.Id.ToString();
             CostTextBox.Text = _currentItem.Cost.ToString();
             NameRichTextBox.Text = _currentItem.Name;
             InfoRichTextBox.Text = _currentItem.Info;
+            CategoryComboBox.Text = _currentItem.Category.ToString();
             EnableInputs();
         }
 
@@ -159,19 +162,32 @@ namespace ObjectOrientedPractice.View.Controls
 
         private void AddButton_Click(object sender, EventArgs e)
         {
-            _items.Add(new Item(" ", " ", 0.0));
+            Items.Add(new Item(" ", " ", 0.0, Category.Frozen));
             UpdateListBox();
         }
 
         private void RemoveButton_Click(object sender, EventArgs e)
         {
-            _items.Remove(_currentItem);
+            Items.Remove(_currentItem);
             UpdateListBox();
         }
 
         private void ItemsTab_Load(object sender, EventArgs e)
         {
             DisableInputs();
+            CategoryComboBox.Items.AddRange(Enum.GetNames(typeof(Category)));
+        }
+
+        private void CategoryComboBox_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            try
+            {
+                _currentItem.Category = (Category)Enum.Parse(typeof(Category), CategoryComboBox.Text);
+            }
+            catch (Exception ex)
+            {
+                Console.WriteLine(ex.Message);
+            }
         }
     }
 }
