@@ -27,21 +27,28 @@ namespace ObjectOrientedPractice.Model
         }
 
         public string Name {
-            get { return _name; } 
+            get 
+            { 
+                return _name; 
+            } 
             set 
             { 
-                if (Validator.AssertLengthOfString(value, 200, "item name"))
+                if (Validator.AssertLengthOfString(value, 1000, "item name"))
                 {
                     _name = value;
                 }  
             } 
         }
 
-        public string Info {
-            get { return _info; } 
-            set 
+        public string Info
+        {
+            get
             {
-                if (!Validator.AssertLengthOfString(value, 1000, "item descriprion"))
+                return _info;
+            }
+            set
+            {
+                if (Validator.AssertLengthOfString(value, 200, "item descriprion"))
                 {
                     _info = value;
                 }
@@ -49,7 +56,10 @@ namespace ObjectOrientedPractice.Model
         }
 
         public double Cost { 
-            get { return _cost; } 
+            get 
+            { 
+                return _cost; 
+            } 
             set
             {
                 if (Validator.AssertRange(value, 0, 100000, "item cost"))
