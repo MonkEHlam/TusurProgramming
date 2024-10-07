@@ -10,7 +10,6 @@ namespace ObjectOrientedPractice.View.Controls
     {
         private readonly List<Customer> _customers = new List<Customer>();
         private Customer _currentCustomer;
-        private bool isDataSaved;
 
         public CustomersTab()
         {
@@ -79,7 +78,6 @@ namespace ObjectOrientedPractice.View.Controls
                     var text = NameTextBox.Text.Replace(".", ",");
                     _currentCustomer.Name = text;
                     UpdateListBox();
-                    isDataSaved = false;
                 }
                 catch (ArgumentException err)
                 {
@@ -110,7 +108,6 @@ namespace ObjectOrientedPractice.View.Controls
                 {
                     _currentCustomer.Address = AddressRichTextBox.Text;
                     UpdateListBox();
-                    isDataSaved = false;
                 }
                 catch (ArgumentException err)
                 {
