@@ -8,8 +8,9 @@ namespace ObjectOrientedPractice.View.Controls
 {
     public partial class ItemsTab : UserControl
     {
-        private readonly List<Item> _items = new List<Item>();
         private Item _currentItem;
+
+        internal List<Item> Items { get; set; }
 
         public ItemsTab()
         {
@@ -19,11 +20,11 @@ namespace ObjectOrientedPractice.View.Controls
         private void UpdateListBox()
         {
             ItemsListBox.Items.Clear();
-            if (_items.Count > 1)
+            if (Items.Count > 1)
             {
-                _items.Sort();
+                Items.Sort();
             }
-            foreach (var item in _items)
+            foreach (var item in Items)
             {
                 ItemsListBox.Items.Add(item);
             }
@@ -59,7 +60,7 @@ namespace ObjectOrientedPractice.View.Controls
             {
                 return;
             }
-            _currentItem = _items[ItemsListBox.SelectedIndex];
+            _currentItem = Items[ItemsListBox.SelectedIndex];
             IdTextBox.Text = _currentItem.Id.ToString();
             CostTextBox.Text = _currentItem.Cost.ToString();
             NameRichTextBox.Text = _currentItem.Name;
@@ -162,13 +163,13 @@ namespace ObjectOrientedPractice.View.Controls
 
         private void AddButton_Click(object sender, EventArgs e)
         {
-            _items.Add(new Item(" ", " ", 0.0, Category.Frozen));
+            Items.Add(new Item(" ", " ", 0.0, Category.Frozen));
             UpdateListBox();
         }
 
         private void RemoveButton_Click(object sender, EventArgs e)
         {
-            _items.Remove(_currentItem);
+            Items.Remove(_currentItem);
             UpdateListBox();
         }
 

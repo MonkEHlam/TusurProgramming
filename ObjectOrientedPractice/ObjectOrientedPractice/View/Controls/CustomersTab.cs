@@ -8,8 +8,9 @@ namespace ObjectOrientedPractice.View.Controls
 {
     public partial class CustomersTab : UserControl
     {
-        private readonly List<Customer> _customers = new List<Customer>();
         private Customer _currentCustomer;
+
+        internal List<Customer> Customers { get; set; }
 
         public CustomersTab()
         {
@@ -19,12 +20,12 @@ namespace ObjectOrientedPractice.View.Controls
         private void UpdateListBox()
         {
             CustomersListBox.Items.Clear();
-            if (_customers.Count > 1)
+            if (Customers.Count > 1)
             {
-                _customers.Sort();
+                Customers.Sort();
             }
 
-            foreach (var item in _customers)
+            foreach (var item in Customers)
             {
                 CustomersListBox.Items.Add(item);
             }
@@ -56,7 +57,7 @@ namespace ObjectOrientedPractice.View.Controls
                 return;
             }
 
-            _currentCustomer = _customers[CustomersListBox.SelectedIndex];
+            _currentCustomer = Customers[CustomersListBox.SelectedIndex];
             IdTextBox.Text = _currentCustomer.Id.ToString();
             NameTextBox.Text = _currentCustomer.Name;
             AddressControl.currentAddress = _currentCustomer.Address;
@@ -97,13 +98,13 @@ namespace ObjectOrientedPractice.View.Controls
 
         private void AddButton_Click(object sender, EventArgs e)
         {
-            _customers.Add(new Customer(" ", new Address()));
+            Customers.Add(new Customer(" ", new Address()));
             UpdateListBox();
         }
 
         private void RemoveButton_Click(object sender, EventArgs e)
         {
-            _customers.Remove(_currentCustomer);
+            Customers.Remove(_currentCustomer);
             UpdateListBox();
         }
 

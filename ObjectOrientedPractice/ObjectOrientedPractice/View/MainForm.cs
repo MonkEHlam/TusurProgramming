@@ -1,21 +1,22 @@
-﻿using System;
-using System.Collections.Generic;
-using System.ComponentModel;
-using System.Data;
-using System.Drawing;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+﻿using ObjectOrientedPractice.Model;
 using System.Windows.Forms;
-using ObjectOrientedPractice.View.Controls;
 
 namespace ObjectOrientedPractice.View
 {
     public partial class MainForm : Form
     {
+        private Store _store = new Store();
+
+        
         public MainForm()
         {
             InitializeComponent();
+        }
+
+        private void MainForm_Load(object sender, System.EventArgs e)
+        {
+            ItemsTab.Items = _store.Items;
+            CustomersTab.Customers = _store.Customers;
         }
     }
 }

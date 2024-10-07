@@ -30,9 +30,9 @@
         {
             this.tabControl1 = new System.Windows.Forms.TabControl();
             this.tabPage1 = new System.Windows.Forms.TabPage();
+            this.ItemsTab = new ObjectOrientedPractice.View.Controls.ItemsTab();
             this.tabPage2 = new System.Windows.Forms.TabPage();
-            this.itemsTab1 = new ObjectOrientedPractice.View.Controls.ItemsTab();
-            this.customersTab1 = new ObjectOrientedPractice.View.Controls.CustomersTab();
+            this.CustomersTab = new ObjectOrientedPractice.View.Controls.CustomersTab();
             this.tabControl1.SuspendLayout();
             this.tabPage1.SuspendLayout();
             this.tabPage2.SuspendLayout();
@@ -51,7 +51,7 @@
             // 
             // tabPage1
             // 
-            this.tabPage1.Controls.Add(this.itemsTab1);
+            this.tabPage1.Controls.Add(this.ItemsTab);
             this.tabPage1.Location = new System.Drawing.Point(4, 22);
             this.tabPage1.Name = "tabPage1";
             this.tabPage1.Padding = new System.Windows.Forms.Padding(3);
@@ -60,9 +60,18 @@
             this.tabPage1.Text = "Items";
             this.tabPage1.UseVisualStyleBackColor = true;
             // 
+            // ItemsTab
+            // 
+            this.ItemsTab.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.ItemsTab.Location = new System.Drawing.Point(3, 3);
+            this.ItemsTab.MinimumSize = new System.Drawing.Size(720, 440);
+            this.ItemsTab.Name = "ItemsTab";
+            this.ItemsTab.Size = new System.Drawing.Size(1002, 631);
+            this.ItemsTab.TabIndex = 0;
+            // 
             // tabPage2
             // 
-            this.tabPage2.Controls.Add(this.customersTab1);
+            this.tabPage2.Controls.Add(this.CustomersTab);
             this.tabPage2.Location = new System.Drawing.Point(4, 22);
             this.tabPage2.Name = "tabPage2";
             this.tabPage2.Padding = new System.Windows.Forms.Padding(3);
@@ -71,22 +80,13 @@
             this.tabPage2.Text = "Customers";
             this.tabPage2.UseVisualStyleBackColor = true;
             // 
-            // itemsTab1
+            // CustomersTab
             // 
-            this.itemsTab1.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.itemsTab1.Location = new System.Drawing.Point(3, 3);
-            this.itemsTab1.MinimumSize = new System.Drawing.Size(720, 440);
-            this.itemsTab1.Name = "itemsTab1";
-            this.itemsTab1.Size = new System.Drawing.Size(1002, 631);
-            this.itemsTab1.TabIndex = 0;
-            // 
-            // customersTab1
-            // 
-            this.customersTab1.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.customersTab1.Location = new System.Drawing.Point(3, 3);
-            this.customersTab1.Name = "customersTab1";
-            this.customersTab1.Size = new System.Drawing.Size(1002, 631);
-            this.customersTab1.TabIndex = 0;
+            this.CustomersTab.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.CustomersTab.Location = new System.Drawing.Point(3, 3);
+            this.CustomersTab.Name = "CustomersTab";
+            this.CustomersTab.Size = new System.Drawing.Size(1002, 631);
+            this.CustomersTab.TabIndex = 0;
             // 
             // MainForm
             // 
@@ -96,6 +96,7 @@
             this.Controls.Add(this.tabControl1);
             this.Name = "MainForm";
             this.Text = "OOP";
+            this.Load += new System.EventHandler(this.MainForm_Load);
             this.tabControl1.ResumeLayout(false);
             this.tabPage1.ResumeLayout(false);
             this.tabPage2.ResumeLayout(false);
@@ -108,7 +109,7 @@
         private System.Windows.Forms.TabControl tabControl1;
         private System.Windows.Forms.TabPage tabPage1;
         private System.Windows.Forms.TabPage tabPage2;
-        private Controls.ItemsTab itemsTab1;
-        private Controls.CustomersTab customersTab1;
+        private Controls.ItemsTab ItemsTab;
+        private Controls.CustomersTab CustomersTab;
     }
 }
