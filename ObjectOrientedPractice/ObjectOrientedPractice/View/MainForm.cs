@@ -17,6 +17,15 @@ namespace ObjectOrientedPractice.View
         {
             ItemsTab.Items = _store.Items;
             CustomersTab.Customers = _store.Customers;
+            CartsTab.Customers = _store.Customers;
+            CartsTab.Items = _store.Items;
+            OrdersTab.Customers = _store.Customers;
+        }
+
+        private void TabControl_SelectedIndexChanged(object sender, System.EventArgs e)
+        {
+            OrdersTab.RefreshData();
+            CartsTab.RefreshData();
         }
     }
 }

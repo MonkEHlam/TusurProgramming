@@ -1,27 +1,43 @@
 ﻿using ObjectOrientedPractice.Services;
 using System;
+using System.Collections.Generic;
 
 namespace ObjectOrientedPractice.Model
 {
-    internal class Customer: IComparable<Customer>, IEquatable<Customer>
+    /// <summary>
+    /// Represents a customer 
+    /// </summary>
+    internal class Customer : IComparable<Customer>, IEquatable<Customer>
     {
         /// <summary>
-        /// Customer`s Id
+        /// Customer`s Id.
         /// </summary>
         private readonly int _id;
+
         /// <summary>
-        /// Customer`s name
+        /// List of orders.
+        /// </summary>
+        private readonly List<Order> _orders = new List<Order>();
+
+        /// <summary>
+        /// Customer`s name.
         /// </summary>
         private string _name;
-        /// <summary>
-        /// Customer` address
-        /// </summary>
-        private Address _address;
 
-        public string Name {
-            get 
-            { 
-                return _name; 
+        /// <summary>
+        /// Customer`s current cart.
+        /// </summary>
+        private Cart _cart;
+
+
+        /// <summary>
+        /// Customer`s name.
+        /// </summary>
+        public string Name
+        {
+            get
+            {
+                return _name;
             }
             set
             {
@@ -31,18 +47,60 @@ namespace ObjectOrientedPractice.Model
                 }
             }
         }
+
+        /// <summary>
+        /// Customer`s address.
+        /// </summary>
         public Address Address { get; set; }
 
+        /// <summary>
+        /// Customer`s Id.
+        /// </summary>
         public int Id
         {
-            get { return _id; }
+            get
+            {
+                return _id;
+            }
         }
 
-        public Customer(string name, Address address)
+        /// <summary>
+        /// Customer`s current cart.
+        /// </summary>
+        public Cart Cart
+        {
+            get
+            {
+                return _cart;
+            }
+            set
+            {
+                Cart = value;
+            }
+        }
+
+        /// <summary>
+        /// List of orders.
+        /// </summary>
+        public List<Order> Orders
+        {
+            get
+            {
+                return _orders;
+            }
+        }
+
+
+        /// <summary>
+        /// Base class constructor.
+        /// </summary>
+        /// <param name="name">Customer`s name</param>
+        public Customer(string name)
         {
             _id = IdGenerator.NextCustomerId();
             Name = name;
-            Address = address;
+            Address = new Address();
+            _cart = new Cart();
         }
 
         /// <summary>
@@ -59,7 +117,7 @@ namespace ObjectOrientedPractice.Model
         }
 
         /// <summary>
-        /// Compairing pair of <see cref="Customer" />
+        /// Compairing pair of <see cref="Customer" />.
         /// </summary>
         /// <param name="other"></param>
         /// <returns></returns>
@@ -70,11 +128,15 @@ namespace ObjectOrientedPractice.Model
         }
 
         /// <summary>
-        /// String view of class
+        /// String view of class.
         /// </summary>
         /// <returns></returns>
         public override string ToString()
         {
+            if (Name == "")
+            {
+                return $"{Id}, Name: ---";
+            }
             return $"{Id}, {Name}";
         }
     }
