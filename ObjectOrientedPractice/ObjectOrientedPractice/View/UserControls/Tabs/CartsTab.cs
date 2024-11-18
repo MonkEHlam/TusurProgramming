@@ -55,6 +55,11 @@ namespace ObjectOrientedPractics.View.Panels
 
             CustomersComboBox.Items.Clear();
             CustomersComboBox.Items.AddRange(Customers.ToArray());
+            
+            if (_currentCustomer != null)
+            {
+                CustomersComboBox.SelectedItem = _currentCustomer;
+            }
         }
 
         /// <summary>
@@ -101,7 +106,7 @@ namespace ObjectOrientedPractics.View.Panels
         {
             if (_currentCustomer != null && CartListBox.SelectedIndex != -1)
             {
-                _currentCustomer.Cart.Items.Remove(Items[CartListBox.SelectedIndex]);
+                _currentCustomer.Cart.Items.Remove((Item)CartListBox.SelectedItem);
                 UpdateInfo();
             }
         }

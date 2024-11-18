@@ -73,7 +73,14 @@ namespace ObjectOrientedPractics.View.Panels
             var itemNames = new List<string>();
             foreach (var item in items)
             {
-                itemNames.Add(item.Name);
+                if (item.Name.Trim() != "")
+                {
+                    itemNames.Add(item.Name);
+                }
+                else
+                {
+                    itemNames.Add("---");
+                }
             }
             return itemNames;
         }
