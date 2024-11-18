@@ -135,7 +135,7 @@ namespace ObjectOrientedPractics.View.Panels
             }
 
             var order = new Order(
-                _currentCustomer.Cart.Items,
+                new List<Item>(_currentCustomer.Cart.Items),
                 _currentCustomer.Cart.Amount,
                 _currentCustomer.Address);
 
