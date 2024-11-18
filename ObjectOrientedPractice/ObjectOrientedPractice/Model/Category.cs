@@ -1,7 +1,7 @@
 ﻿/// <summary>
 /// Item`s categories.
 /// </summary>
-internal enum Category
+enum Category
 {
     Frozen = 0,
     Dairy,

@@ -97,7 +97,7 @@ namespace ObjectOrientedPractice.View.Controls
 
         private void AddButton_Click(object sender, EventArgs e)
         {
-            Customers.Add(new Customer(" ", new Address()));
+            Customers.Add(new Customer("Иван"));
             UpdateListBox();
         }
 

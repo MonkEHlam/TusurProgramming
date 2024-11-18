@@ -8,7 +8,7 @@ namespace ObjectOrientedPractice.Model
         /// <summary>
         /// Item`s id
         /// </summary>
-        private readonly int _id;
+        private readonly string _id;
         /// <summary>
         /// Item`s name
         /// </summary>
@@ -22,7 +22,7 @@ namespace ObjectOrientedPractice.Model
         /// </summary>
         private double _cost;
 
-        public int Id { 
+        public string Id { 
             get { return _id; } 
         }
 
@@ -83,7 +83,7 @@ namespace ObjectOrientedPractice.Model
         /// <param name="category">Item`s category</param>
         public Item(string name, string info, double cost, Category category)
         {
-            _id = IdGenerator.NextItemId();
+            _id = IdGenerator.NewId();
             Name = name;
             Info = info;
             Cost = cost;
@@ -120,7 +120,7 @@ namespace ObjectOrientedPractice.Model
         /// <returns></returns>
         public override string ToString()
         {
-            return $"{Id}, {Name}, {Cost}";
+            return $"{Name}, {Cost}";
         }
     }
 }
