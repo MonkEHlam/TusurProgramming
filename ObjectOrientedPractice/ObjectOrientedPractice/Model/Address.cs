@@ -2,24 +2,51 @@
 
 namespace ObjectOrientedPractice.Model
 {
+    /// <summary>
+    /// Class representing a postal address.
+    /// </summary>
     internal class Address
     {
+        /// <summary>
+        /// Postal code.
+        /// </summary>
         private int _index = 0;
+
+        /// <summary>
+        /// Country.
+        /// </summary>
         private string _country = "";
+
+        /// <summary>
+        /// City.
+        /// </summary>
         private string _city = "";
+
+        /// <summary>
+        /// Street.
+        /// </summary>
         private string _street = "";
+
+        /// <summary>
+        /// Building number.
+        /// </summary>
         private string _building = "";
+
+        /// <summary>
+        /// Apartment number.
+        /// </summary>
         private string _apartment = "";
 
         /// <summary>
-        /// Postal code. 6 length integer.
+        /// Postal code.  Six-digit integer.
         /// </summary>
-        public int Index { 
-            get 
+        public int Index
+        {
+            get
             {
-                return _index; 
-            } 
-            set 
+                return _index;
+            }
+            set
             {
                 if (Validator.AssertRange(value, 100000, 999999, "address postal index"))
                 {
@@ -29,7 +56,7 @@ namespace ObjectOrientedPractice.Model
         }
 
         /// <summary>
-        /// Country. Cannot be longer than 50 symbols.
+        /// Country. String length must not exceed 50 characters.
         /// </summary>
         public string Country
         {
@@ -47,7 +74,7 @@ namespace ObjectOrientedPractice.Model
         }
 
         /// <summary>
-        /// City. Cannot be longer than 50 symbols.
+        /// City. String length must not exceed 50 characters.
         /// </summary>
         public string City
         {
@@ -65,13 +92,13 @@ namespace ObjectOrientedPractice.Model
         }
 
         /// <summary>
-        /// Street. Cannot be longer than 100 symbols.
+        /// Street. String length must not exceed 100 characters.
         /// </summary>
         public string Street
         {
-            get 
+            get
             {
-                return _street; 
+                return _street;
             }
             set
             {
@@ -83,7 +110,7 @@ namespace ObjectOrientedPractice.Model
         }
 
         /// <summary>
-        /// Building, Cannot be longer than 10 symbols.
+        /// Building number. String length must not exceed 10 characters.
         /// </summary>
         public string Building
         {
@@ -101,7 +128,7 @@ namespace ObjectOrientedPractice.Model
         }
 
         /// <summary>
-        /// Apartment. Cannot be longer than 10 symbols.
+        /// Apartment number. String length must not exceed 10 characters.
         /// </summary>
         public string Apartment
         {
@@ -119,19 +146,19 @@ namespace ObjectOrientedPractice.Model
         }
 
         /// <summary>
-        /// Empty constructor. Zero fields.
+        /// Empty constructor. All fields are initialized to default values.
         /// </summary>
         public Address() { }
 
         /// <summary>
-        /// Base class constructor.
+        /// Parameterized constructor.
         /// </summary>
-        /// <param name="index"></param>
-        /// <param name="country"></param>
-        /// <param name="city"></param>
-        /// <param name="street"></param>
-        /// <param name="building"></param>
-        /// <param name="apartment"></param>
+        /// <param name="index">Postal code.</param>
+        /// <param name="country">Country.</param>
+        /// <param name="city">City.</param>
+        /// <param name="street">Street.</param>
+        /// <param name="building">Building number.</param>
+        /// <param name="apartment">Apartment number.</param>
         public Address(int index, string country, string city, string street, string building, string apartment)
         {
             Index = index;
@@ -143,3 +170,4 @@ namespace ObjectOrientedPractice.Model
         }
     }
 }
+

@@ -1,4 +1,7 @@
-﻿enum OrderStatus
+﻿/// <summary>
+/// Statuses of order.
+/// </summary>
+enum OrderStatus
 {
     New,
     Processing,

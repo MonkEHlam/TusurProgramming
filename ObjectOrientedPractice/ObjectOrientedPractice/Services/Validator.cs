@@ -2,6 +2,9 @@
 
 namespace ObjectOrientedPractice.Services
 {
+    /// <summary>
+    /// Static class, that validates user`s input values.
+    /// </summary>
     static public class Validator
     {
         /// <summary>
@@ -11,9 +14,9 @@ namespace ObjectOrientedPractice.Services
         /// <param name="maxLength"></param>
         /// <param name="minLength">As default 0</param>
         /// <returns></returns>
-        public static bool AssertLengthOfString(string str, int maxLength, string assertionSource, int minLength = 0) {
+        public static bool AssertLengthOfString(string str, int maxLength, string assertionSource) {
             if (str == null) { return false; }
-            if (minLength <= str.Length && str.Length <= maxLength) { return true; }
+            if (str.Length <= maxLength) { return true; }
             throw new ArgumentException($"Failed on string length assertion in {assertionSource}.");
         }
 

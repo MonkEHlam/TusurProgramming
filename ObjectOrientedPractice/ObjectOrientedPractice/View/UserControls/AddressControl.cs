@@ -5,14 +5,27 @@ using System.Drawing;
 
 namespace ObjectOrientedPractice.View.Controls
 {
+    /// <summary>
+    /// User control for displaying and editing address information.
+    /// </summary>
     public partial class AddressControl : UserControl
     {
+        /// <summary>
+        /// The address currently being displayed and edited.
+        /// </summary>
         internal Address currentAddress;
+
+        /// <summary>
+        /// Initializes a new instance of the <see cref="AddressControl"/> class.
+        /// </summary>
         public AddressControl()
         {
             InitializeComponent();
         }
-        
+
+        /// <summary>
+        /// Updates the address control with data from the currentAddress property.
+        /// </summary>
         public void UpdateControl()
         {
             if (currentAddress == null)
@@ -29,6 +42,9 @@ namespace ObjectOrientedPractice.View.Controls
             EnableInput();
         }
 
+        /// <summary>
+        /// Disables all input fields in the address control.
+        /// </summary>
         public void DisableInput()
         {
             IndexTextBox.Enabled = false;
@@ -39,7 +55,10 @@ namespace ObjectOrientedPractice.View.Controls
             ApartamentTextBox.Enabled = false;
         }
 
-        public void EnableInput() 
+        /// <summary>
+        /// Enables all input fields in the address control.
+        /// </summary>
+        public void EnableInput()
         {
             IndexTextBox.Enabled = true;
             CityTextBox.Enabled = true;
@@ -49,13 +68,18 @@ namespace ObjectOrientedPractice.View.Controls
             ApartamentTextBox.Enabled = true;
         }
 
+        /// <summary>
+        /// Handles KeyPress events for the IndexTextBox.
+        /// </summary>
+        /// <param name="sender">The IndexTextBox.</param>
+        /// <param name="e">Key press event arguments.</param>
         private void IndexTextBox_KeyPress(object sender, KeyPressEventArgs e)
         {
-            if (!char.IsDigit(e.KeyChar) && !(e.KeyChar == (char)46) && !char.IsControl(e.KeyChar))
+            if (!char.IsDigit(e.KeyChar) && !char.IsControl(e.KeyChar))
             {
                 e.Handled = true;
             }
-            else if (e.KeyChar == (char)13 && IndexTextBox.Text != "")
+            else if (e.KeyChar == (char)13 && IndexTextBox.Text != "") 
             {
                 try
                 {
@@ -67,7 +91,7 @@ namespace ObjectOrientedPractice.View.Controls
                     MessageBox.Show(err.Message, "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
                 }
             }
-            else if (e.KeyChar == (char)13 && IndexTextBox.Text == "")
+            else if (e.KeyChar == (char)13 && IndexTextBox.Text == "") 
             {
                 IndexTextBox.BackColor = Color.Red;
                 MessageBox.Show("Enter postal index.", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
@@ -78,6 +102,11 @@ namespace ObjectOrientedPractice.View.Controls
             }
         }
 
+        /// <summary>
+        /// Handles KeyPress events for the CountryTextBox. 
+        /// </summary>
+        /// <param name="sender">The CountryTextBox.</param>
+        /// <param name="e">Key press event arguments.</param>
         private void CountryTextBox_KeyPress(object sender, KeyPressEventArgs e)
         {
             if (!char.IsLetter(e.KeyChar) && !char.IsWhiteSpace(e.KeyChar) && !char.IsControl(e.KeyChar))
@@ -108,6 +137,11 @@ namespace ObjectOrientedPractice.View.Controls
             }
         }
 
+        /// <summary>
+        /// Handles KeyPress events for the CityTextBox, validating input and updating the address.
+        /// </summary>
+        /// <param name="sender">The CityTextBox.</param>
+        /// <param name="e">KeyPress event arguments.</param>
         private void CityTextBox_KeyPress(object sender, KeyPressEventArgs e)
         {
             if (!char.IsLetter(e.KeyChar) && !char.IsWhiteSpace(e.KeyChar) && !char.IsControl(e.KeyChar))
@@ -138,6 +172,11 @@ namespace ObjectOrientedPractice.View.Controls
             }
         }
 
+        /// <summary>
+        /// Handles KeyPress events for the StreetTextBox, validating input and updating the address.
+        /// </summary>
+        /// <param name="sender">The StreetTextBox.</param>
+        /// <param name="e">KeyPress event arguments.</param>
         private void StreetTextBox_KeyPress(object sender, KeyPressEventArgs e)
         {
             if (!char.IsLetter(e.KeyChar) && !char.IsWhiteSpace(e.KeyChar) && !char.IsControl(e.KeyChar))
@@ -168,9 +207,49 @@ namespace ObjectOrientedPractice.View.Controls
             }
         }
 
-        private void BuildingTextBox_KeyPress(object sender, KeyPressEventArgs e)
+        /// <summary>
+        /// Handles KeyPress event for the ApartamentTextBox.  Allows letters, whitespace, and control characters.
+        /// </summary>
+        /// <param name="sender">The ApartamentTextBox.</param>
+        /// <param name="e">KeyPress event arguments.</param>
+        private void ApartamentTextBox_KeyPress(object sender, KeyPressEventArgs e)
         {
             if (!char.IsLetter(e.KeyChar) && !char.IsWhiteSpace(e.KeyChar) && !char.IsControl(e.KeyChar))
+            {
+                e.Handled = true;
+            }
+            else if (e.KeyChar == (char)13 && ApartamentTextBox.Text != "") 
+            {
+                try
+                {
+                    var text = ApartamentTextBox.Text.Replace(".", ",");
+                    currentAddress.Apartment = text;
+                }
+                catch (ArgumentException err)
+                {
+                    ApartamentTextBox.BackColor = Color.Red;
+                    MessageBox.Show(err.Message, "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                }
+            }
+            else if (e.KeyChar == (char)13 && ApartamentTextBox.Text == "")
+            {
+                ApartamentTextBox.BackColor = Color.Red;
+                MessageBox.Show("Enter apartment.", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+            }
+            else
+            {
+                ApartamentTextBox.BackColor = Color.White;
+            }
+        }
+
+        /// <summary>
+        /// Handles KeyPress events for the BuildingTextBox, validating input and updating the address.
+        /// </summary>
+        /// <param name="sender">The BuildingTextBox.</param>
+        /// <param name="e">KeyPress event arguments.</param>
+        private void BuildingTextBox_KeyPress(object sender, KeyPressEventArgs e)
+        {
+            if (!char.IsLetterOrDigit(e.KeyChar) && !char.IsWhiteSpace(e.KeyChar) && !char.IsControl(e.KeyChar))
             {
                 e.Handled = true;
             }
@@ -197,40 +276,14 @@ namespace ObjectOrientedPractice.View.Controls
                 BuildingTextBox.BackColor = Color.White;
             }
         }
-
-        private void ApartamentTextBox_KeyPress(object sender, KeyPressEventArgs e)
-        {
-            if (!char.IsLetter(e.KeyChar) && !char.IsWhiteSpace(e.KeyChar) && !char.IsControl(e.KeyChar))
-            {
-                e.Handled = true;
-            }
-            else if (e.KeyChar == (char)13 && ApartamentTextBox.Text != "")
-            {
-                try
-                {
-                    var text = ApartamentTextBox.Text.Replace(".", ",");
-                    currentAddress.Apartment = text;
-                }
-                catch (ArgumentException err)
-                {
-                    ApartamentTextBox.BackColor = Color.Red;
-                    MessageBox.Show(err.Message, "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
-                }
-            }
-            else if (e.KeyChar == (char)13 && ApartamentTextBox.Text == "")
-            {
-                ApartamentTextBox.BackColor = Color.Red;
-                MessageBox.Show("Enter appartment.", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
-            }
-            else
-            {
-                ApartamentTextBox.BackColor = Color.White;
-            }
-        }
-
+        /// <summary>
+        /// Handles the Load event for the AddressControl. Disables input fields on load.
+        /// </summary>
+        /// <param name="sender">The AddressControl itself.</param>
+        /// <param name="e">Event arguments.</param>
         private void AddressControl_Load(object sender, EventArgs e)
         {
             DisableInput();
-        }
+        }   
     }
 }

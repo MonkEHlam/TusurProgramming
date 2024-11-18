@@ -4,13 +4,16 @@ using System.Collections.Generic;
 
 namespace ObjectOrientedPractice.Model
 {
-    internal class Customer: IComparable<Customer>, IEquatable<Customer>
+    /// <summary>
+    /// Represents a customer 
+    /// </summary>
+    internal class Customer : IComparable<Customer>, IEquatable<Customer>
     {
         /// <summary>
         /// Customer`s Id.
         /// </summary>
-        private readonly string _id;
-        
+        private readonly int _id;
+
         /// <summary>
         /// List of orders.
         /// </summary>
@@ -30,10 +33,11 @@ namespace ObjectOrientedPractice.Model
         /// <summary>
         /// Customer`s name.
         /// </summary>
-        public string Name {
-            get 
-            { 
-                return _name; 
+        public string Name
+        {
+            get
+            {
+                return _name;
             }
             set
             {
@@ -52,11 +56,11 @@ namespace ObjectOrientedPractice.Model
         /// <summary>
         /// Customer`s Id.
         /// </summary>
-        public string Id
+        public int Id
         {
-            get 
+            get
             {
-                return _id; 
+                return _id;
             }
         }
 
@@ -93,10 +97,10 @@ namespace ObjectOrientedPractice.Model
         /// <param name="name">Customer`s name</param>
         public Customer(string name)
         {
-            _id = IdGenerator.NewId();
+            _id = IdGenerator.NextCustomerId();
             Name = name;
             Address = new Address();
-            _cart = new Cart(); 
+            _cart = new Cart();
         }
 
         /// <summary>
@@ -109,7 +113,7 @@ namespace ObjectOrientedPractice.Model
             if (compareItem == null)
                 return 1;
 
-            return Id.CompareTo(compareItem.Name);
+            return Id.CompareTo(compareItem.Id);
         }
 
         /// <summary>
@@ -129,7 +133,11 @@ namespace ObjectOrientedPractice.Model
         /// <returns></returns>
         public override string ToString()
         {
-            return $"{Name}";
+            if (Name == "")
+            {
+                return $"{Id}, Name: ---";
+            }
+            return $"{Id}, {Name}";
         }
     }
 }

@@ -4,12 +4,15 @@ using System.Collections.Generic;
 
 namespace ObjectOrientedPractice.Model
 {
+    /// <summary>
+    /// Represents an order of customer in store.
+    /// </summary>
     internal class Order
     {
         /// <summary>
         /// Unique GUID.
         /// </summary>
-        private readonly string _id;
+        private readonly int _id;
         
         /// <summary>
         /// Time of creation.
@@ -39,7 +42,7 @@ namespace ObjectOrientedPractice.Model
         /// <summary>
         /// Unique GUID.
         /// </summary>
-        public string Id 
+        public int Id 
         {
             get 
             {
@@ -103,9 +106,15 @@ namespace ObjectOrientedPractice.Model
             }
         }
 
+        /// <summary>
+        /// Base class constructor.
+        /// </summary>
+        /// <param name="items">List of items from cart.</param>
+        /// <param name="amount">Item`s final cost.</param>
+        /// <param name="address">Delivery address.</param>
         public Order(List<Item> items, double amount, Address address)
         {
-            _id = IdGenerator.NewId();
+            _id = IdGenerator.NextOrderId();
             _createdAt = DateTime.Now;
             ItemsList = items;
             Address = address;

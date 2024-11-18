@@ -1,12 +1,10 @@
-﻿using ObjectOrientedPractice.View.Controls;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+﻿using System.Collections.Generic;
 
 namespace ObjectOrientedPractice.Model
 {
+    /// <summary>
+    /// Represents a cart of customer.
+    /// </summary>
     internal class Cart
     {
         /// <summary>
@@ -17,15 +15,15 @@ namespace ObjectOrientedPractice.Model
         /// <summary>
         /// List of items in cart.
         /// </summary>
-        public List<Item> Items            
+        public List<Item> Items
         {
             get
             {
                 return _items;
             }
-            private set 
+            private set
             {
-               _items = value;
+                _items = value;
             }
         }
 
@@ -34,7 +32,7 @@ namespace ObjectOrientedPractice.Model
         /// </summary>
         public double Amount
         {
-            get 
+            get
             {
                 double i = 0.0;
                 foreach (var item in Items)
@@ -50,7 +48,7 @@ namespace ObjectOrientedPractice.Model
         /// </summary>
         public Cart()
         {
-            Items = new List<Item>();   
+            Items = new List<Item>();
         }
     }
 }

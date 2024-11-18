@@ -66,23 +66,35 @@
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Services\IdGenerator.cs" />
     <Compile Include="Services\Validator.cs" />
-    <Compile Include="View\Controls\AddressControl.cs">
+    <Compile Include="View\UserControls\AddressControl.cs">
       <SubType>UserControl</SubType>
     </Compile>
-    <Compile Include="View\Controls\AddressControl.Designer.cs">
+    <Compile Include="View\UserControls\AddressControl.Designer.cs">
       <DependentUpon>AddressControl.cs</DependentUpon>
     </Compile>
-    <Compile Include="View\Controls\CustomersTab.cs">
+    <Compile Include="View\UserControls\Tabs\CartsTab.cs">
       <SubType>UserControl</SubType>
     </Compile>
-    <Compile Include="View\Controls\CustomersTab.Designer.cs">
+    <Compile Include="View\UserControls\Tabs\CartsTab.Designer.cs">
+      <DependentUpon>CartsTab.cs</DependentUpon>
+    </Compile>
+    <Compile Include="View\UserControls\Tabs\CustomersTab.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="View\UserControls\Tabs\CustomersTab.Designer.cs">
       <DependentUpon>CustomersTab.cs</DependentUpon>
     </Compile>
-    <Compile Include="View\Controls\ItemsTab.cs">
+    <Compile Include="View\UserControls\Tabs\ItemsTab.cs">
       <SubType>UserControl</SubType>
     </Compile>
-    <Compile Include="View\Controls\ItemsTab.Designer.cs">
+    <Compile Include="View\UserControls\Tabs\ItemsTab.Designer.cs">
       <DependentUpon>ItemsTab.cs</DependentUpon>
+    </Compile>
+    <Compile Include="View\UserControls\Tabs\OrdersTab.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="View\UserControls\Tabs\OrdersTab.Designer.cs">
+      <DependentUpon>OrdersTab.cs</DependentUpon>
     </Compile>
     <Compile Include="View\MainForm.cs">
       <SubType>Form</SubType>
@@ -99,14 +111,20 @@
       <AutoGen>True</AutoGen>
       <DependentUpon>Resources.resx</DependentUpon>
     </Compile>
-    <EmbeddedResource Include="View\Controls\AddressControl.resx">
+    <EmbeddedResource Include="View\UserControls\AddressControl.resx">
       <DependentUpon>AddressControl.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="View\Controls\CustomersTab.resx">
+    <EmbeddedResource Include="View\UserControls\Tabs\CartsTab.resx">
+      <DependentUpon>CartsTab.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="View\UserControls\Tabs\CustomersTab.resx">
       <DependentUpon>CustomersTab.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="View\Controls\ItemsTab.resx">
+    <EmbeddedResource Include="View\UserControls\Tabs\ItemsTab.resx">
       <DependentUpon>ItemsTab.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="View\UserControls\Tabs\OrdersTab.resx">
+      <DependentUpon>OrdersTab.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="View\MainForm.resx">
       <DependentUpon>MainForm.cs</DependentUpon>

@@ -3,43 +3,60 @@ using System;
 
 namespace ObjectOrientedPractice.Model
 {
-    internal class Item: IComparable<Item>, IEquatable<Item>
+    /// <summary>
+    /// Represents an item in store.
+    /// </summary>
+    internal class Item : IComparable<Item>, IEquatable<Item>
     {
         /// <summary>
         /// Item`s id
         /// </summary>
-        private readonly string _id;
+        private readonly int _id;
+
         /// <summary>
         /// Item`s name
         /// </summary>
         private string _name;
+
         /// <summary>
         /// Item`s info
         /// </summary>
         private string _info;
+
         /// <summary>
         /// Item`s cost
         /// </summary>
         private double _cost;
 
-        public string Id { 
-            get { return _id; } 
+        /// <summary>
+        /// Gets the unique ID of the item.
+        /// </summary>
+        public int Id
+        {
+            get { return _id; }
         }
 
-        public string Name {
-            get 
-            { 
-                return _name; 
-            } 
-            set 
-            { 
+        /// <summary>
+        /// Gets or sets the name of the item.
+        /// </summary>
+        public string Name
+        {
+            get
+            {
+                return _name;
+            }
+            set
+            {
                 if (Validator.AssertLengthOfString(value, 1000, "item name"))
                 {
                     _name = value;
-                }  
-            } 
+                }
+            }
         }
 
+        /// <summary>
+        /// Gets or sets the description of the item.
+        /// </summary>
         public string Info
         {
             get
@@ -55,18 +72,22 @@ namespace ObjectOrientedPractice.Model
             }
         }
 
-        public double Cost { 
-            get 
-            { 
-                return _cost; 
-            } 
+        /// <summary>
+        /// Gets or sets the cost of the item.
+        /// </summary>
+        public double Cost
+        {
+            get
+            {
+                return _cost;
+            }
             set
             {
                 if (Validator.AssertRange(value, 0, 100000, "item cost"))
                 {
                     _cost = value;
                 }
-            } 
+            }
         }
 
         /// <summary>
@@ -83,7 +104,7 @@ namespace ObjectOrientedPractice.Model
         /// <param name="category">Item`s category</param>
         public Item(string name, string info, double cost, Category category)
         {
-            _id = IdGenerator.NewId();
+            _id = IdGenerator.NextItemId();
             Name = name;
             Info = info;
             Cost = cost;
@@ -120,7 +141,12 @@ namespace ObjectOrientedPractice.Model
         /// <returns></returns>
         public override string ToString()
         {
-            return $"{Name}, {Cost}";
+            string tempName = Name;
+            if (tempName == "")
+            {
+                tempName = "---";
+            }
+            return $"{Id}, {tempName}, {Cost}";
         }
     }
 }
