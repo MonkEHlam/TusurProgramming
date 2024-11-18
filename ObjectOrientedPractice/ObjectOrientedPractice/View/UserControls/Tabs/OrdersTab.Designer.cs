@@ -43,6 +43,11 @@ namespace ObjectOrientedPractics.View.Panels
             this.DataPanel = new System.Windows.Forms.Panel();
             this.OrdersLabel = new System.Windows.Forms.Label();
             this.SelectedOrderPanel = new System.Windows.Forms.Panel();
+            this.PriorityOptionsGroupBox = new System.Windows.Forms.GroupBox();
+            this.label2 = new System.Windows.Forms.Label();
+            this.PriorityDateTimePicker = new System.Windows.Forms.DateTimePicker();
+            this.label1 = new System.Windows.Forms.Label();
+            this.PriorityTimeComboBox = new System.Windows.Forms.ComboBox();
             this.AddressControl = new ObjectOrientedPractice.View.Controls.AddressControl();
             this.AmountLabel = new System.Windows.Forms.Label();
             this.OrderItemsListBox = new System.Windows.Forms.ListBox();
@@ -59,6 +64,7 @@ namespace ObjectOrientedPractics.View.Panels
             this.MainTableLayoutPanel.SuspendLayout();
             this.DataPanel.SuspendLayout();
             this.SelectedOrderPanel.SuspendLayout();
+            this.PriorityOptionsGroupBox.SuspendLayout();
             this.SuspendLayout();
             // 
             // OrdersDataGridView
@@ -84,7 +90,7 @@ namespace ObjectOrientedPractics.View.Panels
             this.OrdersDataGridView.MultiSelect = false;
             this.OrdersDataGridView.Name = "OrdersDataGridView";
             this.OrdersDataGridView.ReadOnly = true;
-            this.OrdersDataGridView.Size = new System.Drawing.Size(321, 537);
+            this.OrdersDataGridView.Size = new System.Drawing.Size(358, 537);
             this.OrdersDataGridView.TabIndex = 0;
             this.OrdersDataGridView.SelectionChanged += new System.EventHandler(this.OrdersDataGridView_SelectionChanged);
             // 
@@ -145,8 +151,8 @@ namespace ObjectOrientedPractics.View.Panels
             // MainTableLayoutPanel
             // 
             this.MainTableLayoutPanel.ColumnCount = 2;
-            this.MainTableLayoutPanel.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 40F));
-            this.MainTableLayoutPanel.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 60F));
+            this.MainTableLayoutPanel.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 44.48441F));
+            this.MainTableLayoutPanel.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 55.51559F));
             this.MainTableLayoutPanel.Controls.Add(this.DataPanel, 0, 0);
             this.MainTableLayoutPanel.Controls.Add(this.SelectedOrderPanel, 1, 0);
             this.MainTableLayoutPanel.Dock = System.Windows.Forms.DockStyle.Fill;
@@ -164,7 +170,7 @@ namespace ObjectOrientedPractics.View.Panels
             this.DataPanel.Dock = System.Windows.Forms.DockStyle.Fill;
             this.DataPanel.Location = new System.Drawing.Point(3, 3);
             this.DataPanel.Name = "DataPanel";
-            this.DataPanel.Size = new System.Drawing.Size(327, 556);
+            this.DataPanel.Size = new System.Drawing.Size(364, 556);
             this.DataPanel.TabIndex = 1;
             // 
             // OrdersLabel
@@ -179,6 +185,7 @@ namespace ObjectOrientedPractics.View.Panels
             // 
             // SelectedOrderPanel
             // 
+            this.SelectedOrderPanel.Controls.Add(this.PriorityOptionsGroupBox);
             this.SelectedOrderPanel.Controls.Add(this.AddressControl);
             this.SelectedOrderPanel.Controls.Add(this.AmountLabel);
             this.SelectedOrderPanel.Controls.Add(this.OrderItemsListBox);
@@ -192,10 +199,69 @@ namespace ObjectOrientedPractics.View.Panels
             this.SelectedOrderPanel.Controls.Add(this.OrderItemsLabel);
             this.SelectedOrderPanel.Controls.Add(this.SelectedOrderLabel);
             this.SelectedOrderPanel.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.SelectedOrderPanel.Location = new System.Drawing.Point(336, 3);
+            this.SelectedOrderPanel.Location = new System.Drawing.Point(373, 3);
             this.SelectedOrderPanel.Name = "SelectedOrderPanel";
-            this.SelectedOrderPanel.Size = new System.Drawing.Size(495, 556);
+            this.SelectedOrderPanel.Size = new System.Drawing.Size(458, 556);
             this.SelectedOrderPanel.TabIndex = 2;
+            // 
+            // PriorityOptionsGroupBox
+            // 
+            this.PriorityOptionsGroupBox.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
+            this.PriorityOptionsGroupBox.Controls.Add(this.label2);
+            this.PriorityOptionsGroupBox.Controls.Add(this.PriorityDateTimePicker);
+            this.PriorityOptionsGroupBox.Controls.Add(this.label1);
+            this.PriorityOptionsGroupBox.Controls.Add(this.PriorityTimeComboBox);
+            this.PriorityOptionsGroupBox.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
+            this.PriorityOptionsGroupBox.Location = new System.Drawing.Point(194, 16);
+            this.PriorityOptionsGroupBox.Name = "PriorityOptionsGroupBox";
+            this.PriorityOptionsGroupBox.Size = new System.Drawing.Size(261, 100);
+            this.PriorityOptionsGroupBox.TabIndex = 15;
+            this.PriorityOptionsGroupBox.TabStop = false;
+            this.PriorityOptionsGroupBox.Text = "Priority Options";
+            // 
+            // label2
+            // 
+            this.label2.AutoSize = true;
+            this.label2.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
+            this.label2.Location = new System.Drawing.Point(6, 48);
+            this.label2.Name = "label2";
+            this.label2.Size = new System.Drawing.Size(69, 13);
+            this.label2.TabIndex = 3;
+            this.label2.Text = "Delivery date";
+            // 
+            // PriorityDateTimePicker
+            // 
+            this.PriorityDateTimePicker.Location = new System.Drawing.Point(79, 47);
+            this.PriorityDateTimePicker.Name = "PriorityDateTimePicker";
+            this.PriorityDateTimePicker.Size = new System.Drawing.Size(162, 20);
+            this.PriorityDateTimePicker.TabIndex = 2;
+            this.PriorityDateTimePicker.ValueChanged += new System.EventHandler(this.PriorityDateTimePicker_ValueChanged);
+            // 
+            // label1
+            // 
+            this.label1.AutoSize = true;
+            this.label1.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
+            this.label1.Location = new System.Drawing.Point(6, 22);
+            this.label1.Name = "label1";
+            this.label1.Size = new System.Drawing.Size(67, 13);
+            this.label1.TabIndex = 1;
+            this.label1.Text = "Delivery time";
+            // 
+            // PriorityTimeComboBox
+            // 
+            this.PriorityTimeComboBox.FormattingEnabled = true;
+            this.PriorityTimeComboBox.Items.AddRange(new object[] {
+            "9:00 - 11:00",
+            "11:00 - 13:00",
+            "13:00 - 15:00",
+            "15:00 - 17:00",
+            "17:00 - 19:00",
+            "19:00 - 21:00"});
+            this.PriorityTimeComboBox.Location = new System.Drawing.Point(79, 19);
+            this.PriorityTimeComboBox.Name = "PriorityTimeComboBox";
+            this.PriorityTimeComboBox.Size = new System.Drawing.Size(162, 21);
+            this.PriorityTimeComboBox.TabIndex = 0;
+            this.PriorityTimeComboBox.SelectedIndexChanged += new System.EventHandler(this.PriorityTimeComboBox_SelectedIndexChanged);
             // 
             // AddressControl
             // 
@@ -204,14 +270,14 @@ namespace ObjectOrientedPractics.View.Panels
             this.AddressControl.Location = new System.Drawing.Point(4, 114);
             this.AddressControl.Margin = new System.Windows.Forms.Padding(4, 3, 4, 3);
             this.AddressControl.Name = "AddressControl";
-            this.AddressControl.Size = new System.Drawing.Size(490, 158);
+            this.AddressControl.Size = new System.Drawing.Size(453, 158);
             this.AddressControl.TabIndex = 12;
             // 
             // AmountLabel
             // 
             this.AmountLabel.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
             this.AmountLabel.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Bold);
-            this.AmountLabel.Location = new System.Drawing.Point(-81, 464);
+            this.AmountLabel.Location = new System.Drawing.Point(-118, 464);
             this.AmountLabel.Name = "AmountLabel";
             this.AmountLabel.Size = new System.Drawing.Size(573, 21);
             this.AmountLabel.TabIndex = 14;
@@ -226,7 +292,7 @@ namespace ObjectOrientedPractics.View.Panels
             this.OrderItemsListBox.Location = new System.Drawing.Point(3, 286);
             this.OrderItemsListBox.Name = "OrderItemsListBox";
             this.OrderItemsListBox.SelectionMode = System.Windows.Forms.SelectionMode.None;
-            this.OrderItemsListBox.Size = new System.Drawing.Size(492, 160);
+            this.OrderItemsListBox.Size = new System.Drawing.Size(455, 160);
             this.OrderItemsListBox.TabIndex = 13;
             // 
             // StatusComboBox
@@ -260,7 +326,7 @@ namespace ObjectOrientedPractics.View.Panels
             this.AmountHeaderLabel.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
             this.AmountHeaderLabel.AutoSize = true;
             this.AmountHeaderLabel.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Bold);
-            this.AmountHeaderLabel.Location = new System.Drawing.Point(439, 449);
+            this.AmountHeaderLabel.Location = new System.Drawing.Point(402, 449);
             this.AmountHeaderLabel.Name = "AmountHeaderLabel";
             this.AmountHeaderLabel.Size = new System.Drawing.Size(53, 13);
             this.AmountHeaderLabel.TabIndex = 8;
@@ -327,6 +393,8 @@ namespace ObjectOrientedPractics.View.Panels
             this.DataPanel.PerformLayout();
             this.SelectedOrderPanel.ResumeLayout(false);
             this.SelectedOrderPanel.PerformLayout();
+            this.PriorityOptionsGroupBox.ResumeLayout(false);
+            this.PriorityOptionsGroupBox.PerformLayout();
             this.ResumeLayout(false);
 
         }
@@ -356,5 +424,10 @@ namespace ObjectOrientedPractics.View.Panels
         private System.Windows.Forms.DataGridViewTextBoxColumn Address;
         private System.Windows.Forms.DataGridViewTextBoxColumn Amount;
         private ObjectOrientedPractice.View.Controls.AddressControl AddressControl;
+        private GroupBox PriorityOptionsGroupBox;
+        private Label label1;
+        private ComboBox PriorityTimeComboBox;
+        private Label label2;
+        private DateTimePicker PriorityDateTimePicker;
     }
 }

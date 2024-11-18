@@ -139,10 +139,21 @@ namespace ObjectOrientedPractics.View.Panels
                 return;
             }
 
-            var order = new Order(
-                new List<Item>(_currentCustomer.Cart.Items),
-                _currentCustomer.Cart.Amount,
-                _currentCustomer.Address);
+            Order order;
+            if (_currentCustomer.IsPriority)
+            {
+                order = new PriorityOrder(
+                    new List<Item>(_currentCustomer.Cart.Items),
+                    _currentCustomer.Cart.Amount,
+                    _currentCustomer.Address);
+            }
+            else
+            {
+                order = new Order(
+                    new List<Item>(_currentCustomer.Cart.Items),
+                    _currentCustomer.Cart.Amount,
+                    _currentCustomer.Address);
+            }
 
             _currentCustomer.Orders.Add(order);
             _currentCustomer.Cart.Items.Clear();

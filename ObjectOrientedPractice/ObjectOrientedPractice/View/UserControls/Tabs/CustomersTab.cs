@@ -62,6 +62,7 @@ namespace ObjectOrientedPractice.View.Controls
         private void DisableInputs()
         {
             NameTextBox.Enabled = false;
+            PrioriyCheckBox.Enabled = false;
         }
 
         /// <summary>
@@ -70,6 +71,7 @@ namespace ObjectOrientedPractice.View.Controls
         private void EnableInputs()
         {
             NameTextBox.Enabled = true;
+            PrioriyCheckBox.Enabled = true;
         }
 
         /// <summary>
@@ -160,6 +162,11 @@ namespace ObjectOrientedPractice.View.Controls
         private void CustomersTab_Load(object sender, EventArgs e)
         {
             DisableInputs();
+        }
+
+        private void PriorityCheckBox_CheckedChanged(object sender, EventArgs e)
+        {
+            _currentCustomer.IsPriority = PrioriyCheckBox.Checked;
         }
     }
 }

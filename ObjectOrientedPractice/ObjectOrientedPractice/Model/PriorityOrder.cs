@@ -12,12 +12,12 @@ namespace ObjectOrientedPractice.Model
         /// <summary>
         /// Date of delivery.
         /// </summary>
-        DateTime DeliveryDay { get; set; }
+        public DateTime DeliveryDay { get; set; }
 
         /// <summary>
         /// Time of delivery.
         /// </summary>
-        DeliveryTime DeliveryTime { get; set; } 
+        public DeliveryTime DeliveryTime { get; set; } 
 
         /// <summary>
         /// Base class constructor.

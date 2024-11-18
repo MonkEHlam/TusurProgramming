@@ -90,6 +90,11 @@ namespace ObjectOrientedPractice.Model
             }
         }
 
+        /// <summary>
+        /// Is customer a priority client.
+        /// </summary>
+        public bool IsPriority { get; set; }
+
 
         /// <summary>
         /// Base class constructor.

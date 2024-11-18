@@ -34,6 +34,7 @@
             this.CustomersListBox = new System.Windows.Forms.ListBox();
             this.MainLabel = new System.Windows.Forms.Label();
             this.splitContainer1 = new System.Windows.Forms.SplitContainer();
+            this.PrioriyCheckBox = new System.Windows.Forms.CheckBox();
             this.AddressControl = new ObjectOrientedPractice.View.Controls.AddressControl();
             this.NameTextBox = new System.Windows.Forms.TextBox();
             this.IdTextBox = new System.Windows.Forms.TextBox();
@@ -111,6 +112,7 @@
             // 
             // splitContainer1.Panel1
             // 
+            this.splitContainer1.Panel1.Controls.Add(this.PrioriyCheckBox);
             this.splitContainer1.Panel1.Controls.Add(this.AddressControl);
             this.splitContainer1.Panel1.Controls.Add(this.NameTextBox);
             this.splitContainer1.Panel1.Controls.Add(this.IdTextBox);
@@ -118,12 +120,23 @@
             this.splitContainer1.Panel1.Controls.Add(this.IdLabel);
             this.splitContainer1.Panel1.Controls.Add(this.SelectedCustomerLlabel);
             this.splitContainer1.Size = new System.Drawing.Size(469, 451);
-            this.splitContainer1.SplitterDistance = 255;
+            this.splitContainer1.SplitterDistance = 283;
             this.splitContainer1.TabIndex = 10;
+            // 
+            // PrioriyCheckBox
+            // 
+            this.PrioriyCheckBox.Anchor = System.Windows.Forms.AnchorStyles.Top;
+            this.PrioriyCheckBox.Location = new System.Drawing.Point(16, 93);
+            this.PrioriyCheckBox.Name = "PrioriyCheckBox";
+            this.PrioriyCheckBox.Size = new System.Drawing.Size(115, 17);
+            this.PrioriyCheckBox.TabIndex = 0;
+            this.PrioriyCheckBox.Text = "Is priority client";
+            this.PrioriyCheckBox.UseVisualStyleBackColor = true;
+            this.PrioriyCheckBox.CheckedChanged += new System.EventHandler(this.PriorityCheckBox_CheckedChanged);
             // 
             // AddressControl
             // 
-            this.AddressControl.Location = new System.Drawing.Point(7, 93);
+            this.AddressControl.Location = new System.Drawing.Point(3, 116);
             this.AddressControl.Name = "AddressControl";
             this.AddressControl.Size = new System.Drawing.Size(462, 164);
             this.AddressControl.TabIndex = 32;
@@ -214,5 +227,6 @@
         private System.Windows.Forms.Label IdLabel;
         private System.Windows.Forms.Label SelectedCustomerLlabel;
         private AddressControl AddressControl;
+        private System.Windows.Forms.CheckBox PrioriyCheckBox;
     }
 }

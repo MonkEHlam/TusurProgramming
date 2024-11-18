@@ -10,6 +10,20 @@ namespace ObjectOrientedPractics.View.Panels
     /// </summary>
     public partial class OrdersTab : UserControl
     {
+        private Order _currentOrder;
+
+        private PriorityOrder _currentPriorityOrder;
+
+        /// <summary>
+        /// List of orders displayed in the datagrid.
+        /// </summary>
+        private List<Order> Orders { get; } = new List<Order>();
+
+        /// <summary>
+        /// Gets or sets the list of customers.
+        /// </summary>
+        internal List<Customer> Customers { get; set; }
+
         /// <summary>
         /// Initializes a new instance of the <see cref="OrdersTab"/> class.
         /// </summary>
@@ -19,16 +33,6 @@ namespace ObjectOrientedPractics.View.Panels
             AddressControl.DisableInput(); // Disables direct address input.
             StatusComboBox.DataSource = Enum.GetValues(typeof(OrderStatus)); // Sets data source for status combobox.
         }
-
-        /// <summary>
-        /// Gets or sets the list of customers.
-        /// </summary>
-        internal List<Customer> Customers { get; set; }
-
-        /// <summary>
-        /// List of orders displayed in the datagrid.
-        /// </summary>
-        private List<Order> Orders { get; } = new List<Order>();
 
         /// <summary>
         /// Refreshes the order data displayed on the Orders tab.
@@ -48,7 +52,6 @@ namespace ObjectOrientedPractics.View.Panels
 
             foreach (var customer in Customers)
             {
-                // Constructs a formatted address string.
                 var address = $"{customer.Address.Country}, {customer.Address.City}, ";
                 address += $"{customer.Address.Street} {customer.Address.Building}, ";
                 address += $"{customer.Address.Apartment}";
@@ -97,11 +100,10 @@ namespace ObjectOrientedPractics.View.Panels
             {
                 return;
             }
-
-            var selectedIndex = OrdersDataGridView.SelectedCells[0].RowIndex;
-            Orders[selectedIndex].OrderStatus = (OrderStatus)StatusComboBox.SelectedItem;
-            OrdersDataGridView[2, selectedIndex].Value =
-                Enum.GetName(typeof(OrderStatus), Orders[selectedIndex].OrderStatus);
+            
+            _currentOrder.OrderStatus = (OrderStatus)StatusComboBox.SelectedItem;
+            OrdersDataGridView[2, OrdersDataGridView.SelectedCells[0].RowIndex].Value =
+                Enum.GetName(typeof(OrderStatus), _currentOrder.OrderStatus);
         }
 
         /// <summary>
@@ -124,16 +126,46 @@ namespace ObjectOrientedPractics.View.Panels
                 return;
             }
 
-            var selectedIndex = OrdersDataGridView.SelectedCells[0].RowIndex;
-            IdTextBox.Text = Orders[selectedIndex].Id.ToString();
-            CreatedTextBox.Text = Orders[selectedIndex].CreatedAt.ToString();
-            StatusComboBox.SelectedItem = Orders[selectedIndex].OrderStatus;
+            _currentOrder = Orders[OrdersDataGridView.SelectedCells[0].RowIndex];
+            IdTextBox.Text = _currentOrder.Id.ToString();
+            CreatedTextBox.Text = _currentOrder.CreatedAt.ToString();
+            StatusComboBox.SelectedItem = _currentOrder.OrderStatus;
             StatusComboBox.Enabled = true;
-            AddressControl.currentAddress = Orders[selectedIndex].Address;
+            AddressControl.currentAddress = _currentOrder.Address;
             AddressControl.UpdateControl();
             AddressControl.DisableInput();
-            OrderItemsListBox.DataSource = GetItemNames(Orders[selectedIndex].ItemsList);
-            AmountLabel.Text = Orders[selectedIndex].Price.ToString();
+            OrderItemsListBox.DataSource = GetItemNames(_currentOrder.ItemsList);
+            AmountLabel.Text = _currentOrder.Price.ToString();
+            
+            if (typeof(PriorityOrder) == _currentOrder.GetType())
+            {
+                _currentPriorityOrder = (PriorityOrder)_currentOrder;
+                PriorityOptionsGroupBox.Visible = true;
+                PriorityTimeComboBox.SelectedIndex = (int)_currentPriorityOrder.DeliveryTime;
+                PriorityDateTimePicker.Value = _currentPriorityOrder.DeliveryDay;
+            }
+            else
+            {
+                _currentPriorityOrder = null;
+                PriorityOptionsGroupBox.Visible = false;
+            }
+        }
+
+        private void PriorityTimeComboBox_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            _currentPriorityOrder.DeliveryTime = (DeliveryTime)PriorityTimeComboBox.SelectedIndex;
+        }
+
+        private void PriorityDateTimePicker_ValueChanged(object sender, EventArgs e)
+        {
+            if (PriorityDateTimePicker.Value >= DateTime.Today)
+            {
+                _currentPriorityOrder.DeliveryDay = PriorityDateTimePicker.Value;
+            }
+            else
+            {
+                MessageBox.Show("Wrong date", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+            }
         }
     }
 }
