@@ -16,6 +16,7 @@ namespace ObjectOrientedPractice.View
         private void MainForm_Load(object sender, System.EventArgs e)
         {
             ItemsTab.Items = _store.Items;
+            ItemsTab.DisplayItems = ItemsTab.Items;
             CustomersTab.Customers = _store.Customers;
             CartsTab.Customers = _store.Customers;
             CartsTab.Items = _store.Items;

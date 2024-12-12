@@ -69,7 +69,7 @@
     <Compile Include="Model\Store.cs" />
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
-    <Compile Include="Services\Class1.cs" />
+    <Compile Include="Services\DataTools.cs" />
     <Compile Include="Services\IdGenerator.cs" />
     <Compile Include="Services\UserInputHadler.cs" />
     <Compile Include="Services\Validator.cs" />

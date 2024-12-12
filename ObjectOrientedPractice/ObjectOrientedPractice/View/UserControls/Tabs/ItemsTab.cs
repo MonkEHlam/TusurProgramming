@@ -11,7 +11,16 @@ namespace ObjectOrientedPractice.View.Controls
     public partial class ItemsTab : UserControl
     {
         private Item _currentItem;
-        internal List<Item> Items { get; set; }
+
+        internal List<Item> Items { get; set; } =null;
+
+        internal List<Item> DisplayItems { get; set; } = null;
+
+        private Func<Item, Item, bool> Sorter { get; set; } = (x, y) => 
+                        {   
+                            int res = String.Compare(x.Name, y.Name);
+                            return res > 0; 
+                        };
 
         public ItemsTab()
         {
@@ -20,15 +29,22 @@ namespace ObjectOrientedPractice.View.Controls
 
         private void UpdateListBox()
         {
-            ItemsListBox.Items.Clear();
-            if (Items.Count > 1)
+            if (Items == null || DisplayItems == null)
             {
-                Items.Sort();
+                return;
             }
-            foreach (var item in Items)
+
+            ItemsListBox.Items.Clear();
+            if (DisplayItems.Count > 1)
+            {
+                DisplayItems = DataTools.SortItems(DisplayItems, Sorter);
+            }
+
+            foreach (var item in DisplayItems)
             {
                 ItemsListBox.Items.Add(item);
             }
+
             if (_currentItem != null)
             {
                 ItemsListBox.SelectedItem = _currentItem;
@@ -41,9 +57,16 @@ namespace ObjectOrientedPractice.View.Controls
 
         private void DisableInputs()
         {
+            CostTextBox.Text = string.Empty;
             CostTextBox.Enabled = false;
+
+            NameRichTextBox.Text = string.Empty;
             NameRichTextBox.Enabled = false;
+
+            InfoRichTextBox.Text = string.Empty;
             InfoRichTextBox.Enabled = false;
+
+            CategoryComboBox.Text = string.Empty;
             CategoryComboBox.Enabled = false;
         }
 
@@ -61,7 +84,7 @@ namespace ObjectOrientedPractice.View.Controls
             {
                 return;
             }
-            _currentItem = Items[ItemsListBox.SelectedIndex];
+            _currentItem = (Item)ItemsListBox.SelectedItem;
             IdTextBox.Text = _currentItem.Id.ToString();
             CostTextBox.Text = _currentItem.Cost.ToString();
             NameRichTextBox.Text = _currentItem.Name;
@@ -113,6 +136,7 @@ namespace ObjectOrientedPractice.View.Controls
         {
             DisableInputs();
             CategoryComboBox.Items.AddRange(Enum.GetNames(typeof(Category)));
+            SortComboBox.SelectedIndex = 0;
         }
 
         private void CategoryComboBox_SelectedIndexChanged(object sender, EventArgs e)
@@ -143,6 +167,51 @@ namespace ObjectOrientedPractice.View.Controls
         {
             UserInputHadler.HandleStringInput<Item>((obj, value) => obj.Info = value,
                                         UpdateListBox, InfoRichTextBox, _currentItem);
+        }
+
+        private void FilterTextBox_TextChanged(object sender, EventArgs e)
+        {
+            var text = FilterTextBox.Text.Trim();
+            if (text == "")
+            {
+                DisplayItems = Items;
+                UpdateListBox();
+                return;
+            }
+            DisplayItems = DataTools.FilterItems(Items, x => x.Name.Contains(text));
+            _currentItem = null;
+            UpdateListBox();
+        }
+
+        private void SortComboBox_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            switch (SortComboBox.SelectedIndex)
+            {
+                case 0:
+                    {
+                        Sorter = (x, y) => 
+                        {   int res = String.Compare(x.Name, y.Name);
+                            return res > 0; 
+                        };
+                        break;
+                    }
+                case 1:
+                    {
+                        Sorter = (x, y) => x.Cost > y.Cost;
+                        break;
+                    }
+                case 2:
+                    {
+                        Sorter = (x, y) => x.Cost < y.Cost;
+                        break;
+                    }
+                default:
+                    {
+                        return;
+                    }
+            }
+            _currentItem = null;
+            UpdateListBox();
         }
     }
 }
