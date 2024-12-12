@@ -1,9 +1,10 @@
-﻿using System.Collections.Generic;
+﻿using System;
+using System.Collections.Generic;
 using ObjectOrientedPractice.Model.Enums;
 
 namespace ObjectOrientedPractice.Model.Discounts
 {
-    internal class PercentDiscount : IDiscount
+    internal class PercentDiscount : IDiscount, IComparable<PercentDiscount>
     {
         public int CurrentPercent {  get; private set; }
 
@@ -55,6 +56,14 @@ namespace ObjectOrientedPractice.Model.Discounts
 
             int newPercent = (int)(AmountSpended / 1000) + 1;
             CurrentPercent = newPercent < 10 ? newPercent : 10;
+        }
+
+        public int CompareTo(PercentDiscount other)
+        {
+            if (other == null)
+                return 1;
+
+            return CurrentPercent.CompareTo(other.CurrentPercent);
         }
     }
 }

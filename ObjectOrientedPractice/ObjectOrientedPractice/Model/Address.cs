@@ -1,11 +1,12 @@
 ﻿using ObjectOrientedPractice.Services;
+using System;
 
 namespace ObjectOrientedPractice.Model
 {
     /// <summary>
     /// Class representing a postal address.
     /// </summary>
-    internal class Address
+    internal class Address: ICloneable
     {
         /// <summary>
         /// Postal code.
@@ -167,6 +168,31 @@ namespace ObjectOrientedPractice.Model
             Street = street;
             Building = building;
             Apartment = apartment;
+        }
+
+        /// <summary>
+        /// <inheritdoc/>
+        /// </summary>
+        /// <returns><inheritdoc/></returns>
+        public object Clone()
+        {
+            return new Address(Index, Country, City, Street, Building, Apartment);
+        }
+
+        /// <summary>
+        /// <inheritdoc/>
+        /// </summary>
+        /// <param name="other"><inheritdoc/></param>
+        /// <returns><inheritdoc/></returns>
+        public bool Equals(Address other)
+        {
+            if (other == null) return false;
+            return (Index == other.Index &&
+                    Country == other.Country &&
+                    City == other.City &&
+                    Street == other.Street &&
+                    Building == other.Building &&
+                    Apartment == other.Apartment);
         }
     }
 }

@@ -118,10 +118,10 @@ namespace ObjectOrientedPractice.Model
         }
 
         /// <summary>
-        /// Base class comparer
+        /// <inheritdoc/>
         /// </summary>
         /// <param name="compareItem"><see cref="Customer" /> for compare.</param>
-        /// <returns>Int compare index of IComparable.</returns>
+        /// <returns><inheritdoc/></returns>
         public int CompareTo(Customer compareItem)
         {
             if (compareItem == null)
@@ -131,10 +131,10 @@ namespace ObjectOrientedPractice.Model
         }
 
         /// <summary>
-        /// Compairing pair of <see cref="Customer" />.
+        /// Compairing pair of <see cref="Customer">customers</see>.
         /// </summary>
-        /// <param name="other"></param>
-        /// <returns></returns>
+        /// <param name="other"><inheritdoc/></param>
+        /// <returns><inheritdoc/></returns>
         public bool Equals(Customer other)
         {
             if (other == null) return false;

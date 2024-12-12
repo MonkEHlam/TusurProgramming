@@ -1,11 +1,12 @@
-﻿using System.Collections.Generic;
+﻿using System;
+using System.Collections.Generic;
 
 namespace ObjectOrientedPractice.Model.Discounts
 {
     /// <summary>
     /// Represents a discount based on accumulated points.
     /// </summary>
-    internal class PointsDiscount : IDiscount
+    internal class PointsDiscount : IDiscount, IComparable<PointsDiscount>
     {
         private int _points;
 
@@ -112,6 +113,19 @@ namespace ObjectOrientedPractice.Model.Discounts
         {
             double newPoints = (int)(GetCost(items) / 10);
             Points += newPoints % 1 == 0 ? (int)newPoints : (int)newPoints + 1;
+        }
+
+        /// <summary>
+        /// <inheritdoc/>
+        /// </summary>
+        /// <param name="other"></param>
+        /// <returns><inheritdoc/></returns>
+        public int CompareTo(PointsDiscount other)
+        {
+            if (other == null)
+                return 1;
+
+            return Points.CompareTo(other.Points);
         }
     }
 }

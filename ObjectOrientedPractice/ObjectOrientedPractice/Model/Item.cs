@@ -1,31 +1,32 @@
 ﻿using ObjectOrientedPractice.Services;
 using ObjectOrientedPractice.Model.Enums;
 using System;
+using System.Security.Cryptography.X509Certificates;
 
 namespace ObjectOrientedPractice.Model
 {
     /// <summary>
     /// Represents an item in store.
     /// </summary>
-    internal class Item : IComparable<Item>, IEquatable<Item>
+    internal class Item : IComparable<Item>, IEquatable<Item>, ICloneable
     {
         /// <summary>
-        /// Item`s id
+        /// Item`s id.
         /// </summary>
         private readonly int _id;
 
         /// <summary>
-        /// Item`s name
+        /// Item`s name.
         /// </summary>
         private string _name;
 
         /// <summary>
-        /// Item`s info
+        /// Item`s info.
         /// </summary>
         private string _info;
 
         /// <summary>
-        /// Item`s cost
+        /// Item`s cost.
         /// </summary>
         private double _cost;
 
@@ -92,17 +93,17 @@ namespace ObjectOrientedPractice.Model
         }
 
         /// <summary>
-        /// Item <see cref="Model.Enums.Category"/>
+        /// Item <see cref="Model.Enums.Category"/>.
         /// </summary>
         public Category Category { get; set; }
 
         /// <summary>
         /// Base class constructor.
         /// </summary>
-        /// <param name="name">Item`s name.</param>
-        /// <param name="info">Item`s description.</param>
-        /// <param name="cost">item`s cost</param>
-        /// <param name="category">Item`s category</param>
+        /// <param name="name">Item`s name.</param>.
+        /// <param name="info">Item`s description.</param>.
+        /// <param name="cost">item`s cost</param>.
+        /// <param name="category">Item`s category</param>.
         public Item(string name, string info, double cost, Category category)
         {
             _id = IdGenerator.NextItemId();
@@ -113,23 +114,23 @@ namespace ObjectOrientedPractice.Model
         }
 
         /// <summary>
-        /// Base class comparer
+        /// <inheritdoc/>
         /// </summary>
         /// <param name="compareItem"><see cref="Item" /> for compare.</param>
-        /// <returns>Int compare index of IComparable.</returns>
+        /// <returns><inheritdoc/></returns>
         public int CompareTo(Item compareItem)
         {
             if (compareItem == null)
                 return 1;
 
-            return Id.CompareTo(compareItem.Id);
+            return Cost.CompareTo(compareItem.Cost);
         }
 
         /// <summary>
-        /// Compairing pair of <see cref="Item" />
+        /// <inheritdoc/>
         /// </summary>
-        /// <param name="other"></param>
-        /// <returns></returns>
+        /// <param name="other"><inheritdoc/></param>
+        /// <returns><inheritdoc/></returns>
         public bool Equals(Item other)
         {
             if (other == null) return false;
@@ -137,7 +138,16 @@ namespace ObjectOrientedPractice.Model
         }
 
         /// <summary>
-        /// String view of class
+        /// Clone object.
+        /// </summary>
+        /// <returns>Clone of Item.</returns>
+        public object Clone()
+        {
+            return new Item(Name, Info, Cost, Category);
+        }
+
+        /// <summary>
+        /// String view of class.
         /// </summary>
         /// <returns></returns>
         public override string ToString()
