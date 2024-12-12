@@ -1,10 +1,5 @@
-﻿using ObjectOrientedPractice.Model;
-using System;
-using System.Collections.Generic;
+﻿using System;
 using System.Drawing;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using System.Windows.Forms;
 
 namespace ObjectOrientedPractice.Services
@@ -15,7 +10,7 @@ namespace ObjectOrientedPractice.Services
         {
             try
             {
-                prop(obj, tb.Text);
+                prop(obj, tb.Text.Trim());
                 Updater();
             }
             catch (ArgumentException err)
@@ -29,7 +24,7 @@ namespace ObjectOrientedPractice.Services
         {
             try
             {
-                prop(obj, int.Parse(tb.Text));
+                prop(obj, int.Parse(tb.Text.Trim()));
                 Updater();
             }
             catch (ArgumentException err)
@@ -43,7 +38,7 @@ namespace ObjectOrientedPractice.Services
         {
             try
             {
-                prop(obj, int.Parse(tb.Text.Replace(",", ".")));
+                prop(obj, int.Parse(tb.Text.Replace(",", ".").Trim()));
                 Updater();
             }
             catch (ArgumentException err)
