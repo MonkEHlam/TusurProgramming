@@ -1,4 +1,5 @@
 ﻿using ObjectOrientedPractice.Services;
+using ObjectOrientedPractice.Model.Enums;
 using System;
 using System.Collections.Generic;
 
@@ -40,7 +41,7 @@ namespace ObjectOrientedPractice.Model
         public OrderStatus OrderStatus { get; set; }
 
         /// <summary>
-        /// Unique GUID.
+        /// Unique ID.
         /// </summary>
         public int Id 
         {
@@ -107,12 +108,27 @@ namespace ObjectOrientedPractice.Model
         }
 
         /// <summary>
+        /// Size of discount for order.
+        /// </summary>
+        public double DiscountsAmount { get; set; }
+
+        /// <summary>
+        /// Price with applied discounts.
+        /// </summary>
+        double Total {
+            get
+            {
+                return Price - DiscountsAmount;
+            }
+        }
+
+        /// <summary>
         /// Base class constructor.
         /// </summary>
         /// <param name="items">List of items from cart.</param>
         /// <param name="amount">Item`s final cost.</param>
         /// <param name="address">Delivery address.</param>
-        public Order(List<Item> items, double amount, Address address)
+        public Order(List<Item> items, double amount, Address address, double discountsAmount)
         {
             _id = IdGenerator.NextOrderId();
             _createdAt = DateTime.Now;
@@ -120,6 +136,7 @@ namespace ObjectOrientedPractice.Model
             Address = address;
             Price = amount;
             OrderStatus = OrderStatus.New;
+            DiscountsAmount = discountsAmount;
         }
     }
 }

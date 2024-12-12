@@ -41,9 +41,14 @@
             this.CostLabel = new System.Windows.Forms.Label();
             this.IdLabel = new System.Windows.Forms.Label();
             this.SelectedCustomerLlabel = new System.Windows.Forms.Label();
+            this.label1 = new System.Windows.Forms.Label();
+            this.DiscountListBox = new System.Windows.Forms.ListBox();
+            this.AddDiscountButton = new System.Windows.Forms.Button();
+            this.RemoveDiscountButton = new System.Windows.Forms.Button();
             this.flowLayoutPanel1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.splitContainer1)).BeginInit();
             this.splitContainer1.Panel1.SuspendLayout();
+            this.splitContainer1.Panel2.SuspendLayout();
             this.splitContainer1.SuspendLayout();
             this.SuspendLayout();
             // 
@@ -119,8 +124,15 @@
             this.splitContainer1.Panel1.Controls.Add(this.CostLabel);
             this.splitContainer1.Panel1.Controls.Add(this.IdLabel);
             this.splitContainer1.Panel1.Controls.Add(this.SelectedCustomerLlabel);
+            // 
+            // splitContainer1.Panel2
+            // 
+            this.splitContainer1.Panel2.Controls.Add(this.RemoveDiscountButton);
+            this.splitContainer1.Panel2.Controls.Add(this.AddDiscountButton);
+            this.splitContainer1.Panel2.Controls.Add(this.DiscountListBox);
+            this.splitContainer1.Panel2.Controls.Add(this.label1);
             this.splitContainer1.Size = new System.Drawing.Size(469, 451);
-            this.splitContainer1.SplitterDistance = 283;
+            this.splitContainer1.SplitterDistance = 255;
             this.splitContainer1.TabIndex = 10;
             // 
             // PrioriyCheckBox
@@ -138,7 +150,7 @@
             // 
             this.AddressControl.Location = new System.Drawing.Point(3, 116);
             this.AddressControl.Name = "AddressControl";
-            this.AddressControl.Size = new System.Drawing.Size(462, 164);
+            this.AddressControl.Size = new System.Drawing.Size(463, 136);
             this.AddressControl.TabIndex = 32;
             // 
             // NameTextBox
@@ -192,6 +204,45 @@
             this.SelectedCustomerLlabel.TabIndex = 25;
             this.SelectedCustomerLlabel.Text = "Selected customer";
             // 
+            // label1
+            // 
+            this.label1.AutoSize = true;
+            this.label1.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
+            this.label1.Location = new System.Drawing.Point(13, 9);
+            this.label1.Name = "label1";
+            this.label1.Size = new System.Drawing.Size(63, 13);
+            this.label1.TabIndex = 0;
+            this.label1.Text = "Discounts";
+            // 
+            // DiscountListBox
+            // 
+            this.DiscountListBox.FormattingEnabled = true;
+            this.DiscountListBox.Location = new System.Drawing.Point(16, 26);
+            this.DiscountListBox.Name = "DiscountListBox";
+            this.DiscountListBox.Size = new System.Drawing.Size(314, 95);
+            this.DiscountListBox.TabIndex = 1;
+            this.DiscountListBox.SelectedIndexChanged += new System.EventHandler(this.DiscountListBox_SelectedIndexChanged);
+            // 
+            // AddDiscountButton
+            // 
+            this.AddDiscountButton.Location = new System.Drawing.Point(337, 26);
+            this.AddDiscountButton.Name = "AddDiscountButton";
+            this.AddDiscountButton.Size = new System.Drawing.Size(75, 45);
+            this.AddDiscountButton.TabIndex = 2;
+            this.AddDiscountButton.Text = "Add";
+            this.AddDiscountButton.UseVisualStyleBackColor = true;
+            this.AddDiscountButton.Click += new System.EventHandler(this.AddDiscountButton_Click);
+            // 
+            // RemoveDiscountButton
+            // 
+            this.RemoveDiscountButton.Location = new System.Drawing.Point(336, 76);
+            this.RemoveDiscountButton.Name = "RemoveDiscountButton";
+            this.RemoveDiscountButton.Size = new System.Drawing.Size(75, 45);
+            this.RemoveDiscountButton.TabIndex = 3;
+            this.RemoveDiscountButton.Text = "Remove";
+            this.RemoveDiscountButton.UseVisualStyleBackColor = true;
+            this.RemoveDiscountButton.Click += new System.EventHandler(this.RemoveDiscountButton_Click);
+            // 
             // CustomersTab
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -206,6 +257,8 @@
             this.flowLayoutPanel1.ResumeLayout(false);
             this.splitContainer1.Panel1.ResumeLayout(false);
             this.splitContainer1.Panel1.PerformLayout();
+            this.splitContainer1.Panel2.ResumeLayout(false);
+            this.splitContainer1.Panel2.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)(this.splitContainer1)).EndInit();
             this.splitContainer1.ResumeLayout(false);
             this.ResumeLayout(false);
@@ -228,5 +281,9 @@
         private System.Windows.Forms.Label SelectedCustomerLlabel;
         private AddressControl AddressControl;
         private System.Windows.Forms.CheckBox PrioriyCheckBox;
+        private System.Windows.Forms.Button RemoveDiscountButton;
+        private System.Windows.Forms.Button AddDiscountButton;
+        private System.Windows.Forms.ListBox DiscountListBox;
+        private System.Windows.Forms.Label label1;
     }
 }

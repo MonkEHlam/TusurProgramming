@@ -1,4 +1,4 @@
-﻿namespace ObjectOrientedPractice.Model
+﻿namespace ObjectOrientedPractice.Model.Enums
 {
     /// <summary>
     /// Time of delivery for <see cref="PriorityOrder">priority orders</see>.

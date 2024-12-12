@@ -1,4 +1,5 @@
 ﻿using ObjectOrientedPractice.Model;
+using ObjectOrientedPractice.Model.Enums;
 using System;
 using System.Collections.Generic;
 using System.Drawing;

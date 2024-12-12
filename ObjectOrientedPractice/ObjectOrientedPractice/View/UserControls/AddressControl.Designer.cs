@@ -78,7 +78,7 @@
             // 
             this.label4.AutoSize = true;
             this.label4.Font = new System.Drawing.Font("Microsoft Sans Serif", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
-            this.label4.Location = new System.Drawing.Point(3, 57);
+            this.label4.Location = new System.Drawing.Point(7, 57);
             this.label4.Name = "label4";
             this.label4.Size = new System.Drawing.Size(61, 17);
             this.label4.TabIndex = 3;
@@ -100,7 +100,7 @@
             this.label6.Anchor = System.Windows.Forms.AnchorStyles.Left;
             this.label6.AutoSize = true;
             this.label6.Font = new System.Drawing.Font("Microsoft Sans Serif", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
-            this.label6.Location = new System.Drawing.Point(3, 88);
+            this.label6.Location = new System.Drawing.Point(7, 88);
             this.label6.Name = "label6";
             this.label6.Size = new System.Drawing.Size(50, 17);
             this.label6.TabIndex = 5;
@@ -146,7 +146,7 @@
             // StreetTextBox
             // 
             this.StreetTextBox.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Left | System.Windows.Forms.AnchorStyles.Right)));
-            this.StreetTextBox.Location = new System.Drawing.Point(59, 88);
+            this.StreetTextBox.Location = new System.Drawing.Point(61, 88);
             this.StreetTextBox.Name = "StreetTextBox";
             this.StreetTextBox.Size = new System.Drawing.Size(387, 20);
             this.StreetTextBox.TabIndex = 10;

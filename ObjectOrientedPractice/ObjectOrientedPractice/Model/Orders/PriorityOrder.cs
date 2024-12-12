@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using ObjectOrientedPractice.Model.Enums;
 
 namespace ObjectOrientedPractice.Model
 {
@@ -25,8 +26,8 @@ namespace ObjectOrientedPractice.Model
         /// <param name="items"></param>
         /// <param name="amount"></param>
         /// <param name="address"></param>
-        public PriorityOrder(List<Item> items, double amount, Address address)
-            : base(items, amount, address)
+        public PriorityOrder(List<Item> items, double amount, Address address, double discountsAmount)
+            : base(items, amount, address, discountsAmount)
         {
             DeliveryDay = DateTime.Today;
             DeliveryTime = DeliveryTime.NineToEleven;

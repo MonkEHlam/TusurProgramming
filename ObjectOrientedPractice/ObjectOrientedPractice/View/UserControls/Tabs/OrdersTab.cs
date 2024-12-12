@@ -1,4 +1,5 @@
 ﻿using ObjectOrientedPractice.Model;
+using ObjectOrientedPractice.Model.Enums;
 using System;
 using System.Collections.Generic;
 using System.Windows.Forms;
@@ -30,8 +31,8 @@ namespace ObjectOrientedPractics.View.Panels
         public OrdersTab()
         {
             InitializeComponent();
-            AddressControl.DisableInput(); // Disables direct address input.
-            StatusComboBox.DataSource = Enum.GetValues(typeof(OrderStatus)); // Sets data source for status combobox.
+            AddressControl.DisableInput();
+            StatusComboBox.DataSource = Enum.GetValues(typeof(OrderStatus));
         }
 
         /// <summary>

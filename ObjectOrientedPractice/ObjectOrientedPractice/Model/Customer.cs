@@ -1,4 +1,5 @@
 ﻿using ObjectOrientedPractice.Services;
+using ObjectOrientedPractice.Model.Discounts;
 using System;
 using System.Collections.Generic;
 
@@ -95,6 +96,10 @@ namespace ObjectOrientedPractice.Model
         /// </summary>
         public bool IsPriority { get; set; }
 
+        /// <summary>
+        /// List of customer`s discounts.
+        /// </summary>
+        public List<IDiscount> Discounts { get; set; }
 
         /// <summary>
         /// Base class constructor.
@@ -106,6 +111,10 @@ namespace ObjectOrientedPractice.Model
             Name = name;
             Address = new Address();
             _cart = new Cart();
+            Discounts = new List<IDiscount>
+            {
+                new PointsDiscount()
+            };
         }
 
         /// <summary>

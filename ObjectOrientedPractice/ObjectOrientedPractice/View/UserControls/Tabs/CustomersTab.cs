@@ -1,4 +1,6 @@
 ﻿using ObjectOrientedPractice.Model;
+using ObjectOrientedPractice.Model.Discounts;
+using ObjectOrientedPractice.View.UserControls;
 using System;
 using System.Collections.Generic;
 using System.Drawing;
@@ -57,6 +59,19 @@ namespace ObjectOrientedPractice.View.Controls
         }
 
         /// <summary>
+        /// Updates listbox.
+        /// </summary>
+        private void UpdateDiscountsListBox()
+        {
+            DiscountListBox.Items.Clear();
+
+            foreach (var discount in _currentCustomer.Discounts)
+            {
+                DiscountListBox.Items.Add(discount.Info);
+            }
+        }
+
+        /// <summary>
         /// Disables the input fields for editing customer details.
         /// </summary>
         private void DisableInputs()
@@ -93,6 +108,7 @@ namespace ObjectOrientedPractice.View.Controls
             AddressControl.currentAddress = _currentCustomer.Address;
             AddressControl.UpdateControl();
             EnableInputs();
+            UpdateDiscountsListBox();
         }
 
         /// <summary>
@@ -164,9 +180,67 @@ namespace ObjectOrientedPractice.View.Controls
             DisableInputs();
         }
 
+        /// <summary>
+        /// Handle changing in PriorityCheckBox.
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
         private void PriorityCheckBox_CheckedChanged(object sender, EventArgs e)
         {
             _currentCustomer.IsPriority = PrioriyCheckBox.Checked;
+        }
+
+        /// <summary>
+        /// Handles click on AddDiscountButton.
+        /// Shows <see cref="DiscountPopUp"/> and gets choosed category.
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
+        private void AddDiscountButton_Click(object sender, EventArgs e)
+        {
+            var discountPopUp = new DiscountPopUp(_currentCustomer);
+
+            if (discountPopUp.ShowDialog() != DialogResult.OK)
+            {
+                return;
+            }
+
+            var discount = new PercentDiscount(discountPopUp.Category);
+            _currentCustomer.Discounts.Add(discount);
+            UpdateDiscountsListBox();
+        }
+
+        /// <summary>
+        /// Enable RemoveButton if smth choosed.
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
+        private void DiscountListBox_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            RemoveDiscountButton.Enabled = DiscountListBox.SelectedIndex > 0;
+        }
+
+        /// <summary>
+        /// Handles click on RemoveDiscountButton.
+        /// Remove Discount from <see cref="Customer.Discounts">customer discount list</see>.
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
+        private void RemoveDiscountButton_Click(object sender, EventArgs e)
+        {
+            var removedIndex = DiscountListBox.SelectedIndex;
+            _currentCustomer.Discounts.RemoveAt(
+                DiscountListBox.SelectedIndex);
+            UpdateDiscountsListBox();
+
+            if (removedIndex >= DiscountListBox.Items.Count)
+            {
+                DiscountListBox.SelectedIndex = removedIndex - 1;
+            }
+            else
+            {
+                DiscountListBox.SelectedIndex = removedIndex;
+            }
         }
     }
 }

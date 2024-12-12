@@ -1,4 +1,5 @@
 ﻿using ObjectOrientedPractice.Services;
+using ObjectOrientedPractice.Model.Enums;
 using System;
 
 namespace ObjectOrientedPractice.Model
@@ -91,7 +92,7 @@ namespace ObjectOrientedPractice.Model
         }
 
         /// <summary>
-        /// Item <see cref="Model.Category"/>
+        /// Item <see cref="Model.Enums.Category"/>
         /// </summary>
         public Category Category { get; set; }
 
