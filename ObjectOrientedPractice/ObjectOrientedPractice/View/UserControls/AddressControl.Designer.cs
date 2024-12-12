@@ -125,6 +125,7 @@
             this.ApartamentTextBox.Size = new System.Drawing.Size(127, 20);
             this.ApartamentTextBox.TabIndex = 7;
             this.ApartamentTextBox.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.ApartamentTextBox_KeyPress);
+            this.ApartamentTextBox.Leave += new System.EventHandler(this.ApartamentTextBox_Leave);
             // 
             // CountryTextBox
             // 
@@ -133,6 +134,7 @@
             this.CountryTextBox.Size = new System.Drawing.Size(169, 20);
             this.CountryTextBox.TabIndex = 8;
             this.CountryTextBox.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.CountryTextBox_KeyPress);
+            this.CountryTextBox.Leave += new System.EventHandler(this.CountryTextBox_Leave);
             // 
             // CityTextBox
             // 
@@ -142,6 +144,7 @@
             this.CityTextBox.Size = new System.Drawing.Size(169, 20);
             this.CityTextBox.TabIndex = 9;
             this.CityTextBox.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.CityTextBox_KeyPress);
+            this.CityTextBox.Leave += new System.EventHandler(this.CityTextBox_Leave);
             // 
             // StreetTextBox
             // 
@@ -151,6 +154,7 @@
             this.StreetTextBox.Size = new System.Drawing.Size(387, 20);
             this.StreetTextBox.TabIndex = 10;
             this.StreetTextBox.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.StreetTextBox_KeyPress);
+            this.StreetTextBox.Leave += new System.EventHandler(this.StreetTextBox_Leave);
             // 
             // IndexTextBox
             // 
@@ -159,6 +163,7 @@
             this.IndexTextBox.Size = new System.Drawing.Size(114, 20);
             this.IndexTextBox.TabIndex = 11;
             this.IndexTextBox.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.IndexTextBox_KeyPress);
+            this.IndexTextBox.Leave += new System.EventHandler(this.IndexTextBox_Leave);
             // 
             // BuildingTextBox
             // 
@@ -168,6 +173,7 @@
             this.BuildingTextBox.Size = new System.Drawing.Size(155, 20);
             this.BuildingTextBox.TabIndex = 12;
             this.BuildingTextBox.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.BuildingTextBox_KeyPress);
+            this.BuildingTextBox.Leave += new System.EventHandler(this.BuildingTextBox_Leave);
             // 
             // AddressControl
             // 

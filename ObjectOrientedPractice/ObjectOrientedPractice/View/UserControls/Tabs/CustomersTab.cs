@@ -1,5 +1,6 @@
 ﻿using ObjectOrientedPractice.Model;
 using ObjectOrientedPractice.Model.Discounts;
+using ObjectOrientedPractice.Services;
 using ObjectOrientedPractice.View.UserControls;
 using System;
 using System.Collections.Generic;
@@ -118,33 +119,10 @@ namespace ObjectOrientedPractice.View.Controls
         /// <param name="e">Event arguments.</param>
         private void NameTextBox_KeyPress(object sender, KeyPressEventArgs e)
         {
-
+            NameTextBox.BackColor = Color.White;
             if (!char.IsLetter(e.KeyChar) && !char.IsWhiteSpace(e.KeyChar) && !char.IsControl(e.KeyChar))
             {
                 e.Handled = true;
-            }
-            else if (e.KeyChar == (char)13 && NameTextBox.Text != "")
-            {
-                try
-                {
-                    var text = NameTextBox.Text.Replace(".", ",");
-                    _currentCustomer.Name = text;
-                    UpdateListBox();
-                }
-                catch (ArgumentException err)
-                {
-                    NameTextBox.BackColor = Color.Red;
-                    MessageBox.Show(err.Message, "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
-                }
-            }
-            else if (e.KeyChar == (char)13 && NameTextBox.Text == "")
-            {
-                NameTextBox.BackColor = Color.Red;
-                MessageBox.Show("Enter name.", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
-            }
-            else
-            {
-                NameTextBox.BackColor = Color.White;
             }
         }
 
@@ -241,6 +219,11 @@ namespace ObjectOrientedPractice.View.Controls
             {
                 DiscountListBox.SelectedIndex = removedIndex;
             }
+        }
+
+        private void NameTextBox_Leave(object sender, EventArgs e)
+        {
+            UserInputHadler.HandleStringInput<Customer>((obj, name) => obj.Name = name, UpdateListBox, NameTextBox, _currentCustomer);
         }
     }
 }

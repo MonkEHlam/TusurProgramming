@@ -48,7 +48,6 @@ namespace ObjectOrientedPractics.View.Panels
             this.PriorityDateTimePicker = new System.Windows.Forms.DateTimePicker();
             this.label1 = new System.Windows.Forms.Label();
             this.PriorityTimeComboBox = new System.Windows.Forms.ComboBox();
-            this.AddressControl = new ObjectOrientedPractice.View.Controls.AddressControl();
             this.AmountLabel = new System.Windows.Forms.Label();
             this.OrderItemsListBox = new System.Windows.Forms.ListBox();
             this.StatusComboBox = new System.Windows.Forms.ComboBox();
@@ -60,6 +59,7 @@ namespace ObjectOrientedPractics.View.Panels
             this.IdLabel = new System.Windows.Forms.Label();
             this.OrderItemsLabel = new System.Windows.Forms.Label();
             this.SelectedOrderLabel = new System.Windows.Forms.Label();
+            this.AddressControl = new ObjectOrientedPractice.View.Controls.AddressControl();
             ((System.ComponentModel.ISupportInitialize)(this.OrdersDataGridView)).BeginInit();
             this.MainTableLayoutPanel.SuspendLayout();
             this.DataPanel.SuspendLayout();
@@ -119,7 +119,7 @@ namespace ObjectOrientedPractics.View.Panels
             this.Status.ReadOnly = true;
             this.Status.Resizable = System.Windows.Forms.DataGridViewTriState.False;
             this.Status.SortMode = System.Windows.Forms.DataGridViewColumnSortMode.NotSortable;
-            this.Status.Width = 65;
+            this.Status.Width = 72;
             // 
             // FullName
             // 
@@ -218,6 +218,7 @@ namespace ObjectOrientedPractics.View.Panels
             this.PriorityOptionsGroupBox.TabIndex = 15;
             this.PriorityOptionsGroupBox.TabStop = false;
             this.PriorityOptionsGroupBox.Text = "Priority Options";
+            this.PriorityOptionsGroupBox.Visible = false;
             // 
             // label2
             // 
@@ -263,16 +264,6 @@ namespace ObjectOrientedPractics.View.Panels
             this.PriorityTimeComboBox.TabIndex = 0;
             this.PriorityTimeComboBox.SelectedIndexChanged += new System.EventHandler(this.PriorityTimeComboBox_SelectedIndexChanged);
             // 
-            // AddressControl
-            // 
-            this.AddressControl.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
-            | System.Windows.Forms.AnchorStyles.Right)));
-            this.AddressControl.Location = new System.Drawing.Point(4, 114);
-            this.AddressControl.Margin = new System.Windows.Forms.Padding(4, 3, 4, 3);
-            this.AddressControl.Name = "AddressControl";
-            this.AddressControl.Size = new System.Drawing.Size(453, 158);
-            this.AddressControl.TabIndex = 12;
-            // 
             // AmountLabel
             // 
             this.AmountLabel.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
@@ -281,7 +272,7 @@ namespace ObjectOrientedPractics.View.Panels
             this.AmountLabel.Name = "AmountLabel";
             this.AmountLabel.Size = new System.Drawing.Size(573, 21);
             this.AmountLabel.TabIndex = 14;
-            this.AmountLabel.Text = "49 999,90";
+            this.AmountLabel.Text = "0";
             this.AmountLabel.TextAlign = System.Drawing.ContentAlignment.TopRight;
             // 
             // OrderItemsListBox
@@ -378,6 +369,16 @@ namespace ObjectOrientedPractics.View.Panels
             this.SelectedOrderLabel.Size = new System.Drawing.Size(92, 13);
             this.SelectedOrderLabel.TabIndex = 2;
             this.SelectedOrderLabel.Text = "Selected Order";
+            // 
+            // AddressControl
+            // 
+            this.AddressControl.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
+            this.AddressControl.Location = new System.Drawing.Point(4, 114);
+            this.AddressControl.Margin = new System.Windows.Forms.Padding(4, 3, 4, 3);
+            this.AddressControl.Name = "AddressControl";
+            this.AddressControl.Size = new System.Drawing.Size(453, 158);
+            this.AddressControl.TabIndex = 12;
             // 
             // OrdersTab
             // 

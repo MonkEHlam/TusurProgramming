@@ -42,8 +42,10 @@ namespace ObjectOrientedPractice.Model
             }
             set
             {
+                
                 if (Validator.AssertLengthOfString(value, 200, "customer name"))
                 {
+                    Console.WriteLine("asfasfasfaf");
                     _name = value;
                 }
             }

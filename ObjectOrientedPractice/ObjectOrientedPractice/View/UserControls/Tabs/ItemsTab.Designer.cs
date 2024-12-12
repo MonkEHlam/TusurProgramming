@@ -44,6 +44,8 @@
             this.SelectedItemLlabel = new System.Windows.Forms.Label();
             this.CategoryLabel = new System.Windows.Forms.Label();
             this.CategoryComboBox = new System.Windows.Forms.ComboBox();
+            this.label1 = new System.Windows.Forms.Label();
+            this.textBox1 = new System.Windows.Forms.TextBox();
             this.flowLayoutPanel1.SuspendLayout();
             this.SuspendLayout();
             // 
@@ -85,9 +87,9 @@
             | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
             this.ItemsListBox.FormattingEnabled = true;
-            this.ItemsListBox.Location = new System.Drawing.Point(3, 25);
+            this.ItemsListBox.Location = new System.Drawing.Point(3, 51);
             this.ItemsListBox.Name = "ItemsListBox";
-            this.ItemsListBox.Size = new System.Drawing.Size(265, 342);
+            this.ItemsListBox.Size = new System.Drawing.Size(265, 316);
             this.ItemsListBox.TabIndex = 4;
             this.ItemsListBox.SelectedIndexChanged += new System.EventHandler(this.ItemsLlistBox_SelectedIndexChanged);
             // 
@@ -121,6 +123,7 @@
             this.InfoRichTextBox.TabIndex = 25;
             this.InfoRichTextBox.Text = "";
             this.InfoRichTextBox.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.InfoRichTextBox_KeyPress);
+            this.InfoRichTextBox.Leave += new System.EventHandler(this.InfoRichTextBox_Leave);
             // 
             // NameRichTextBox
             // 
@@ -131,6 +134,7 @@
             this.NameRichTextBox.TabIndex = 24;
             this.NameRichTextBox.Text = "";
             this.NameRichTextBox.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.NameRichTextBox_KeyPress);
+            this.NameRichTextBox.Leave += new System.EventHandler(this.NameRichTextBox_Leave);
             // 
             // NameLabel
             // 
@@ -151,6 +155,7 @@
             this.CostTextBox.Size = new System.Drawing.Size(138, 20);
             this.CostTextBox.TabIndex = 22;
             this.CostTextBox.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.CostTextBox_KeyPress);
+            this.CostTextBox.Leave += new System.EventHandler(this.CostTextBox_Leave);
             // 
             // IdTextBox
             // 
@@ -215,10 +220,30 @@
             this.CategoryComboBox.TabIndex = 28;
             this.CategoryComboBox.SelectedIndexChanged += new System.EventHandler(this.CategoryComboBox_SelectedIndexChanged);
             // 
+            // label1
+            // 
+            this.label1.AutoSize = true;
+            this.label1.Location = new System.Drawing.Point(4, 30);
+            this.label1.Name = "label1";
+            this.label1.Size = new System.Drawing.Size(27, 13);
+            this.label1.TabIndex = 29;
+            this.label1.Text = "Find";
+            // 
+            // textBox1
+            // 
+            this.textBox1.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
+            this.textBox1.Location = new System.Drawing.Point(45, 27);
+            this.textBox1.Name = "textBox1";
+            this.textBox1.Size = new System.Drawing.Size(223, 20);
+            this.textBox1.TabIndex = 30;
+            // 
             // ItemsTab
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
+            this.Controls.Add(this.textBox1);
+            this.Controls.Add(this.label1);
             this.Controls.Add(this.CategoryComboBox);
             this.Controls.Add(this.CategoryLabel);
             this.Controls.Add(this.InfoLabel);
@@ -261,5 +286,7 @@
         private System.Windows.Forms.Label SelectedItemLlabel;
         private System.Windows.Forms.Label CategoryLabel;
         private System.Windows.Forms.ComboBox CategoryComboBox;
+        private System.Windows.Forms.Label label1;
+        private System.Windows.Forms.TextBox textBox1;
     }
 }

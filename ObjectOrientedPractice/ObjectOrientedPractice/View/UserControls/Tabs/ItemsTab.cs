@@ -1,5 +1,6 @@
 ﻿using ObjectOrientedPractice.Model;
 using ObjectOrientedPractice.Model.Enums;
+using ObjectOrientedPractice.Services;
 using System;
 using System.Collections.Generic;
 using System.Drawing;
@@ -71,93 +72,28 @@ namespace ObjectOrientedPractice.View.Controls
 
         private void CostTextBox_KeyPress(object sender, KeyPressEventArgs e)
         {
-
+            CostTextBox.BackColor = Color.White;
             if (!char.IsDigit(e.KeyChar) && !(e.KeyChar == (char)46) && !char.IsControl(e.KeyChar))
             {
                 e.Handled = true;
-            }
-            else if (e.KeyChar == (char)13 && CostTextBox.Text != "")
-            {
-                try
-                {
-                    var text = CostTextBox.Text.Replace(".", ",");
-                    _currentItem.Cost = double.Parse(text);
-                    UpdateListBox();
-                }
-                catch (ArgumentException err)
-                {
-                    CostTextBox.BackColor = Color.Red;
-                    MessageBox.Show(err.Message, "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
-                }
-            }
-            else if (e.KeyChar == (char)13 && CostTextBox.Text == "")
-            {
-                CostTextBox.BackColor = Color.Red;
-                MessageBox.Show("Enter cost.", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
-            }
-            else
-            {
-                CostTextBox.BackColor = Color.White;
             }
         }
 
         private void NameRichTextBox_KeyPress(object sender, KeyPressEventArgs e)
         {
+            NameRichTextBox.BackColor = Color.White;
             if (!char.IsLetter(e.KeyChar) && !char.IsNumber(e.KeyChar) && !char.IsPunctuation(e.KeyChar) && !char.IsControl(e.KeyChar) && !char.IsWhiteSpace(e.KeyChar))
             {
                 e.Handled = true;
-            }
-            else if (e.KeyChar == (char)13 && NameRichTextBox.Text != "")
-            {
-                try
-                {
-                    _currentItem.Name = NameRichTextBox.Text;
-                    UpdateListBox();
-                }
-                catch (ArgumentException err)
-                {
-                    NameRichTextBox.BackColor = Color.Red;
-                    MessageBox.Show(err.Message, "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
-                }
-            }
-            else if (e.KeyChar == (char)13 && NameRichTextBox.Text == "")
-            {
-                NameRichTextBox.BackColor = Color.Red;
-                MessageBox.Show("Enter name.", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
-            }
-            else
-            {
-                NameRichTextBox.BackColor = Color.White;
             }
         }
 
         private void InfoRichTextBox_KeyPress(object sender, KeyPressEventArgs e)
         {
+            InfoRichTextBox.BackColor = Color.White;
             if (!char.IsLetter(e.KeyChar) && !char.IsNumber(e.KeyChar) && !char.IsPunctuation(e.KeyChar) && !char.IsControl(e.KeyChar) && !char.IsWhiteSpace(e.KeyChar))
             {
                 e.Handled = true;
-            }
-            else if (e.KeyChar == (char)13 && InfoRichTextBox.Text != "")
-            {
-                try
-                {
-                    _currentItem.Info = InfoRichTextBox.Text;
-                    UpdateListBox();
-                }
-                catch (ArgumentException err)
-                {
-                    InfoRichTextBox.BackColor = Color.Red;
-                    MessageBox.Show(err.Message, "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
-                }
-            }
-            else if (e.KeyChar == (char)13 && InfoRichTextBox.Text == "")
-            {
-                InfoRichTextBox.BackColor = Color.Red;
-                MessageBox.Show("Enter description.", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
-            }
-            else
-            {
-                InfoRichTextBox.BackColor = Color.White;
             }
         }
 
@@ -189,6 +125,24 @@ namespace ObjectOrientedPractice.View.Controls
             {
                 Console.WriteLine(ex.Message);
             }
+        }
+
+        private void CostTextBox_Leave(object sender, EventArgs e)
+        {
+            UserInputHadler.HandleDoubleInput((obj, value) => obj.Cost = value,
+                                        UpdateListBox, CostTextBox, _currentItem);
+        }
+
+        private void NameRichTextBox_Leave(object sender, EventArgs e)
+        {
+            UserInputHadler.HandleStringInput<Item>((obj, value) => obj.Name = value,
+                                        UpdateListBox, NameRichTextBox, _currentItem);
+        }
+
+        private void InfoRichTextBox_Leave(object sender, EventArgs e)
+        {
+            UserInputHadler.HandleStringInput<Item>((obj, value) => obj.Info = value,
+                                        UpdateListBox, InfoRichTextBox, _currentItem);
         }
     }
 }

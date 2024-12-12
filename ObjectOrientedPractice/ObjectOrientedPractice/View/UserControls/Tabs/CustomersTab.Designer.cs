@@ -41,10 +41,10 @@
             this.CostLabel = new System.Windows.Forms.Label();
             this.IdLabel = new System.Windows.Forms.Label();
             this.SelectedCustomerLlabel = new System.Windows.Forms.Label();
-            this.label1 = new System.Windows.Forms.Label();
-            this.DiscountListBox = new System.Windows.Forms.ListBox();
-            this.AddDiscountButton = new System.Windows.Forms.Button();
             this.RemoveDiscountButton = new System.Windows.Forms.Button();
+            this.AddDiscountButton = new System.Windows.Forms.Button();
+            this.DiscountListBox = new System.Windows.Forms.ListBox();
+            this.label1 = new System.Windows.Forms.Label();
             this.flowLayoutPanel1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.splitContainer1)).BeginInit();
             this.splitContainer1.Panel1.SuspendLayout();
@@ -161,6 +161,7 @@
             this.NameTextBox.Size = new System.Drawing.Size(315, 20);
             this.NameTextBox.TabIndex = 29;
             this.NameTextBox.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.NameTextBox_KeyPress);
+            this.NameTextBox.Leave += new System.EventHandler(this.NameTextBox_Leave);
             // 
             // IdTextBox
             // 
@@ -204,24 +205,15 @@
             this.SelectedCustomerLlabel.TabIndex = 25;
             this.SelectedCustomerLlabel.Text = "Selected customer";
             // 
-            // label1
+            // RemoveDiscountButton
             // 
-            this.label1.AutoSize = true;
-            this.label1.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
-            this.label1.Location = new System.Drawing.Point(13, 9);
-            this.label1.Name = "label1";
-            this.label1.Size = new System.Drawing.Size(63, 13);
-            this.label1.TabIndex = 0;
-            this.label1.Text = "Discounts";
-            // 
-            // DiscountListBox
-            // 
-            this.DiscountListBox.FormattingEnabled = true;
-            this.DiscountListBox.Location = new System.Drawing.Point(16, 26);
-            this.DiscountListBox.Name = "DiscountListBox";
-            this.DiscountListBox.Size = new System.Drawing.Size(314, 95);
-            this.DiscountListBox.TabIndex = 1;
-            this.DiscountListBox.SelectedIndexChanged += new System.EventHandler(this.DiscountListBox_SelectedIndexChanged);
+            this.RemoveDiscountButton.Location = new System.Drawing.Point(336, 76);
+            this.RemoveDiscountButton.Name = "RemoveDiscountButton";
+            this.RemoveDiscountButton.Size = new System.Drawing.Size(75, 45);
+            this.RemoveDiscountButton.TabIndex = 3;
+            this.RemoveDiscountButton.Text = "Remove";
+            this.RemoveDiscountButton.UseVisualStyleBackColor = true;
+            this.RemoveDiscountButton.Click += new System.EventHandler(this.RemoveDiscountButton_Click);
             // 
             // AddDiscountButton
             // 
@@ -233,15 +225,24 @@
             this.AddDiscountButton.UseVisualStyleBackColor = true;
             this.AddDiscountButton.Click += new System.EventHandler(this.AddDiscountButton_Click);
             // 
-            // RemoveDiscountButton
+            // DiscountListBox
             // 
-            this.RemoveDiscountButton.Location = new System.Drawing.Point(336, 76);
-            this.RemoveDiscountButton.Name = "RemoveDiscountButton";
-            this.RemoveDiscountButton.Size = new System.Drawing.Size(75, 45);
-            this.RemoveDiscountButton.TabIndex = 3;
-            this.RemoveDiscountButton.Text = "Remove";
-            this.RemoveDiscountButton.UseVisualStyleBackColor = true;
-            this.RemoveDiscountButton.Click += new System.EventHandler(this.RemoveDiscountButton_Click);
+            this.DiscountListBox.FormattingEnabled = true;
+            this.DiscountListBox.Location = new System.Drawing.Point(16, 26);
+            this.DiscountListBox.Name = "DiscountListBox";
+            this.DiscountListBox.Size = new System.Drawing.Size(314, 95);
+            this.DiscountListBox.TabIndex = 1;
+            this.DiscountListBox.SelectedIndexChanged += new System.EventHandler(this.DiscountListBox_SelectedIndexChanged);
+            // 
+            // label1
+            // 
+            this.label1.AutoSize = true;
+            this.label1.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
+            this.label1.Location = new System.Drawing.Point(13, 9);
+            this.label1.Name = "label1";
+            this.label1.Size = new System.Drawing.Size(63, 13);
+            this.label1.TabIndex = 0;
+            this.label1.Text = "Discounts";
             // 
             // CustomersTab
             // 
