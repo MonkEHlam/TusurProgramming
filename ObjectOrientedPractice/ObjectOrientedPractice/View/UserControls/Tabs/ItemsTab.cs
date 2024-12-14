@@ -22,16 +22,6 @@ namespace ObjectOrientedPractice.View.Controls
                             return res > 0; 
                         };
 
-        private Func<Item, Item, bool> Sorter { get; set; } = (x, y) => 
-                        {   
-                            int res = String.Compare(x.Name, y.Name);
-                            return res > 0; 
-                        };
-
-        internal List<Item> Items { get; set; } =null;
-
-        internal List<Item> DisplayItems { get; set; } = null;
-
         public EventHandler<EventArgs> ItemsChanged;
 
         public ItemsTab()
@@ -200,51 +190,6 @@ namespace ObjectOrientedPractice.View.Controls
             UserInputHadler.HandleStringInput<Item>((obj, value) => obj.Info = value,
                                         UpdateListBox, InfoRichTextBox, _currentItem);
             ItemsChanged?.Invoke(this, EventArgs.Empty);
-        }
-
-        private void FilterTextBox_TextChanged(object sender, EventArgs e)
-        {
-            var text = FilterTextBox.Text.Trim();
-            if (text == "")
-            {
-                DisplayItems = Items;
-                UpdateListBox();
-                return;
-            }
-            DisplayItems = DataTools.FilterItems(Items, x => x.Name.Contains(text));
-            _currentItem = null;
-            UpdateListBox();
-        }
-
-        private void SortComboBox_SelectedIndexChanged(object sender, EventArgs e)
-        {
-            switch (SortComboBox.SelectedIndex)
-            {
-                case 0:
-                    {
-                        Sorter = (x, y) => 
-                        {   int res = String.Compare(x.Name, y.Name);
-                            return res > 0; 
-                        };
-                        break;
-                    }
-                case 1:
-                    {
-                        Sorter = (x, y) => x.Cost > y.Cost;
-                        break;
-                    }
-                case 2:
-                    {
-                        Sorter = (x, y) => x.Cost < y.Cost;
-                        break;
-                    }
-                default:
-                    {
-                        return;
-                    }
-            }
-            _currentItem = null;
-            UpdateListBox();
         }
 
         private void FilterTextBox_TextChanged(object sender, EventArgs e)
