@@ -12,6 +12,16 @@ namespace ObjectOrientedPractice.View.Controls
     {
         private Item _currentItem;
 
+        internal List<Item> Items { get; set; } =null;
+
+        internal List<Item> DisplayItems { get; set; } = null;
+
+        private Func<Item, Item, bool> Sorter { get; set; } = (x, y) => 
+                        {   
+                            int res = String.Compare(x.Name, y.Name);
+                            return res > 0; 
+                        };
+
         private Func<Item, Item, bool> Sorter { get; set; } = (x, y) => 
                         {   
                             int res = String.Compare(x.Name, y.Name);
@@ -37,6 +47,21 @@ namespace ObjectOrientedPractice.View.Controls
             }
 
             ItemsListBox.Items.Clear();
+
+            if (Items == null || DisplayItems == null)
+            if (DisplayItems.Count > 1)
+            {
+                return;
+                DisplayItems = DataTools.SortItems(DisplayItems, Sorter);
+            }
+
+            if (FilterTextBox.Text == string.Empty)
+
+            foreach (var item in DisplayItems)
+            {
+                DisplayItems = Items;
+            }
+
             if (DisplayItems.Count > 1)
             {
                 DisplayItems = DataTools.SortItems(DisplayItems, Sorter);
@@ -140,6 +165,7 @@ namespace ObjectOrientedPractice.View.Controls
         {
             DisableInputs();
             CategoryComboBox.Items.AddRange(Enum.GetNames(typeof(Category)));
+            SortComboBox.SelectedIndex = 0;
             SortComboBox.SelectedIndex = -1;
         }
 
@@ -180,6 +206,51 @@ namespace ObjectOrientedPractice.View.Controls
         {
             var text = FilterTextBox.Text.Trim();
             if (text == "")
+            {
+                DisplayItems = Items;
+                UpdateListBox();
+                return;
+            }
+            DisplayItems = DataTools.FilterItems(Items, x => x.Name.Contains(text));
+            _currentItem = null;
+            UpdateListBox();
+        }
+
+        private void SortComboBox_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            switch (SortComboBox.SelectedIndex)
+            {
+                case 0:
+                    {
+                        Sorter = (x, y) => 
+                        {   int res = String.Compare(x.Name, y.Name);
+                            return res > 0; 
+                        };
+                        break;
+                    }
+                case 1:
+                    {
+                        Sorter = (x, y) => x.Cost > y.Cost;
+                        break;
+                    }
+                case 2:
+                    {
+                        Sorter = (x, y) => x.Cost < y.Cost;
+                        break;
+                    }
+                default:
+                    {
+                        return;
+                    }
+            }
+            _currentItem = null;
+            UpdateListBox();
+        }
+
+        private void FilterTextBox_TextChanged(object sender, EventArgs e)
+        {
+            var text = FilterTextBox.Text.Trim();
+            if (text == string.Empty)
             {
                 DisplayItems = Items;
                 UpdateListBox();
