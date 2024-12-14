@@ -49,8 +49,9 @@ namespace ObjectOrientedPractice.Model
             }
             set
             {
-                if (Validator.AssertLengthOfString(value, 1000, "item name"))
+                if (_name != value && Validator.AssertLengthOfString(value, 1000, "item name"))
                 {
+                    InfoChanged?.Invoke(this, EventArgs.Empty);
                     _name = value;
                 }
             }
@@ -67,8 +68,9 @@ namespace ObjectOrientedPractice.Model
             }
             set
             {
-                if (Validator.AssertLengthOfString(value, 200, "item descriprion"))
+                if (_info != value && Validator.AssertLengthOfString(value, 200, "item descriprion"))
                 {
+                    InfoChanged?.Invoke(this, EventArgs.Empty);
                     _info = value;
                 }
             }
@@ -85,8 +87,9 @@ namespace ObjectOrientedPractice.Model
             }
             set
             {
-                if (Validator.AssertRange(value, 0, 100000, "item cost"))
+                if (_cost != value && Validator.AssertRange(value, 0, 100000, "item cost"))
                 {
+                    CostChanged?.Invoke(this, EventArgs.Empty);
                     _cost = value;
                 }
             }
@@ -96,6 +99,12 @@ namespace ObjectOrientedPractice.Model
         /// Item <see cref="Model.Enums.Category"/>.
         /// </summary>
         public Category Category { get; set; }
+
+        public EventHandler<EventArgs> NameChanged;
+
+        public EventHandler<EventArgs> InfoChanged;
+
+        public EventHandler<EventArgs> CostChanged;
 
         /// <summary>
         /// Base class constructor.

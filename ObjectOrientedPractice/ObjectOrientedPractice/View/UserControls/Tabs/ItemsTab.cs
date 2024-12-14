@@ -12,15 +12,17 @@ namespace ObjectOrientedPractice.View.Controls
     {
         private Item _currentItem;
 
-        internal List<Item> Items { get; set; } =null;
-
-        internal List<Item> DisplayItems { get; set; } = null;
-
         private Func<Item, Item, bool> Sorter { get; set; } = (x, y) => 
                         {   
                             int res = String.Compare(x.Name, y.Name);
                             return res > 0; 
                         };
+
+        internal List<Item> Items { get; set; } =null;
+
+        internal List<Item> DisplayItems { get; set; } = null;
+
+        public EventHandler<EventArgs> ItemsChanged;
 
         public ItemsTab()
         {
@@ -124,19 +126,21 @@ namespace ObjectOrientedPractice.View.Controls
         {
             Items.Add(new Item(" ", " ", 0.0, Category.Frozen));
             UpdateListBox();
+            ItemsChanged?.Invoke(this, EventArgs.Empty);
         }
 
         private void RemoveButton_Click(object sender, EventArgs e)
         {
             Items.Remove(_currentItem);
             UpdateListBox();
+            ItemsChanged?.Invoke(this, EventArgs.Empty);
         }
 
         private void ItemsTab_Load(object sender, EventArgs e)
         {
             DisableInputs();
             CategoryComboBox.Items.AddRange(Enum.GetNames(typeof(Category)));
-            SortComboBox.SelectedIndex = 0;
+            SortComboBox.SelectedIndex = -1;
         }
 
         private void CategoryComboBox_SelectedIndexChanged(object sender, EventArgs e)
@@ -155,18 +159,21 @@ namespace ObjectOrientedPractice.View.Controls
         {
             UserInputHadler.HandleDoubleInput((obj, value) => obj.Cost = value,
                                         UpdateListBox, CostTextBox, _currentItem);
+            ItemsChanged?.Invoke(this, EventArgs.Empty);
         }
 
         private void NameRichTextBox_Leave(object sender, EventArgs e)
         {
             UserInputHadler.HandleStringInput<Item>((obj, value) => obj.Name = value,
                                         UpdateListBox, NameRichTextBox, _currentItem);
+            ItemsChanged?.Invoke(this, EventArgs.Empty);
         }
 
         private void InfoRichTextBox_Leave(object sender, EventArgs e)
         {
             UserInputHadler.HandleStringInput<Item>((obj, value) => obj.Info = value,
                                         UpdateListBox, InfoRichTextBox, _currentItem);
+            ItemsChanged?.Invoke(this, EventArgs.Empty);
         }
 
         private void FilterTextBox_TextChanged(object sender, EventArgs e)

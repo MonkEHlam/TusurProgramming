@@ -1,4 +1,5 @@
 ﻿using ObjectOrientedPractice.Model;
+using System;
 using System.Windows.Forms;
 
 namespace ObjectOrientedPractice.View
@@ -21,9 +22,10 @@ namespace ObjectOrientedPractice.View
             CartsTab.Customers = _store.Customers;
             CartsTab.Items = _store.Items;
             OrdersTab.Customers = _store.Customers;
+            ItemsTab.ItemsChanged += Refresh;
         }
 
-        private void TabControl_SelectedIndexChanged(object sender, System.EventArgs e)
+        private void Refresh(object sender, EventArgs e)
         {
             OrdersTab.RefreshData();
             CartsTab.RefreshData();
