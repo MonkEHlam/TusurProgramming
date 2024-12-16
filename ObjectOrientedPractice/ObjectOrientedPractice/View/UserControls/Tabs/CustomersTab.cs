@@ -221,6 +221,11 @@ namespace ObjectOrientedPractice.View.Controls
             }
         }
 
+        /// <summary>
+        /// Tries to update value on focus leave from textbox.
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
         private void NameTextBox_Leave(object sender, EventArgs e)
         {
             UserInputHadler.HandleStringInput<Customer>((obj, name) => obj.Name = name, UpdateListBox, NameTextBox, _currentCustomer);

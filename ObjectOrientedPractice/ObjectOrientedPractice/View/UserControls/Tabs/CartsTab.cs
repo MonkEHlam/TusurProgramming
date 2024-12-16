@@ -32,6 +32,9 @@ namespace ObjectOrientedPractics.View.Panels
         /// </summary>
         private Customer _currentCustomer;
 
+        /// <summary>
+        /// Discount amount.
+        /// </summary>
         private double Discount {  get; set; }
 
         /// <summary>
@@ -63,6 +66,11 @@ namespace ObjectOrientedPractics.View.Panels
                 CustomersComboBox.SelectedItem = _currentCustomer;
             }
         }
+
+        /// <summary>
+        /// Updates the DiscountsCheckedListBox to reflect the discounts associated with the current customer.
+        /// Disables the listbox if there are no customers or no current customer is selected.
+        /// </summary>
         private void UpdateDiscountsCheckedListBox()
         {
             if (Customers.Count == 0 || _currentCustomer == null)
@@ -79,6 +87,7 @@ namespace ObjectOrientedPractics.View.Panels
                 DiscountsCheckedListBox.Items.Add(discount.Info);
             }
 
+            
             for (int i = 0; i < DiscountsCheckedListBox.Items.Count; i++)
             {
                 DiscountsCheckedListBox.SetItemChecked(i, true);
@@ -90,6 +99,10 @@ namespace ObjectOrientedPractics.View.Panels
             TotalLabel.Text = AmountLabel.Text;
         }
 
+        /// <summary>
+        /// Updates the amount labels (AmountLabel, DiscountLabel, TotalLabel) based on the checked discounts.
+        /// Calculates the total discount and updates the UI accordingly.
+        /// </summary>
         private void UpdateAmountLabels()
         {
             Discount = 0.0;
@@ -97,8 +110,8 @@ namespace ObjectOrientedPractics.View.Panels
             foreach (var item in DiscountsCheckedListBox.CheckedItems)
             {
                 var index = DiscountsCheckedListBox.Items.IndexOf(item);
-                Discount += _currentCustomer.Discounts[index].Calculate(
-                    _currentCustomer.Cart.Items);
+                //Calculates discount for checked items
+                Discount += _currentCustomer.Discounts[index].Calculate(_currentCustomer.Cart.Items);
             }
 
             var amount = _currentCustomer.Cart.Amount;
@@ -107,6 +120,10 @@ namespace ObjectOrientedPractics.View.Panels
             TotalLabel.Text = (amount - Discount).ToString();
         }
 
+        /// <summary>
+        /// Applies and updates the discounts for the current customer based on the checked items in the listbox.
+        /// </summary>
+        /// <param name="items">The list of items in the customer's cart.</param>
         private void UpdateCustomerDiscounts(List<Item> items)
         {
             foreach (var discount in _currentCustomer.Discounts)
@@ -227,6 +244,11 @@ namespace ObjectOrientedPractics.View.Panels
             UpdateAmountLabels();
         }
 
+        /// <summary>
+        /// Handles discount switch.
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
         private void DiscountsCheckedListBox_SelectedIndexChanged(object sender, EventArgs e)
         {
             UpdateAmountLabels();

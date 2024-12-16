@@ -152,6 +152,9 @@ namespace ObjectOrientedPractice.Model
             }
         }
 
+        /// <summary>
+        /// Event that is raised when the address changes.
+        /// </summary>
         public EventHandler<EventArgs> AddressChanged;
 
         /// <summary>

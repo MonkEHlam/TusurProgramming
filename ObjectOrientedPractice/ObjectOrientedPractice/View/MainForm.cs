@@ -25,6 +25,11 @@ namespace ObjectOrientedPractice.View
             ItemsTab.ItemsChanged += Refresh;
         }
 
+        /// <summary>
+        /// Update data in tabs.
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
         private void Refresh(object sender, EventArgs e)
         {
             OrdersTab.RefreshData();

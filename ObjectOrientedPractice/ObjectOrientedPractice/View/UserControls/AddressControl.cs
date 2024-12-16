@@ -162,36 +162,66 @@ namespace ObjectOrientedPractice.View.Controls
             DisableInput();
         }
 
+        /// <summary>
+        /// Tries to update value on focus leave from textbox.
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
         private void IndexTextBox_Leave(object sender, EventArgs e)
         {
             UserInputHadler.HandleIntInput<Address>((obj, value) => obj.Index = value,
                                                     UpdateControl,IndexTextBox, currentAddress);
         }
 
+        /// <summary>
+        /// Tries to update value on focus leave from textbox.
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
         private void CountryTextBox_Leave(object sender, EventArgs e)
         {
             UserInputHadler.HandleStringInput<Address>((obj, value) => obj.Country = value,
                                                     UpdateControl, CountryTextBox, currentAddress);
         }
 
+        /// <summary>
+        /// Tries to update value on focus leave from textbox.
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
         private void CityTextBox_Leave(object sender, EventArgs e)
         {
             UserInputHadler.HandleStringInput<Address>((obj, value) => obj.City = value,
                                                     UpdateControl, CityTextBox, currentAddress);
         }
 
+        /// <summary>
+        /// Tries to update value on focus leave from textbox.
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
         private void StreetTextBox_Leave(object sender, EventArgs e)
         {
             UserInputHadler.HandleStringInput<Address>((obj, value) => obj.Street = value,
                                                     UpdateControl, StreetTextBox, currentAddress);
         }
 
+        /// <summary>
+        /// Tries to update value on focus leave from textbox.
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
         private void BuildingTextBox_Leave(object sender, EventArgs e)
         {
             UserInputHadler.HandleStringInput<Address>((obj, value) => obj.Building = value,
                                                     UpdateControl, BuildingTextBox, currentAddress);
         }
 
+        /// <summary>
+        /// Tries to update value on focus leave from textbox.
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
         private void ApartamentTextBox_Leave(object sender, EventArgs e)
         {
             UserInputHadler.HandleStringInput<Address>((obj, value) => obj.Apartment = value,
