@@ -1,4 +1,5 @@
 ﻿using ObjectOrientedPractice.Model;
+using System;
 using System.Windows.Forms;
 
 namespace ObjectOrientedPractice.View
@@ -16,7 +17,23 @@ namespace ObjectOrientedPractice.View
         private void MainForm_Load(object sender, System.EventArgs e)
         {
             ItemsTab.Items = _store.Items;
+            ItemsTab.DisplayItems = ItemsTab.Items;
             CustomersTab.Customers = _store.Customers;
+            CartsTab.Customers = _store.Customers;
+            CartsTab.Items = _store.Items;
+            OrdersTab.Customers = _store.Customers;
+            ItemsTab.ItemsChanged += Refresh;
+        }
+
+        /// <summary>
+        /// Update data in tabs.
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
+        private void Refresh(object sender, EventArgs e)
+        {
+            OrdersTab.RefreshData();
+            CartsTab.RefreshData();
         }
     }
 }

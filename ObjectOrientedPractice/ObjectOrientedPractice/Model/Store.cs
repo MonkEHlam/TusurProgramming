@@ -6,6 +6,9 @@ using System.Threading.Tasks;
 
 namespace ObjectOrientedPractice.Model
 {
+    /// <summary>
+    /// Represents a store, that contains customers and items.
+    /// </summary>
     internal class Store
     {
         /// <summary>

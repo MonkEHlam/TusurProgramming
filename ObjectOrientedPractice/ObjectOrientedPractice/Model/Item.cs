@@ -1,76 +1,118 @@
 ﻿using ObjectOrientedPractice.Services;
+using ObjectOrientedPractice.Model.Enums;
 using System;
+using System.Security.Cryptography.X509Certificates;
 
 namespace ObjectOrientedPractice.Model
 {
-    internal class Item: IComparable<Item>, IEquatable<Item>
+    /// <summary>
+    /// Represents an item in store.
+    /// </summary>
+    internal class Item : IComparable<Item>, IEquatable<Item>, ICloneable
     {
         /// <summary>
-        /// Item`s id
+        /// Item`s id.
         /// </summary>
         private readonly int _id;
+
         /// <summary>
-        /// Item`s name
+        /// Item`s name.
         /// </summary>
         private string _name;
+
         /// <summary>
-        /// Item`s info
+        /// Item`s info.
         /// </summary>
         private string _info;
+
         /// <summary>
-        /// Item`s cost
+        /// Item`s cost.
         /// </summary>
         private double _cost;
 
-        public int Id { 
-            get { return _id; } 
+        /// <summary>
+        /// Gets the unique ID of the item.
+        /// </summary>
+        public int Id
+        {
+            get { return _id; }
         }
 
-        public string Name {
-            get { return _name; } 
-            set 
-            { 
-                if (Validator.AssertLengthOfString(value, 200, "item name"))
-                {
-                    _name = value;
-                }  
-            } 
-        }
-
-        public string Info {
-            get { return _info; } 
-            set 
+        /// <summary>
+        /// Gets or sets the name of the item.
+        /// </summary>
+        public string Name
+        {
+            get
             {
-                if (!Validator.AssertLengthOfString(value, 1000, "item descriprion"))
+                return _name;
+            }
+            set
+            {
+                if (_name != value && Validator.AssertLengthOfString(value, 1000, "item name"))
                 {
+                    InfoChanged?.Invoke(this, EventArgs.Empty);
+                    _name = value;
+                }
+            }
+        }
+
+        /// <summary>
+        /// Gets or sets the description of the item.
+        /// </summary>
+        public string Info
+        {
+            get
+            {
+                return _info;
+            }
+            set
+            {
+                if (_info != value && Validator.AssertLengthOfString(value, 200, "item descriprion"))
+                {
+                    InfoChanged?.Invoke(this, EventArgs.Empty);
                     _info = value;
                 }
             }
         }
 
-        public double Cost { 
-            get { return _cost; } 
+        /// <summary>
+        /// Gets or sets the cost of the item.
+        /// </summary>
+        public double Cost
+        {
+            get
+            {
+                return _cost;
+            }
             set
             {
-                if (Validator.AssertRange(value, 0, 100000, "item cost"))
+                if (_cost != value && Validator.AssertRange(value, 0, 100000, "item cost"))
                 {
+                    CostChanged?.Invoke(this, EventArgs.Empty);
                     _cost = value;
                 }
-            } 
+            }
         }
 
         /// <summary>
-        /// Item <see cref="Model.Category"/>
+        /// Item <see cref="Model.Enums.Category"/>.
         /// </summary>
         public Category Category { get; set; }
+
+        public EventHandler<EventArgs> NameChanged;
+
+        public EventHandler<EventArgs> InfoChanged;
+
+        public EventHandler<EventArgs> CostChanged;
 
         /// <summary>
         /// Base class constructor.
         /// </summary>
-        /// <param name="name">Item`s name.</param>
-        /// <param name="info">Item`s description.</param>
-        /// <param name="cost">item`s cost</param>
-        /// <param name="category">Item`s category</param>
+        /// <param name="name">Item`s name.</param>.
+        /// <param name="info">Item`s description.</param>.
+        /// <param name="cost">item`s cost</param>.
+        /// <param name="category">Item`s category</param>.
         public Item(string name, string info, double cost, Category category)
         {
             _id = IdGenerator.NextItemId();
@@ -81,23 +123,23 @@ namespace ObjectOrientedPractice.Model
         }
 
         /// <summary>
-        /// Base class comparer
+        /// <inheritdoc/>
         /// </summary>
         /// <param name="compareItem"><see cref="Item" /> for compare.</param>
-        /// <returns>Int compare index of IComparable.</returns>
+        /// <returns><inheritdoc/></returns>
         public int CompareTo(Item compareItem)
         {
             if (compareItem == null)
                 return 1;
 
-            return Id.CompareTo(compareItem.Id);
+            return Cost.CompareTo(compareItem.Cost);
         }
 
         /// <summary>
-        /// Compairing pair of <see cref="Item" />
+        /// <inheritdoc/>
         /// </summary>
-        /// <param name="other"></param>
-        /// <returns></returns>
+        /// <param name="other"><inheritdoc/></param>
+        /// <returns><inheritdoc/></returns>
         public bool Equals(Item other)
         {
             if (other == null) return false;
@@ -105,12 +147,26 @@ namespace ObjectOrientedPractice.Model
         }
 
         /// <summary>
-        /// String view of class
+        /// Clone object.
+        /// </summary>
+        /// <returns>Clone of Item.</returns>
+        public object Clone()
+        {
+            return new Item(Name, Info, Cost, Category);
+        }
+
+        /// <summary>
+        /// String view of class.
         /// </summary>
         /// <returns></returns>
         public override string ToString()
         {
-            return $"{Id}, {Name}, {Cost}";
+            string tempName = Name;
+            if (tempName == "")
+            {
+                tempName = "---";
+            }
+            return $"{Id}, {tempName}, {Cost}";
         }
     }
 }
