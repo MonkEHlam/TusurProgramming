@@ -1,0 +1,38 @@
+﻿<Window x:Class="Contacts.MainWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:Contacts"
+        mc:Ignorable="d"
+        Title="MainWindow" Height="450" Width="600" ResizeMode="NoResize">
+    <Grid>
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="*"/>
+            <ColumnDefinition Width="*"/>
+        </Grid.ColumnDefinitions>
+
+        <!-- Edit Contact -->
+        <GroupBox Header="Edit Contact" Grid.Column="0" Margin="10" FontSize="14">
+            <StackPanel Margin="10,15,10,0" VerticalAlignment="Top" Height="210">
+                <Label Content="Name:" Margin="3"/>
+                <TextBox Margin="3"/>
+                <Label Content="Phone Number:" Margin="3"/>
+                <TextBox Margin="3"/>
+                <Label Content="Email:" Margin="3"/>
+                <TextBox Margin="3"/>
+            </StackPanel>
+        </GroupBox>
+
+        <GroupBox Header="Read Contact" Grid.Column="1" Margin="10" FontSize="14">
+            <StackPanel Margin="10,15,10,0" Height="210" VerticalAlignment="Top">
+                <Label Content="Name:" Margin="3"/>
+                <TextBlock Margin="3"/>
+                <Label Content="Phone Number:" Margin="3"/>
+                <TextBlock Margin="3"/>
+                <Label Content="Email:" Margin="3"/>
+                <TextBlock Margin="3"/>
+            </StackPanel>
+        </GroupBox>
+    </Grid>
+</Window>
