@@ -7,27 +7,27 @@ namespace View.ViewModel
     internal class MainVM : INotifyPropertyChanged
     {
         /// <summary>
-        /// 
+        /// Current contact.
         /// </summary>
         private Contact _contact;
         
         /// <summary>
-        /// 
+        /// Contact`s name.
         /// </summary>
         private string _name;
-        
+
         /// <summary>
-        /// 
+        /// Contact`s email address.
         /// </summary>
         private string _email;
-        
+
         /// <summary>
-        /// 
+        /// Contact`s Phone number.
         /// </summary>
         private string _phone;
 
         /// <summary>
-        /// 
+        /// Contact`s name.
         /// </summary>
         public string Name
         {
@@ -40,7 +40,7 @@ namespace View.ViewModel
         }
 
         /// <summary>
-        /// 
+        /// Contact`s email address.
         /// </summary>
         public string Email
         {
@@ -53,7 +53,7 @@ namespace View.ViewModel
         }
 
         /// <summary>
-        /// 
+        /// Contact`s Phone number.
         /// </summary>
         public string Phone
         {
@@ -71,7 +71,7 @@ namespace View.ViewModel
         public event PropertyChangedEventHandler PropertyChanged;
 
         /// <summary>
-        /// 
+        /// Event that invoke on property value changing.
         /// </summary>
         /// <param name="propertyName"></param>
         public void OnPropertyChanged([CallerMemberName] string propertyName = null)
