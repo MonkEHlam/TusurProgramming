@@ -41,7 +41,7 @@ namespace View.Model.Services
         /// Save <see cref="Contact"/> entity into json file.
         /// </summary>
         /// <param name="contact">Contact entity for saving</param>
-        void Serialize(Contact contact)
+        public void Serialize(Contact contact)
         {
             if (contact == null) { return; }
             
@@ -60,7 +60,7 @@ namespace View.Model.Services
         /// Load saved <see cref="Contact"/> from json file.
         /// </summary>
         /// <returns></returns>
-        Contact Deserialize()
+        public Contact Deserialize()
         {
             if (!File.Exists(FilePath)) { return null; }
             try
