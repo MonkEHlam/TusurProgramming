@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Windows;
 using System.Windows.Input;
 using View.Model;
 using View.Model.Services;
@@ -49,7 +50,15 @@ namespace View.ViewModel
         /// <param name="parameter">Contact for serialization</param>
         public void Execute(object parameter)
         {
-            _serializer.Serialize(parameter as Contact);
+            var answer = _serializer.Serialize(parameter as Contact);
+            if (answer)
+            {
+                MessageBox.Show("File succsesfully saved!", "Success", MessageBoxButton.OK, MessageBoxImage.Information);
+            }
+            else
+            {
+                MessageBox.Show("Error on content saving!", "Error", MessageBoxButton.OK, MessageBoxImage.Error);
+            }
         }
     }
 }

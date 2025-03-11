@@ -42,23 +42,22 @@ namespace View.Model.Services
         /// Save <see cref="Contact"/> entity into json file.
         /// </summary>
         /// <param name="contact">Contact entity for saving</param>
-        public void Serialize(Contact contact)
+        public bool Serialize(Contact contact)
         {
             if (contact == null) 
             {
-                return; 
+                return false; 
             }
             
             try
             {
                 string json = JsonConvert.SerializeObject(contact, Formatting.Indented);
                 File.WriteAllText(FilePath, json);
-
-                MessageBox.Show("File succsesfully saved!", "Success", MessageBoxButton.OK, MessageBoxImage.Information);
-            }
+                return true;
+        }
             catch (Exception ex)
             {
-                MessageBox.Show("Error on content saving: " + ex.Message, "Error", MessageBoxButton.OK, MessageBoxImage.Error);
+                return false;
             }
         }
 
@@ -69,6 +68,7 @@ namespace View.Model.Services
         public Contact Deserialize()
         {
             if (!File.Exists(FilePath)) { return new Contact(); }
+
             try
             {
                 Contact contact = JsonConvert.DeserializeObject<Contact>(File.ReadAllText(FilePath));
@@ -76,8 +76,7 @@ namespace View.Model.Services
             }
             catch (Exception ex)
             {
-                MessageBox.Show("Error on content load: " + ex.Message, "Error", MessageBoxButton.OK, MessageBoxImage.Error);
-                return null;
+                return new Contact();
             }
         }
     }
