@@ -1,14 +1,13 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using System.Windows.Input;
 using View.Model;
 using View.Model.Services;
 
 namespace View.ViewModel
 {
+    /// <summary>
+    /// Command for saving data into json file.
+    /// </summary>
     internal class SaveCommand : ICommand
     {
         /// <summary>
@@ -50,7 +49,7 @@ namespace View.ViewModel
         /// <param name="parameter">Contact for serialization</param>
         public void Execute(object parameter)
         {
-            _serializer.Serialize((Contact)parameter);
+            _serializer.Serialize(parameter as Contact);
         }
     }
 }

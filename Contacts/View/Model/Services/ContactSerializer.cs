@@ -1,13 +1,13 @@
-﻿using System;
-using Newtonsoft.Json;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+﻿using Newtonsoft.Json;
+using System;
 using System.IO;
+using System.Windows;
 
 namespace View.Model.Services
 {
+    /// <summary>
+    /// Class for (de)serializing contact.
+    /// </summary>
     internal class ContactSerializer
     {
         /// <summary>
@@ -23,18 +23,19 @@ namespace View.Model.Services
         {
             if (filePath == null)
             {
-                FilePath = Path.Combine(
-                Environment.GetFolderPath(
-                    Environment.SpecialFolder.MyDocuments),
-                "Contacts",
-                "contact.json");
+                FilePath = Path.Combine
+                    (
+                    Environment.GetFolderPath(Environment.SpecialFolder.Personal),
+                    "Contacts",
+                    "contacts.json"
+                );
             }
             else
             {
                 FilePath = filePath;
             }
 
-            Directory.CreateDirectory(FilePath);
+            Directory.CreateDirectory(Path.GetDirectoryName(FilePath));
         }
 
         /// <summary>
@@ -43,16 +44,21 @@ namespace View.Model.Services
         /// <param name="contact">Contact entity for saving</param>
         public void Serialize(Contact contact)
         {
-            if (contact == null) { return; }
+            if (contact == null) 
+            {
+                return; 
+            }
             
             try
             {
                 string json = JsonConvert.SerializeObject(contact, Formatting.Indented);
-                File.WriteAllText(json, FilePath);
+                File.WriteAllText(FilePath, json);
+
+                MessageBox.Show("File succsesfully saved!", "Success", MessageBoxButton.OK, MessageBoxImage.Information);
             }
             catch (Exception ex)
             {
-                Console.WriteLine("Error on content saving: " + ex.Message);
+                MessageBox.Show("Error on content saving: " + ex.Message, "Error", MessageBoxButton.OK, MessageBoxImage.Error);
             }
         }
 
@@ -62,7 +68,7 @@ namespace View.Model.Services
         /// <returns></returns>
         public Contact Deserialize()
         {
-            if (!File.Exists(FilePath)) { return null; }
+            if (!File.Exists(FilePath)) { return new Contact(); }
             try
             {
                 Contact contact = JsonConvert.DeserializeObject<Contact>(File.ReadAllText(FilePath));
@@ -70,7 +76,7 @@ namespace View.Model.Services
             }
             catch (Exception ex)
             {
-                Console.WriteLine("Error on content load: " + ex.Message);
+                MessageBox.Show("Error on content load: " + ex.Message, "Error", MessageBoxButton.OK, MessageBoxImage.Error);
                 return null;
             }
         }

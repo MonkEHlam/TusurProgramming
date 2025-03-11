@@ -1,14 +1,13 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using System.Windows.Input;
 using View.Model;
 using View.Model.Services;
 
 namespace View.ViewModel
 {
+    /// <summary>
+    /// Command for loading file data.
+    /// </summary>
     internal class LoadCommand : ICommand
     {
         /// <summary>

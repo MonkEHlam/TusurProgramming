@@ -14,17 +14,17 @@ namespace View.Model
         /// <summary>
         /// Contact`s name.
         /// </summary>
-        public string Name { get; set; }
+        public string Name { get; set; } = "";
 
         /// <summary>
         /// Contact`s Phone number.
         /// </summary>
-        public string Phone { get; set; }
+        public string Phone { get; set; } = "";
 
         /// <summary>
         /// Contact`s email address.
         /// </summary>
-        public string Email { get; set; }
+        public string Email { get; set; } = "";
 
         /// <summary>
         /// Base class constructor.
@@ -38,5 +38,10 @@ namespace View.Model
             Phone = phone;
             Email = email;
         }
+
+        /// <summary>
+        /// Empty class constructor.
+        /// </summary>
+        public Contact() { }
     }
 }
