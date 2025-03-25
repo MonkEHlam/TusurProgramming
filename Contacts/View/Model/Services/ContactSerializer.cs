@@ -1,7 +1,7 @@
 ﻿using Newtonsoft.Json;
 using System;
+using System.Collections.ObjectModel;
 using System.IO;
-using System.Windows;
 
 namespace View.Model.Services
 {
@@ -41,17 +41,17 @@ namespace View.Model.Services
         /// <summary>
         /// Save <see cref="Contact"/> entity into json file.
         /// </summary>
-        /// <param name="contact">Contact entity for saving</param>
-        public bool Serialize(Contact contact)
+        /// <param name="contact">SelectedContact entity for saving</param>
+        public bool Serialize(ObservableCollection<Contact> contacts)
         {
-            if (contact == null) 
+            if (contacts == null) 
             {
                 return false; 
             }
             
             try
             {
-                string json = JsonConvert.SerializeObject(contact, Formatting.Indented);
+                string json = JsonConvert.SerializeObject(contacts, Formatting.Indented);
                 File.WriteAllText(FilePath, json);
                 return true;
         }
@@ -65,18 +65,18 @@ namespace View.Model.Services
         /// Load saved <see cref="Contact"/> from json file.
         /// </summary>
         /// <returns></returns>
-        public Contact Deserialize()
+        public ObservableCollection<Contact> Deserialize()
         {
-            if (!File.Exists(FilePath)) { return new Contact(); }
+            if (!File.Exists(FilePath)) { new ObservableCollection<Contact>(); }
 
             try
             {
-                Contact contact = JsonConvert.DeserializeObject<Contact>(File.ReadAllText(FilePath));
+                ObservableCollection<Contact> contact = JsonConvert.DeserializeObject<ObservableCollection<Contact>>(File.ReadAllText(FilePath));
                 return contact;
             }
             catch (Exception ex)
             {
-                return new Contact();
+                return new ObservableCollection<Contact>();
             }
         }
     }
