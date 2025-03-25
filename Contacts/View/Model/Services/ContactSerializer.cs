@@ -41,7 +41,7 @@ namespace View.Model.Services
         /// <summary>
         /// Save <see cref="Contact"/> entity into json file.
         /// </summary>
-        /// <param name="contact">Contact entity for saving</param>
+        /// <param name="contact">SelectedContact entity for saving</param>
         public bool Serialize(ObservableCollection<Contact> contacts)
         {
             if (contacts == null || contacts.Count == 0) 

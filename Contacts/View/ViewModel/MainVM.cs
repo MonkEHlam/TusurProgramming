@@ -34,7 +34,7 @@ namespace View.ViewModel
         /// <summary>
         /// Represents visibility of apply changes button.
         /// </summary>
-        private Visibility _applyButtonVisibility = Visibility.Collapsed;
+        private Visibility _applyButtonVisibility = Visibility.Hidden;
 
         /// <summary>
         /// Is contact readonly
@@ -51,49 +51,66 @@ namespace View.ViewModel
         /// </summary>
         private bool _isEditing;
 
+        private int _indexBefore;
+
         #endregion
+        
         #region Properties
 
         /// <summary>
         /// Current contact.
         /// </summary>
-        public Contact Contact { get; }
+        public Contact SelectedContact 
+        {
+            get
+            {
+                return _selectedContact;
+            }
+            set
+            {
+                if (value != _selectedContact)
+                {
+                    _selectedContact = value;
+                    OnPropertyChanged("SelectedContact");
+                }
+            }
+        }
 
         /// <summary>
-        /// Contact`s name.
+        /// SelectedContact`s name.
         /// </summary>
         public string Name
         {
-            get { return Contact.Name; }
+            get { return SelectedContact.Name; }
             set
             {
-                Contact.Name = value;
+                SelectedContact.Name = value;
                 OnPropertyChanged();
             }
         }
 
         /// <summary>
-        /// Contact`s email address.
+        /// SelectedContact`s email address.
         /// </summary>
         public string Email
         {
-            get { return Contact.Email; }
+            get { return SelectedContact.Email; }
             set
             {
-                Contact.Email = value;
+                SelectedContact.Email = value;
                 OnPropertyChanged();
             }
         }
 
         /// <summary>
-        /// Contact`s Phone number.
+        /// SelectedContact`s Phone number.
         /// </summary>
         public string Phone
         {
-            get { return Contact.Phone; }
+            get { return SelectedContact.Phone; }
             set
             {
-                Contact.Phone = value;
+                SelectedContact.Phone = value;
                 OnPropertyChanged();
             }
         }
@@ -101,12 +118,21 @@ namespace View.ViewModel
         /// <summary>
         /// List of all saved contacts.
         /// </summary>
-        public ObservableCollection<Contact> Contacts { get; private set; }
-
-        /// <summary>
-        /// Selected contact for changing.
-        /// </summary>
-        public Contact SelectedContact { get; set; }
+        public ObservableCollection<Contact> Contacts
+        {
+            get
+            {
+                return _contacts;
+            }
+            private set
+            {
+                if (value != _contacts)
+                {
+                    _contacts = value;
+                    OnPropertyChanged();
+                }
+            }
+        }
 
         /// <summary>
         /// Is some contact is selected in listbox.
@@ -122,8 +148,21 @@ namespace View.ViewModel
         /// <summary>
         /// Represents visibility of apply changes button.
         /// </summary>
-        public Visibility ApplyButtonVisibility { get; set; } = Visibility.Hidden;
-
+        public Visibility ApplyButtonVisibility
+        {
+            get
+            {
+                return _applyButtonVisibility;
+            }
+            set
+            {
+                if (value != _applyButtonVisibility)
+                {
+                    _applyButtonVisibility = value;
+                    OnPropertyChanged("ApplyButtonvisibility");
+                }
+            }
+        }
 
         public bool IsReadOnly
         {
@@ -180,10 +219,13 @@ namespace View.ViewModel
         /// </summary>
         public MainVM()
         {
-            Contact = new Contact();
+            SelectedContact = new Contact();
             _serializer = new ContactSerializer();
             LoadCommand = new RelayCommand(Load);
+            AddCommand = new RelayCommand(Add);
+            ApplyCommand = new RelayCommand(Apply);
             SaveCommand = new RelayCommand(Save);
+
         }
 
         #endregion
@@ -211,12 +253,11 @@ namespace View.ViewModel
         /// <summary>
         /// Updates fields of contact.
         /// </summary>
-        /// <param name="contact">Contact, according to which fields changes.</param>
-        public void Update(Contact contact)
+        public void Update()
         {
-            Email = contact.Email;
-            Phone = contact.Phone;
-            Name = contact.Name;
+            Email = SelectedContact.Email;
+            Phone = SelectedContact.Phone;
+            Name = SelectedContact.Name;
         }
 
         /// <summary>
@@ -258,14 +299,6 @@ namespace View.ViewModel
             if (contacts.Count == 0) { return; }
 
             var answer = _serializer.Serialize(contacts);
-            if (answer)
-            {
-                MessageBox.Show("File succsesfully saved!", "Success", MessageBoxButton.OK, MessageBoxImage.Information);
-            }
-            else
-            {
-                MessageBox.Show("Error on content saving!", "Error", MessageBoxButton.OK, MessageBoxImage.Error);
-            }
         }
 
         /// <summary>
@@ -275,6 +308,34 @@ namespace View.ViewModel
         private void Load(object parameter)
         {
             Contacts = _serializer.Deserialize();
+        }
+
+        private void Add(object parameter)
+        {
+            _indexBefore = _contacts.IndexOf(SelectedContact);
+            SelectedContact = new Contact();
+            Update();
+            IsReadOnly = false;
+            _isAdding = true;
+            ApplyButtonVisibility = Visibility.Visible;
+        }
+
+        private void Apply(object parameter)
+        {
+            if (SelectedContact != null)
+            {
+                if (_isAdding)
+                {
+                    Contacts.Add(SelectedContact);
+                    _isAdding = false;
+                }
+                if(_isEditing)
+                { }
+
+                ApplyButtonVisibility = Visibility.Hidden;
+                IsReadOnly = true;
+                SelectedContact = Contacts[_indexBefore];
+            }   
         }
 
         #endregion

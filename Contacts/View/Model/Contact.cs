@@ -13,26 +13,26 @@ namespace View.Model
     internal class Contact : INotifyPropertyChanged
     {
         /// <summary>
-        /// Contact`s name.
+        /// SelectedContact`s name.
         /// </summary>
         public string Name { get; set; } = "";
 
         /// <summary>
-        /// Contact`s Phone number.
+        /// SelectedContact`s Phone number.
         /// </summary>
         public string Phone { get; set; } = "";
 
         /// <summary>
-        /// Contact`s email address.
+        /// SelectedContact`s email address.
         /// </summary>
         public string Email { get; set; } = "";
 
         /// <summary>
         /// Base class constructor.
         /// </summary>
-        /// <param name="name">Contact`s name.</param>
-        /// <param name="phone">Contact`s Phone number.</param>
-        /// <param name="email">Contact`s email address.</param>
+        /// <param name="name">SelectedContact`s name.</param>
+        /// <param name="phone">SelectedContact`s Phone number.</param>
+        /// <param name="email">SelectedContact`s email address.</param>
         public Contact(string name, string phone, string email)
         {
             Name = name;
@@ -49,5 +49,14 @@ namespace View.Model
         /// <inheritdoc/>
         /// </summary>
         public event PropertyChangedEventHandler PropertyChanged;
+
+        /// <summary>
+        /// Invoke <see cref="PropertyChanged"/>.
+        /// </summary>
+        /// <param name="propertyName">Name of changed properety.</param>
+        protected virtual void OnPropertyChanged(string propertyName)
+        {
+            PropertyChanged?.Invoke(this, new PropertyChangedEventArgs(propertyName));
+        }
     }
 }
