@@ -44,7 +44,7 @@ namespace View.Model.Services
         /// <param name="contact">SelectedContact entity for saving</param>
         public bool Serialize(ObservableCollection<Contact> contacts)
         {
-            if (contacts == null || contacts.Count == 0) 
+            if (contacts == null) 
             {
                 return false; 
             }

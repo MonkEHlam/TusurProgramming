@@ -24,7 +24,7 @@ namespace View.ViewModel
         /// <summary>
         /// Collection of contacts.
         /// </summary>
-        private ObservableCollection<Contact> _contacts;
+        private ObservableCollection<Contact> _contacts = new ObservableCollection<Contact>();
 
         /// <summary>
         /// Current contact.
@@ -51,6 +51,14 @@ namespace View.ViewModel
         /// </summary>
         private bool _isEditing;
 
+        /// <summary>
+        /// Contact inctance using for editing.
+        /// </summary>
+        private Contact _tempContact;
+
+        /// <summary>
+        /// Index of selected contact before any change.
+        /// </summary>
         private int _indexBefore;
 
         #endregion
@@ -60,7 +68,7 @@ namespace View.ViewModel
         /// <summary>
         /// Current contact.
         /// </summary>
-        public Contact SelectedContact 
+        public Contact SelectedContact
         {
             get
             {
@@ -68,10 +76,24 @@ namespace View.ViewModel
             }
             set
             {
-                if (value != _selectedContact)
+                if (_selectedContact != value)
                 {
+                    if ((_isAdding || _isEditing) && _selectedContact != null && !Contacts.Contains(_selectedContact))
+                    {
+                        _isEditing = false;
+                        _isAdding = false;
+                        ApplyButtonVisibility = Visibility.Hidden;
+                    }
+
                     _selectedContact = value;
-                    OnPropertyChanged("SelectedContact");
+                    OnPropertyChanged();
+                    OnPropertyChanged(nameof(IsContactSelected));
+                    OnPropertyChanged(nameof(ApplyButtonVisibility));
+
+                    if (_selectedContact != null)
+                    {
+                        IsReadOnly = true;
+                    }
                 }
             }
         }
@@ -219,13 +241,13 @@ namespace View.ViewModel
         /// </summary>
         public MainVM()
         {
-            SelectedContact = new Contact();
             _serializer = new ContactSerializer();
             LoadCommand = new RelayCommand(Load);
             AddCommand = new RelayCommand(Add);
             ApplyCommand = new RelayCommand(Apply);
+            RemoveCommand = new RelayCommand(Remove, IsSelected);
+            EditCommand = new RelayCommand(Edit, IsSelected);
             SaveCommand = new RelayCommand(Save);
-
         }
 
         #endregion
@@ -261,15 +283,6 @@ namespace View.ViewModel
         }
 
         /// <summary>
-        ///
-        /// </summary>
-        /// <param name="contacts"></param>
-        public void GetContacts(ObservableCollection<Contact> contacts)
-        {
-            Contacts = new ObservableCollection<Contact>(contacts);
-        }
-
-        /// <summary>
         /// Saves the data when the application is closing.
         /// </summary>
         public void SaveOnApplicationClose()
@@ -296,7 +309,7 @@ namespace View.ViewModel
         private void Save(object parameter)
         {
             var contacts = (ObservableCollection<Contact>)parameter;
-            if (contacts.Count == 0) { return; }
+            //if (contacts.Count == 0) { return; }
 
             var answer = _serializer.Serialize(contacts);
         }
@@ -310,9 +323,13 @@ namespace View.ViewModel
             Contacts = _serializer.Deserialize();
         }
 
+        /// <summary>
+        /// Activate adding mode.
+        /// </summary>
+        /// <param name="parameter"></param>
         private void Add(object parameter)
         {
-            _indexBefore = _contacts.IndexOf(SelectedContact);
+            _indexBefore = Contacts.IndexOf(SelectedContact);
             SelectedContact = new Contact();
             Update();
             IsReadOnly = false;
@@ -320,6 +337,54 @@ namespace View.ViewModel
             ApplyButtonVisibility = Visibility.Visible;
         }
 
+        /// <summary>
+        /// Remove Selected contact and change selected contact by index in accordance with lab text.
+        /// </summary>
+        /// <param name="parameter"></param>
+        private void Remove(object parameter)
+        {
+            if (SelectedContact != null)
+            {
+                _indexBefore = Contacts.IndexOf(SelectedContact);
+                Contacts.Remove(SelectedContact);
+
+                if (Contacts.Count > 0)
+                {
+                    if (_indexBefore < Contacts.Count)
+                    {
+                        SelectedContact = Contacts[_indexBefore];
+                    }
+                    else
+                    {
+                        SelectedContact = Contacts[Contacts.Count - 1];
+                    }
+                }
+
+                else
+                {
+                    SelectedContact = null;
+                }
+            }
+        }
+
+        /// <summary>
+        /// Activates editing mode.
+        /// </summary>
+        /// <param name="parameter"></param>
+        private void Edit(object parameter)
+        {
+            _indexBefore = Contacts.IndexOf(SelectedContact);
+            SelectedContact = (Contact)SelectedContact.Clone();
+            Update();
+            IsReadOnly = false;
+            _isEditing = true;
+            ApplyButtonVisibility = Visibility.Visible;
+        }
+
+        /// <summary>
+        /// Applies changes. Add contact into collection or confirm changes.
+        /// </summary>
+        /// <param name="parameter"></param>
         private void Apply(object parameter)
         {
             if (SelectedContact != null)
@@ -330,12 +395,28 @@ namespace View.ViewModel
                     _isAdding = false;
                 }
                 if(_isEditing)
-                { }
+                {
+                    Contacts[_indexBefore] = _selectedContact;
+                    _isEditing = false;
+                }
 
                 ApplyButtonVisibility = Visibility.Hidden;
                 IsReadOnly = true;
-                SelectedContact = Contacts[_indexBefore];
+                if (_indexBefore >= 0)
+                { 
+                    SelectedContact = Contacts[_indexBefore];
+                }
             }   
+        }
+
+        /// <summary>
+        /// Predicate for turning on/off edit and remove buttons.
+        /// </summary>
+        /// <param name="parameter"></param>
+        /// <returns></returns>
+        private bool IsSelected(object parameter)
+        {
+            return SelectedContact != null && Contacts.Count > 0;
         }
 
         #endregion

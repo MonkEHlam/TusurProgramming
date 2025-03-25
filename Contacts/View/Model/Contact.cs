@@ -10,7 +10,7 @@ namespace View.Model
     /// <summary>
     /// Represents a person contact.
     /// </summary>
-    internal class Contact : INotifyPropertyChanged
+    internal class Contact : INotifyPropertyChanged, ICloneable
     {
         /// <summary>
         /// SelectedContact`s name.
@@ -57,6 +57,11 @@ namespace View.Model
         protected virtual void OnPropertyChanged(string propertyName)
         {
             PropertyChanged?.Invoke(this, new PropertyChangedEventArgs(propertyName));
+        }
+
+        public object Clone()
+        {
+            return new Contact(Name, Phone, Email);
         }
     }
 }
