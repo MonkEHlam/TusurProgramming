@@ -86,9 +86,8 @@ namespace View.ViewModel
                     }
 
                     _selectedContact = value;
-                    OnPropertyChanged();
+                    OnPropertyChanged(nameof(SelectedContact));
                     OnPropertyChanged(nameof(IsContactSelected));
-                    OnPropertyChanged(nameof(ApplyButtonVisibility));
 
                     if (_selectedContact != null)
                     {
@@ -107,7 +106,7 @@ namespace View.ViewModel
             set
             {
                 SelectedContact.Name = value;
-                OnPropertyChanged();
+                OnPropertyChanged(nameof(Name));
             }
         }
 
@@ -120,7 +119,7 @@ namespace View.ViewModel
             set
             {
                 SelectedContact.Email = value;
-                OnPropertyChanged();
+                OnPropertyChanged(nameof(Email));
             }
         }
 
@@ -151,7 +150,7 @@ namespace View.ViewModel
                 if (value != _contacts)
                 {
                     _contacts = value;
-                    OnPropertyChanged();
+                    OnPropertyChanged(nameof(Contacts));
                 }
             }
         }
@@ -181,7 +180,7 @@ namespace View.ViewModel
                 if (value != _applyButtonVisibility)
                 {
                     _applyButtonVisibility = value;
-                    OnPropertyChanged("ApplyButtonvisibility");
+                    OnPropertyChanged(nameof(ApplyButtonVisibility));
                 }
             }
         }
@@ -194,7 +193,7 @@ namespace View.ViewModel
                 if (_isReadOnly != value)
                 {
                     _isReadOnly = value;
-                    OnPropertyChanged("isReadOnly");
+                    OnPropertyChanged(nameof(IsReadOnly));
                 }
             }
         }
