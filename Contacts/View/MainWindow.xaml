@@ -6,7 +6,8 @@
         xmlns:local="clr-namespace:View"
         xmlns:vm="clr-namespace:View.ViewModel"
         mc:Ignorable="d"
-        Title="MainWindow" Height="440" Width="609" MinWidth="650" MinHeight="468">
+        Title="MainWindow" Height="358" Width="478" MinWidth="650" MinHeight="450"
+        Closing="MainWindow_Closing" Loaded="MainWindow_Loaded">
 
     <Window.DataContext>
         <vm:MainVM />
@@ -70,11 +71,11 @@
 
                 <StackPanel Grid.Column="1" Margin="8,8,8,8">
                     <Label Content="Name:" Margin="0,3,0,3"/>
-                    <TextBox Text="{Binding SelectedContact.Name, UpdateSourceTrigger=PropertyChanged, Mode=TwoWay}" Margin="0,3,0,3" IsReadOnly="{Binding IsContactReadOnly}"/>
+                    <TextBox Text="{Binding SelectedContact.Name, UpdateSourceTrigger=PropertyChanged, Mode=TwoWay}" Margin="0,3,0,3" IsReadOnly="{Binding IsReadOnly}"/>
                     <Label Content="Phone Number:" Margin="0,3,0,3"/>
-                    <TextBox Text="{Binding SelectedContact.Phone, UpdateSourceTrigger=PropertyChanged, Mode=TwoWay}" Margin="0,3,0,3" IsReadOnly="{Binding IsContactReadOnly}"/>
+                    <TextBox Text="{Binding SelectedContact.Phone, UpdateSourceTrigger=PropertyChanged, Mode=TwoWay}" Margin="0,3,0,3" IsReadOnly="{Binding IsReadOnly}"/>
                     <Label Content="Email:" Margin="0,3,0,3"/>
-                    <TextBox Text="{Binding SelectedContact.Email, UpdateSourceTrigger=PropertyChanged, Mode=TwoWay}" Margin="0,3,0,3" IsReadOnly="{Binding IsContactReadOnly}"/>
+                    <TextBox Text="{Binding SelectedContact.Email, UpdateSourceTrigger=PropertyChanged, Mode=TwoWay}" Margin="0,3,0,3" IsReadOnly="{Binding IsReadOnly}"/>
                 </StackPanel>
 
                 <Button Grid.Column="1" Content="Apply" Width="75" Height="25" Margin="8,50,8,8" 

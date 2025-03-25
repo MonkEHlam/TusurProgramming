@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.ComponentModel;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -9,7 +10,7 @@ namespace View.Model
     /// <summary>
     /// Represents a person contact.
     /// </summary>
-    internal class Contact
+    internal class Contact : INotifyPropertyChanged
     {
         /// <summary>
         /// Contact`s name.
@@ -43,5 +44,10 @@ namespace View.Model
         /// Empty class constructor.
         /// </summary>
         public Contact() { }
+
+        /// <summary>
+        /// <inheritdoc/>
+        /// </summary>
+        public event PropertyChangedEventHandler PropertyChanged;
     }
 }
