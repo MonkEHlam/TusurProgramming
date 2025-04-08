@@ -48,7 +48,7 @@ namespace Model
             new Regex(@"^[^@ \t\r\n]+@[^@ \t\r\n]+\.[^@ \t\r\n]+$");
 
         /// <summary>
-        /// _selectedContact`s name.
+        /// Contact`s name.
         /// </summary>
         public string Name
         {
@@ -65,7 +65,7 @@ namespace Model
         }
 
         /// <summary>
-        /// _selectedContact`s Phone number.
+        /// Contact`s Phone number.
         /// </summary>
         public string Phone
         {
@@ -82,7 +82,7 @@ namespace Model
         }
 
         /// <summary>
-        /// _selectedContact`s email address.
+        /// Contact`s email address.
         /// </summary>
         public string Email
         {
@@ -105,9 +105,9 @@ namespace Model
         /// <summary>
         /// Base class constructor.
         /// </summary>
-        /// <param name="name">_selectedContact`s name.</param>
-        /// <param name="phone">_selectedContact`s Phone number.</param>
-        /// <param name="email">_selectedContact`s email address.</param>
+        /// <param name="name">Contact`s name.</param>
+        /// <param name="phone">Contact`s Phone number.</param>
+        /// <param name="email">Contact`s email address.</param>
         public Contact(string name, string phone, string email)
         {
             Name = name;
