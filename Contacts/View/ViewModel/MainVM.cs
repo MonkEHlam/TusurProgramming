@@ -98,45 +98,6 @@ namespace View.ViewModel
         }
 
         /// <summary>
-        /// SelectedContact`s name.
-        /// </summary>
-        public string Name
-        {
-            get { return SelectedContact.Name; }
-            set
-            {
-                SelectedContact.Name = value;
-                OnPropertyChanged(nameof(Name));
-            }
-        }
-
-        /// <summary>
-        /// SelectedContact`s email address.
-        /// </summary>
-        public string Email
-        {
-            get { return SelectedContact.Email; }
-            set
-            {
-                SelectedContact.Email = value;
-                OnPropertyChanged(nameof(Email));
-            }
-        }
-
-        /// <summary>
-        /// SelectedContact`s Phone number.
-        /// </summary>
-        public string Phone
-        {
-            get { return SelectedContact.Phone; }
-            set
-            {
-                SelectedContact.Phone = value;
-                OnPropertyChanged();
-            }
-        }
-
-        /// <summary>
         /// List of all saved contacts.
         /// </summary>
         public ObservableCollection<Contact> Contacts
@@ -272,16 +233,6 @@ namespace View.ViewModel
         }
 
         /// <summary>
-        /// Updates fields of contact.
-        /// </summary>
-        public void Update()
-        {
-            Email = SelectedContact.Email;
-            Phone = SelectedContact.Phone;
-            Name = SelectedContact.Name;
-        }
-
-        /// <summary>
         /// Saves the data when the application is closing.
         /// </summary>
         public void SaveOnApplicationClose()
@@ -330,7 +281,6 @@ namespace View.ViewModel
         {
             _indexBefore = Contacts.IndexOf(SelectedContact);
             SelectedContact = new Contact();
-            Update();
             IsReadOnly = false;
             _isAdding = true;
             ApplyButtonVisibility = Visibility.Visible;
@@ -374,7 +324,6 @@ namespace View.ViewModel
         {
             _indexBefore = Contacts.IndexOf(SelectedContact);
             SelectedContact = (Contact)SelectedContact.Clone();
-            Update();
             IsReadOnly = false;
             _isEditing = true;
             ApplyButtonVisibility = Visibility.Visible;
