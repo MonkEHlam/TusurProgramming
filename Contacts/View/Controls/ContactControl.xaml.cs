@@ -27,7 +27,7 @@ namespace View.Controls
         }
 
         /// <summary>
-        /// 
+        /// Check is input correct.
         /// </summary>
         /// <param name="sender"></param>
         /// <param name="e"></param>
@@ -35,14 +35,14 @@ namespace View.Controls
         {
             var textBox = sender as TextBox;
             var newText = textBox.Text.Insert(textBox.CaretIndex, e.Text);
-            if (!Contact.PhoneNumberMask.IsMatch(newText))
+            if (!Contact.PhoneMask.IsMatch(newText))
             {
                 e.Handled = true;
             }
         }
 
         /// <summary>
-        /// 
+        /// Check is paste correct.
         /// </summary>
         /// <param name="sender"></param>
         /// <param name="e"></param>
@@ -55,7 +55,7 @@ namespace View.Controls
             }
 
             var text = (string)e.DataObject.GetData(typeof(string));
-            if (!Contact.PhoneNumberRegex.IsMatch(text))
+            if (!Contact.PhoneRegex.IsMatch(text))
             {
                 e.CancelCommand();
             }

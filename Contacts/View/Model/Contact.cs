@@ -1,10 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.ComponentModel;
-using System.Linq;
-using System.Text;
 using System.Text.RegularExpressions;
-using System.Threading.Tasks;
 
 namespace View.Model
 {
@@ -36,12 +33,12 @@ namespace View.Model
         /// <summary>
         /// Regular expression for phone mask.
         /// </summary>
-        public static readonly Regex PhoneNumberMask = new Regex(@"^[0-9+() -]*$");
+        public static readonly Regex PhoneMask = new Regex(@"^[0-9+() -]*$");
 
         /// <summary>
         /// Regular expression for phone validation.
         /// </summary>
-        public static readonly Regex PhoneNumberRegex =
+        public static readonly Regex PhoneRegex =
             new Regex(@"^\+?(\d{1,3})?[-. (]*(\d{1,4})[-. )]*(\d{1,4})[-. ]*(\d{1,9})$");
 
         /// <summary>
@@ -52,9 +49,6 @@ namespace View.Model
 
         /// <summary>
         /// SelectedContact`s name.
-        /// </summary>
-        /// <summary>
-        /// Получает или задает имя контакта.
         /// </summary>
         public string Name
         {
@@ -143,8 +137,8 @@ namespace View.Model
         /// <summary>
         /// Validates contact properety.
         /// </summary>
-        /// <param name="propertyName">Name of property to validate</param>
-        /// <param name="value"></param>
+        /// <param name="propertyName">Name of property to validate.</param>
+        /// <param name="value">Value to approve.</param>
         private void ValidateProperty(string propertyName, string value)
         {
             string error = null;
@@ -153,38 +147,36 @@ namespace View.Model
             {
                 case nameof(Name):
                     if (string.IsNullOrWhiteSpace(value))
-                        error = "Имя не может быть пустым.";
+                        error = "Empty name.";
                     else if (value.Length > MaxNameLength)
-                        error = "Имя не должно превышать 100 символов.";
+                        error = "Max name length is 100 symbols.";
                     break;
 
                 case nameof(Phone):
                     if (string.IsNullOrWhiteSpace(value))
                     {
-                        error = "Номер телефона не может быть пустым.";
+                        error = "Empty phone number";
                     }
                     else
                     {
-                        if (!PhoneNumberMask.IsMatch(value))
-                            error = "Номер телефона содержит недопустимые символы.";
-                        else if (value.Length > MaxPhoneNumberLength)
-                            error = "Номер телефона не должен превышать 100 символов.";
-                        else if (!PhoneNumberRegex.IsMatch(value))
-                            error = "Номер телефона имеет неверный формат. Пример: +7 (123) 456-7890";
+                        if (value.Length > MaxPhoneNumberLength)
+                            error = "Max phone number length is 100 symbols.";
+                        else if (!PhoneRegex.IsMatch(value))
+                            error = "Wrong format. Example: +7 (123) 456-7890";
                     }
                     break;
 
                 case nameof(Email):
                     if (string.IsNullOrWhiteSpace(value))
                     {
-                        error = "Email не может быть пустым.";
+                        error = "Email is empty.";
                     }
                     else
                     {
                         if (value.Length > MaxEmailLength)
-                            error = "Email не должен превышать 100 символов.";
+                            error = "Max email length is 100 symbols.";
                         else if (!EmailRegex.IsMatch(value))
-                            error = "Email имеет неверный формат. Пример: example@domain.com";
+                            error = "Wrong format. Example: example@domain.com";
                     }
                     break;
             }

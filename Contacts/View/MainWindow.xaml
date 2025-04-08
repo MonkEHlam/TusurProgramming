@@ -25,7 +25,10 @@
                     Text="{Binding Name}"/>
                     <TextBlock 
                     FontSize="10" 
-                    Text="{Binding Number}"/>
+                    Text="{Binding Phone}"/>
+                    <TextBlock 
+                    FontSize="10" 
+                    Text="{Binding Email}"/>
                 </StackPanel>
             </StackPanel>
         </DataTemplate>
@@ -67,12 +70,8 @@
 
                 <ListBox x:Name="ContactsListBox" Grid.Row="1" Margin="5"
                          ItemsSource="{Binding Contacts}"
-                         SelectedItem="{Binding SelectedContact, Mode=TwoWay}">
-                    <ListBox.ItemTemplate>
-                        <DataTemplate>
-                            <TextBlock Text="{Binding Name}" />
-                        </DataTemplate>
-                    </ListBox.ItemTemplate>
+                         SelectedItem="{Binding SelectedContact, Mode=TwoWay}"
+                         ItemTemplate="{StaticResource ContactTemplate}">
                 </ListBox>
 
                 <StackPanel Grid.Row="2" Orientation="Horizontal" Margin="10,8,10,8">
