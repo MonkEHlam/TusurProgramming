@@ -5,6 +5,7 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:View"
         xmlns:vm="clr-namespace:View.ViewModel"
+        xmlns:controls="clr-namespace:View.Controls"
         mc:Ignorable="d"
         Title="MainWindow" Height="358" Width="478" MinWidth="650" MinHeight="450"
         Closing="MainWindow_Closing" Loaded="MainWindow_Loaded">
@@ -13,6 +14,36 @@
         <vm:MainVM />
     </Window.DataContext>
 
+    <Window.Resources>
+        <DataTemplate x:Key="ContactTemplate">
+            <StackPanel Orientation="Horizontal" Margin="3">
+                <Image Width="40" Height="40" Source="/Static/person.png" Margin="0,0,8,0" VerticalAlignment="Center"/>
+                <StackPanel>
+                    <TextBlock
+                    FontSize="12"
+                    FontWeight="SemiBold"
+                    Text="{Binding Name}"/>
+                    <TextBlock 
+                    FontSize="10" 
+                    Text="{Binding Phone}"/>
+                    <TextBlock 
+                    FontSize="10" 
+                    Text="{Binding Email}"/>
+                </StackPanel>
+            </StackPanel>
+        </DataTemplate>
+
+        <Style TargetType="TextBox">
+            <Style.Triggers>
+                <Trigger Property="Validation.HasError" Value="True">
+                    <Setter Property="ToolTip"
+                    Value="{Binding RelativeSource={RelativeSource Self}, Path=(Validation.Errors)[0].ErrorContent}"/>
+                    <Setter Property="Background" Value="LightPink"/>
+                </Trigger>
+            </Style.Triggers>
+        </Style>
+    </Window.Resources>
+    
     <DockPanel Margin="15">
         <Grid>
             <Grid.ColumnDefinitions>
@@ -39,12 +70,8 @@
 
                 <ListBox x:Name="ContactsListBox" Grid.Row="1" Margin="5"
                          ItemsSource="{Binding Contacts}"
-                         SelectedItem="{Binding SelectedContact, Mode=TwoWay}">
-                    <ListBox.ItemTemplate>
-                        <DataTemplate>
-                            <TextBlock Text="{Binding Name}" />
-                        </DataTemplate>
-                    </ListBox.ItemTemplate>
+                         SelectedItem="{Binding SelectedContact, Mode=TwoWay}"
+                         ItemTemplate="{StaticResource ContactTemplate}">
                 </ListBox>
 
                 <StackPanel Grid.Row="2" Orientation="Horizontal" Margin="10,8,10,8">
@@ -62,22 +89,7 @@
             <GridSplitter Grid.Column="1" Width="3" HorizontalAlignment="Stretch"/>
 
             <Grid Grid.Column="2">
-                <Grid.ColumnDefinitions>
-                    <ColumnDefinition Width="Auto"/>
-                    <ColumnDefinition Width="*"/>
-                </Grid.ColumnDefinitions>
-
-                <Border Grid.Column="0" Width="100" Height="100" Background="LightGray" Margin="8,8,8,3" VerticalAlignment="Top"/>
-
-                <StackPanel Grid.Column="1" Margin="8,8,8,8">
-                    <Label Content="Name:" Margin="0,3,0,3"/>
-                    <TextBox Text="{Binding SelectedContact.Name, UpdateSourceTrigger=PropertyChanged, Mode=TwoWay}" Margin="0,3,0,3" IsReadOnly="{Binding IsReadOnly}"/>
-                    <Label Content="Phone Number:" Margin="0,3,0,3"/>
-                    <TextBox Text="{Binding SelectedContact.Phone, UpdateSourceTrigger=PropertyChanged, Mode=TwoWay}" Margin="0,3,0,3" IsReadOnly="{Binding IsReadOnly}"/>
-                    <Label Content="Email:" Margin="0,3,0,3"/>
-                    <TextBox Text="{Binding SelectedContact.Email, UpdateSourceTrigger=PropertyChanged, Mode=TwoWay}" Margin="0,3,0,3" IsReadOnly="{Binding IsReadOnly}"/>
-                </StackPanel>
-
+                <controls:ContactControl DataContext="{Binding SelectedContact}" />
                 <Button Grid.Column="1" Content="Apply" Width="75" Height="25" Margin="8,50,8,8" 
                         HorizontalAlignment="Right" Visibility="{Binding ApplyButtonVisibility}" Command="{Binding ApplyCommand}"/>
             </Grid>
