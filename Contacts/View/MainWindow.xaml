@@ -4,8 +4,7 @@
         xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:View"
-        xmlns:vm="clr-namespace:View.ViewModel"
-        xmlns:controls="clr-namespace:View.Controls"
+        xmlns:vm="clr-namespace:ViewModel;assembly=ViewModel" xmlns:controls="clr-namespace:View.Controls"
         mc:Ignorable="d"
         Title="MainWindow" Height="358" Width="478" MinWidth="650" MinHeight="450"
         Closing="MainWindow_Closing" Loaded="MainWindow_Loaded">
