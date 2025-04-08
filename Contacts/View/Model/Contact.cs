@@ -146,13 +146,16 @@ namespace View.Model
             switch (propertyName)
             {
                 case nameof(Name):
+                {
                     if (string.IsNullOrWhiteSpace(value))
                         error = "Empty name.";
                     else if (value.Length > MaxNameLength)
                         error = "Max name length is 100 symbols.";
                     break;
+                }
 
                 case nameof(Phone):
+                {
                     if (string.IsNullOrWhiteSpace(value))
                     {
                         error = "Empty phone number";
@@ -165,8 +168,10 @@ namespace View.Model
                             error = "Wrong format. Example: +7 (123) 456-7890";
                     }
                     break;
+                }
 
                 case nameof(Email):
+                {
                     if (string.IsNullOrWhiteSpace(value))
                     {
                         error = "Email is empty.";
@@ -179,12 +184,17 @@ namespace View.Model
                             error = "Wrong format. Example: example@domain.com";
                     }
                     break;
+                }
             }
 
             if (error != null)
+            {
                 _errors[propertyName] = error;
+            }
             else
+            {
                 _errors.Remove(propertyName);
+            }
         }
 
         public object Clone()
