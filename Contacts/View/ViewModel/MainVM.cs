@@ -122,7 +122,7 @@ namespace View.ViewModel
         {
             get
             {
-                return SelectedContact != null;
+                return (SelectedContact != null) && !_isAdding;
             }
         }
 
@@ -279,9 +279,11 @@ namespace View.ViewModel
         private void Add(object parameter)
         {
             _indexBefore = Contacts.IndexOf(SelectedContact);
+            SelectedContact = null;
             SelectedContact = new Contact();
             IsReadOnly = false;
             _isAdding = true;
+            OnPropertyChanged(nameof(IsContactSelected));
             ApplyButtonVisibility = Visibility.Visible;
         }
 
