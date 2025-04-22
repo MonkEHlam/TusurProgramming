@@ -3,12 +3,12 @@ using System.Collections.Generic;
 using System.ComponentModel;
 using System.Text.RegularExpressions;
 
-namespace View.Model
+namespace Model
 {
     /// <summary>
     /// Represents a person contact.
     /// </summary>
-    internal class Contact : INotifyPropertyChanged, ICloneable, IDataErrorInfo
+    public class Contact : INotifyPropertyChanged, ICloneable, IDataErrorInfo
     {
         private string _name;
         private string _email;
@@ -48,7 +48,7 @@ namespace View.Model
             new Regex(@"^[^@ \t\r\n]+@[^@ \t\r\n]+\.[^@ \t\r\n]+$");
 
         /// <summary>
-        /// SelectedContact`s name.
+        /// Contact`s name.
         /// </summary>
         public string Name
         {
@@ -65,7 +65,7 @@ namespace View.Model
         }
 
         /// <summary>
-        /// SelectedContact`s Phone number.
+        /// Contact`s Phone number.
         /// </summary>
         public string Phone
         {
@@ -82,7 +82,7 @@ namespace View.Model
         }
 
         /// <summary>
-        /// SelectedContact`s email address.
+        /// Contact`s email address.
         /// </summary>
         public string Email
         {
@@ -105,9 +105,9 @@ namespace View.Model
         /// <summary>
         /// Base class constructor.
         /// </summary>
-        /// <param name="name">SelectedContact`s name.</param>
-        /// <param name="phone">SelectedContact`s Phone number.</param>
-        /// <param name="email">SelectedContact`s email address.</param>
+        /// <param name="name">Contact`s name.</param>
+        /// <param name="phone">Contact`s Phone number.</param>
+        /// <param name="email">Contact`s email address.</param>
         public Contact(string name, string phone, string email)
         {
             Name = name;

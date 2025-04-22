@@ -3,12 +3,12 @@ using System;
 using System.Collections.ObjectModel;
 using System.IO;
 
-namespace View.Model.Services
+namespace Model.Services
 {
     /// <summary>
     /// Class for (de)serializing contact.
     /// </summary>
-    internal class ContactSerializer
+    public class ContactSerializer
     {
         /// <summary>
         /// Path to json save file.
@@ -41,7 +41,7 @@ namespace View.Model.Services
         /// <summary>
         /// Save <see cref="Contact"/> entity into json file.
         /// </summary>
-        /// <param name="contact">SelectedContact entity for saving</param>
+        /// <param name="contact">_selectedContact entity for saving</param>
         public bool Serialize(ObservableCollection<Contact> contacts)
         {
             if (contacts == null) 
@@ -67,7 +67,7 @@ namespace View.Model.Services
         /// <returns></returns>
         public ObservableCollection<Contact> Deserialize()
         {
-            if (!File.Exists(FilePath)) { new ObservableCollection<Contact>(); }
+            if (!File.Exists(FilePath)) { return []; }
 
             try
             {
@@ -76,7 +76,7 @@ namespace View.Model.Services
             }
             catch (Exception ex)
             {
-                return new ObservableCollection<Contact>();
+                return [];
             }
         }
     }
